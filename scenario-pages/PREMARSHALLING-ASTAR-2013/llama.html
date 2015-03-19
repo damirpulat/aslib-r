@@ -96,20 +96,26 @@ solver always has a misclassification penalty of zero.</li>
 
 <p>
 
-<div class="warning"><pre class="knitr r">## Warning in minmax(perf2): no non-missing arguments to min; returning Inf
-</pre></div>
-<div class="warning"><pre class="knitr r">## Warning in minmax(perf2): no non-missing arguments to max; returning -Inf
-</pre></div>
-<div class="warning"><pre class="knitr r">## Warning in minmax(perf2): no non-missing arguments to min; returning Inf
-</pre></div>
-<div class="warning"><pre class="knitr r">## Warning in matrix(align.tmp[(2 - pos):(ncol(x) + 1)], nrow = nrow(x), ncol
-## = ncol(x) + : data length exceeds size of matrix
-</pre></div>
 <!-- html table generated in R 3.1.0 by xtable 1.7-4 package -->
-<!-- Thu Mar 19 10:04:14 2015 -->
+<!-- Thu Mar 19 10:11:32 2015 -->
 <table border=1>
 <tr> <th> algo </th> <th> model </th> <th> succ </th> <th> par10 </th> <th> mcp </th>  </tr>
-  </table>
+  <tr> <td> baseline </td> <td> vbs </td> <td>  1.000 </td> <td> 227.605 </td> <td>  0.000 </td> </tr>
+  <tr> <td> baseline </td> <td> singleBest </td> <td> <b><FONT COLOR="#00FF00"> 0.812</FONT></b> </td> <td> <b><FONT COLOR="#00FF00">7002.907</FONT></b> </td> <td> <b><FONT COLOR="#00FF00">688.774</FONT></b> </td> </tr>
+  <tr> <td> baseline </td> <td> singleBestByPar </td> <td> <b><FONT COLOR="#00FF00"> 0.812</FONT></b> </td> <td> <b><FONT COLOR="#00FF00">7002.907</FONT></b> </td> <td> <b><FONT COLOR="#00FF00">688.774</FONT></b> </td> </tr>
+  <tr> <td> baseline </td> <td> singleBestBySuccesses </td> <td> <b><FONT COLOR="#00FF00"> 0.812</FONT></b> </td> <td> <b><FONT COLOR="#00FF00">7002.907</FONT></b> </td> <td> <b><FONT COLOR="#00FF00">688.774</FONT></b> </td> </tr>
+  <tr> <td> baseline </td> <td> vbs </td> <td>  1.000 </td> <td> 227.605 </td> <td>  0.000 </td> </tr>
+  <tr> <td> baseline </td> <td> singleBest </td> <td> <b><FONT COLOR="#00FF00"> 0.812</FONT></b> </td> <td> <b><FONT COLOR="#00FF00">7002.907</FONT></b> </td> <td> <b><FONT COLOR="#00FF00">688.774</FONT></b> </td> </tr>
+  <tr> <td> baseline </td> <td> singleBestByPar </td> <td> <b><FONT COLOR="#00FF00"> 0.812</FONT></b> </td> <td> <b><FONT COLOR="#00FF00">7002.907</FONT></b> </td> <td> <b><FONT COLOR="#00FF00">688.774</FONT></b> </td> </tr>
+  <tr> <td> baseline </td> <td> singleBestBySuccesses </td> <td> <b><FONT COLOR="#00FF00"> 0.812</FONT></b> </td> <td> <b><FONT COLOR="#00FF00">7002.907</FONT></b> </td> <td> <b><FONT COLOR="#00FF00">688.774</FONT></b> </td> </tr>
+  <tr> <td> classif </td> <td> randomForest </td> <td>  0.848 </td> <td> 5688.944 </td> <td> 542.934 </td> </tr>
+  <tr> <td> classif </td> <td> ksvm </td> <td> <b><FONT COLOR="#FFAAAA"> 0.863</FONT></b> </td> <td> <b><FONT COLOR="#FFAAAA">5172.481</FONT></b> </td> <td> <b><FONT COLOR="#FFAAAA">518.311</FONT></b> </td> </tr>
+  <tr> <td> classif </td> <td> rpart </td> <td> <b><FONT COLOR="#FF0000"> 0.879</FONT></b> </td> <td> <b><FONT COLOR="#FF0000">4634.227</FONT></b> </td> <td> <b><FONT COLOR="#FF0000">471.897</FONT></b> </td> </tr>
+  <tr> <td> cluster </td> <td> XMeans </td> <td> <b><FONT COLOR="#00FF00"> 0.846</FONT></b> </td> <td> <b><FONT COLOR="#00FF00">5756.435</FONT></b> </td> <td> <b><FONT COLOR="#00FF00">548.944</FONT></b> </td> </tr>
+  <tr> <td> regr </td> <td> randomForest </td> <td> <b><FONT COLOR="#FFAAAA"> 0.852</FONT></b> </td> <td> <b><FONT COLOR="#FFAAAA">5546.517</FONT></b> </td> <td> <b><FONT COLOR="#FFAAAA">523.467</FONT></b> </td> </tr>
+  <tr> <td> regr </td> <td> lm </td> <td>  0.843 </td> <td> 5885.054 </td> <td> 554.603 </td> </tr>
+  <tr> <td> regr </td> <td> rpart </td> <td>  0.850 </td> <td> 5645.921 </td> <td> 561.391 </td> </tr>
+   </table>
 
 
 <p>
