@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+.knitr .inline {
+  background-color: #f7f7f7;
+  border:solid 1px #B0B0B0;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
+.warning {
+	font-weight: bold;
+}
+.message {
+	font-style: italic;
+}
+.source, .output, .warning, .error, .message {
+	padding: 0 1em;
+  border:solid 1px #F7F7F7;
+}
+.source {
+  background-color: #f5f5f5;
+}
+.rimage .left {
+  text-align: left;
+}
+.rimage .right {
+  text-align: right;
+}
+.rimage .center {
+  text-align: center;
+}
+.hl.num {
+  color: #AF0F91;
+}
+.hl.str {
+  color: #317ECC;
+}
+.hl.com {
+  color: #AD95AF;
+  font-style: italic;
+}
+.hl.opt {
+  color: #000000;
+}
+.hl.std {
+  color: #585858;
+}
+.hl.kwa {
+  color: #295F94;
+  font-weight: bold;
+}
+.hl.kwb {
+  color: #B05A65;
+}
+.hl.kwc {
+  color: #55aa55;
+}
+.hl.kwd {
+  color: #BC5A65;
+  font-weight: bold;
+}
+</style>
+  <title>Algorithm performance overview</title>
+</head>
+<body>
+
+
+<h2> Overview of performance values </h2>
+
+The following statistics were calculated from the performance values of each algorithm:
+<ul>
+
+  <li> <a>obs (number of observations within performance values)</a>
+  <li> <a>nas (number of NAs, i.e., missing values, within performance values)</a>
+  <li> <a>min (minimum), mean (arithmetic mean), max (maximum), sd (standard deviation)</a>
+  <li> <a>qu_1st (1st quartile = lower quartile = 25%-quantile)</a>
+  <li> <a>med (median = 50%-quantile)</a>
+  <li> <a>qu_3rd (3rd quartile = upper quartile = 75%-quantile)</a>
+  <li> <a>coeff_var (coefficient of variation = standard deviation / arithmetic mean)</a>
+
+</ul>
+
+<!-- html table generated in R 3.2.2 by xtable 1.8-0 package -->
+<!-- Thu Dec  3 15:43:09 2015 -->
+<table border=1>
+<tr> <th>  </th> <th> obs </th> <th> nas </th> <th> min </th> <th> qu_1st </th> <th> med </th> <th> mean </th> <th> qu_3rd </th> <th> max </th> <th> sd </th> <th> coeff_var </th>  </tr>
+  <tr> <td align="right"> bprolog </td> <td align="right">    4642 </td> <td align="right">       0 </td> <td align="right">    0.05 </td> <td align="right">    1800 </td> <td align="right">    1800 </td> <td align="right"> 1423.45 </td> <td align="right">    1800 </td> <td align="right">    1800 </td> <td align="right"> 689.945 </td> <td align="right"> 0.484699 </td> </tr>
+  <tr> <td align="right"> fzn2smt </td> <td align="right">    4642 </td> <td align="right">       0 </td> <td align="right">    0.01 </td> <td align="right">    4.43 </td> <td align="right">    1800 </td> <td align="right"> 1143.47 </td> <td align="right">    1800 </td> <td align="right">    1800 </td> <td align="right"> 843.752 </td> <td align="right"> 0.737887 </td> </tr>
+  <tr> <td align="right"> g12cpx </td> <td align="right">    4642 </td> <td align="right">       0 </td> <td align="right">    0.01 </td> <td align="right"> 30.4275 </td> <td align="right">    1800 </td> <td align="right"> 1126.98 </td> <td align="right">    1800 </td> <td align="right">    1800 </td> <td align="right"> 832.378 </td> <td align="right"> 0.738591 </td> </tr>
+  <tr> <td align="right"> g12fd </td> <td align="right">    4642 </td> <td align="right">       0 </td> <td align="right">    0.08 </td> <td align="right">    1800 </td> <td align="right">    1800 </td> <td align="right">  1424.8 </td> <td align="right">    1800 </td> <td align="right">    1800 </td> <td align="right"> 695.472 </td> <td align="right"> 0.488118 </td> </tr>
+  <tr> <td align="right"> g12lazyfd </td> <td align="right">    4642 </td> <td align="right">       0 </td> <td align="right">    0.01 </td> <td align="right"> 339.392 </td> <td align="right">    1800 </td> <td align="right">  1306.1 </td> <td align="right">    1800 </td> <td align="right">    1800 </td> <td align="right"> 770.814 </td> <td align="right"> 0.590166 </td> </tr>
+  <tr> <td align="right"> g12mip </td> <td align="right">    4642 </td> <td align="right">       0 </td> <td align="right">    0.08 </td> <td align="right">    1800 </td> <td align="right">    1800 </td> <td align="right"> 1597.54 </td> <td align="right">    1800 </td> <td align="right">    1800 </td> <td align="right"> 548.897 </td> <td align="right"> 0.34359 </td> </tr>
+  <tr> <td align="right"> gecode </td> <td align="right">    4642 </td> <td align="right">       0 </td> <td align="right">    2.02 </td> <td align="right"> 660.837 </td> <td align="right">    1800 </td> <td align="right"> 1354.65 </td> <td align="right">    1800 </td> <td align="right">    1800 </td> <td align="right"> 723.121 </td> <td align="right"> 0.533806 </td> </tr>
+  <tr> <td align="right"> izplus </td> <td align="right">    4642 </td> <td align="right">       0 </td> <td align="right">    0.02 </td> <td align="right">  590.15 </td> <td align="right">    1800 </td> <td align="right"> 1350.42 </td> <td align="right">    1800 </td> <td align="right">    1800 </td> <td align="right"> 744.319 </td> <td align="right"> 0.551174 </td> </tr>
+  <tr> <td align="right"> minisatid </td> <td align="right">    4642 </td> <td align="right">       0 </td> <td align="right">    0.01 </td> <td align="right"> 16.6625 </td> <td align="right"> 1146.16 </td> <td align="right"> 950.908 </td> <td align="right">    1800 </td> <td align="right">    1800 </td> <td align="right">  851.33 </td> <td align="right"> 0.895281 </td> </tr>
+  <tr> <td align="right"> mistral </td> <td align="right">    4642 </td> <td align="right">       0 </td> <td align="right">    0.03 </td> <td align="right">    1800 </td> <td align="right">    1800 </td> <td align="right"> 1525.83 </td> <td align="right">    1800 </td> <td align="right">    1800 </td> <td align="right"> 622.611 </td> <td align="right"> 0.408046 </td> </tr>
+  <tr> <td align="right"> ortools </td> <td align="right">    4642 </td> <td align="right">       0 </td> <td align="right">    0.15 </td> <td align="right"> 386.455 </td> <td align="right">    1800 </td> <td align="right"> 1316.25 </td> <td align="right">    1800 </td> <td align="right">    1800 </td> <td align="right"> 751.374 </td> <td align="right"> 0.570845 </td> </tr>
+   </table>
+
+
+<br>
+<h2> Summary of the runstatus per algorithm </h2>
+
+The following table summarizes the runstatus of each algorithm over all instances (in %).<br>
+<br>
+
+<!-- html table generated in R 3.2.2 by xtable 1.8-0 package -->
+<!-- Thu Dec  3 15:43:09 2015 -->
+<table border=1>
+<tr> <th>  </th> <th> ok </th> <th> timeout </th> <th> other </th>  </tr>
+  <tr> <td align="right"> bprolog </td> <td align="right"> 24.731 </td> <td align="right"> 61.719 </td> <td align="right"> 13.550 </td> </tr>
+  <tr> <td align="right"> fzn2smt </td> <td align="right"> 38.130 </td> <td align="right"> 12.042 </td> <td align="right"> 49.828 </td> </tr>
+  <tr> <td align="right"> g12cpx </td> <td align="right"> 41.685 </td> <td align="right"> 41.792 </td> <td align="right"> 16.523 </td> </tr>
+  <tr> <td align="right"> g12fd </td> <td align="right"> 23.567 </td> <td align="right"> 64.821 </td> <td align="right"> 11.611 </td> </tr>
+  <tr> <td align="right"> g12lazyfd </td> <td align="right"> 30.310 </td> <td align="right"> 36.514 </td> <td align="right"> 33.175 </td> </tr>
+  <tr> <td align="right"> g12mip </td> <td align="right"> 12.581 </td> <td align="right"> 43.257 </td> <td align="right"> 44.162 </td> </tr>
+  <tr> <td align="right"> gecode </td> <td align="right"> 29.513 </td> <td align="right"> 62.861 </td> <td align="right"> 7.626 </td> </tr>
+  <tr> <td align="right"> izplus </td> <td align="right"> 28.048 </td> <td align="right"> 53.705 </td> <td align="right"> 18.246 </td> </tr>
+  <tr> <td align="right"> minisatid </td> <td align="right"> 51.616 </td> <td align="right"> 32.572 </td> <td align="right"> 15.812 </td> </tr>
+  <tr> <td align="right"> mistral </td> <td align="right"> 16.911 </td> <td align="right"> 66.028 </td> <td align="right"> 17.062 </td> </tr>
+  <tr> <td align="right"> ortools </td> <td align="right"> 30.655 </td> <td align="right"> 62.021 </td> <td align="right"> 7.324 </td> </tr>
+   </table>
+
+
+<br>
+<h2> Dominated Algorithms </h2>
+
+Here, you'll find an overview of dominating/dominated algorithms: <br>
+
+None of the algorithms was superior to any of the other.
+
+<br> <br>
+An algorithm (A) is considered to be superior to an other algorithm (B), if it has at least an equal performance on all instances (compared to B) <u>and</u> if it is better on at least one of them. A missing value is automatically a worse performance. However, instances which could not be solved by either one of the algorithms, were not considered for the dominance relation.<br>
+
+<br>
+<br>
+
+<b><FONT COLOR = "#FF0000"> Important note w.r.t. some of the following plots:</b><br>
+If appropriate, we imputed performance values for failed runs.
+We used max + 0.3 * (max - min), in case of minimization problems,
+or min - 0.3 * (max - min), in case of maximization problems.<br>
+In addition, a small noise is added to the imputed values (except for the cluster matrix,
+based on correlations, which is shown at the end of this page). </FONT>
+<br>
+<br>
+
+<h2> Boxplots of performance values </h2>
+
+<br>Performance values with imputation.<br>
+<div class="chunk" id="unnamed-chunk-4"><div class="rimage default"><img src="figure/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" class="plot" /></div></div>
+
+<br>
+<h2> Estimated densitities of performance values </h2>
+
+<br>Performance values with imputation.<br>
+<div class="chunk" id="unnamed-chunk-5"><div class="rimage default"><img src="figure/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" class="plot" /></div></div>
+
+<br>Performance values without imputation.<br>
+<div class="chunk" id="unnamed-chunk-6"><div class="rimage default"><img src="figure/unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" class="plot" /></div></div>
+<br>
+
+<h2> Estimated cumulative distribution functions of performance values </h2>
+
+<br>Performance values without imputation.<br>
+<div class="chunk" id="unnamed-chunk-7"><div class="rimage default"><img src="figure/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" class="plot" /></div></div>
+
+<br>
+<h2> Scatterplot matrix of the performance values </h2>
+The figure underneath shows pairwise scatterplots of the performance values.<br>
+<br>
+Performance values with imputation.<br>
+
+</div><div class="rimage default"><img src="figure/unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" class="plot" /></div><div class="rcode">
+
+
+
+<br>
+<h2> Clustering algorithms based on their correlations </h2>
+The following figure shows the correlations of the <b>ranks</b> of the performance
+values. Per default it will show the correlation coefficient of spearman. Missing values were imputed <u>prior</u> to computing the correlation coefficients. The algorithms are ordered in a way that similar (highly correlated) algorithms are close to each other. Per default the clustering is based on hierarchical clustering, using Ward's method. <br>
+<br>
+
+<div class="chunk" id="unnamed-chunk-9"><div class="rcode"><div class="error"><pre class="knitr r">## Error in match.arg(hclust.method): 'arg' sollte eines  von '&quot;complete&quot;, &quot;ward&quot;, &quot;single&quot;, &quot;average&quot;, &quot;mcquitty&quot;, &quot;median&quot;, &quot;centroid&quot;' sein
+</pre></div>
+</div></div>
+
+
+</body>
+</html>

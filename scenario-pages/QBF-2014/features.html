@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+.knitr .inline {
+  background-color: #f7f7f7;
+  border:solid 1px #B0B0B0;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
+.warning {
+	font-weight: bold;
+}
+.message {
+	font-style: italic;
+}
+.source, .output, .warning, .error, .message {
+	padding: 0 1em;
+  border:solid 1px #F7F7F7;
+}
+.source {
+  background-color: #f5f5f5;
+}
+.rimage .left {
+  text-align: left;
+}
+.rimage .right {
+  text-align: right;
+}
+.rimage .center {
+  text-align: center;
+}
+.hl.num {
+  color: #AF0F91;
+}
+.hl.str {
+  color: #317ECC;
+}
+.hl.com {
+  color: #AD95AF;
+  font-style: italic;
+}
+.hl.opt {
+  color: #000000;
+}
+.hl.std {
+  color: #585858;
+}
+.hl.kwa {
+  color: #295F94;
+  font-weight: bold;
+}
+.hl.kwb {
+  color: #B05A65;
+}
+.hl.kwc {
+  color: #55aa55;
+}
+.hl.kwd {
+  color: #BC5A65;
+  font-weight: bold;
+}
+</style>
+  <title>Feature performance overview</title>
+</head>
+<body>
+
+
+<h2> Overview of Feature Values</h2>
+
+The following measures were taken for the results of each feature:
+<ul>
+
+  <li> <a>obs (number of observations within the feature set)</a>
+  <li> <a>NAs (number of NAs, i.e., missing values, within the feature set)</a>
+  <li> <a>min (minimum), mean (arithmetic mean), max (maximum), std_dev (standard deviation)</a>
+  <li> <a>1st_qu (1st quartile = lower quartile = 25%-quantile)</a>
+  <li> <a>median (median = 50%-quantile)</a>
+  <li> <a>3rd_qu (3rd quartile = upper quartile = 75%-quantile)</a>
+  <li> <a>co_var (coefficient of variation = standard deviation / arithmetic mean)</a>
+
+</ul>
+
+<!-- html table generated in R 3.2.2 by xtable 1.8-0 package -->
+<!-- Thu Dec  3 15:44:35 2015 -->
+<table border=1>
+<tr> <th>  </th> <th> obs </th> <th> nas </th> <th> min </th> <th> qu_1st </th> <th> med </th> <th> mean </th> <th> qu_3rd </th> <th> max </th> <th> sd </th> <th> coeff_var </th>  </tr>
+  <tr> <td align="right"> EXIST_VARS </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right">  63 </td> <td align="right"> 9.8e+02 </td> <td align="right"> 3.1e+03 </td> <td align="right"> 1.1e+04 </td> <td align="right"> 8.9e+03 </td> <td align="right"> 5.8e+05 </td> <td align="right"> 3.1e+04 </td> <td align="right"> 2.8 </td> </tr>
+  <tr> <td align="right"> FORALL_VARS </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right">   1 </td> <td align="right">   8 </td> <td align="right">  33 </td> <td align="right"> 3.8e+02 </td> <td align="right"> 1.7e+02 </td> <td align="right"> 2.3e+04 </td> <td align="right"> 1.8e+03 </td> <td align="right"> 4.8 </td> </tr>
+  <tr> <td align="right"> TOTAL_VARS </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right">  70 </td> <td align="right"> 1e+03 </td> <td align="right"> 3.2e+03 </td> <td align="right"> 1.1e+04 </td> <td align="right"> 9.2e+03 </td> <td align="right"> 5.8e+05 </td> <td align="right"> 3.1e+04 </td> <td align="right"> 2.7 </td> </tr>
+  <tr> <td align="right"> CLAUSES </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right"> 1.8e+02 </td> <td align="right"> 7.1e+03 </td> <td align="right"> 2.2e+04 </td> <td align="right"> 1.6e+05 </td> <td align="right"> 8.1e+04 </td> <td align="right"> 5.2e+06 </td> <td align="right"> 4.5e+05 </td> <td align="right"> 2.9 </td> </tr>
+  <tr> <td align="right"> LITERALS </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right"> 4.5e+02 </td> <td align="right"> 3e+04 </td> <td align="right"> 1e+05 </td> <td align="right"> 5.8e+05 </td> <td align="right"> 3.4e+05 </td> <td align="right"> 1.6e+07 </td> <td align="right"> 1.5e+06 </td> <td align="right"> 2.6 </td> </tr>
+  <tr> <td align="right"> EXIST_SET </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right">   1 </td> <td align="right">   2 </td> <td align="right">   2 </td> <td align="right"> 4.6 </td> <td align="right">   4 </td> <td align="right"> 2.2e+02 </td> <td align="right"> 9.3 </td> <td align="right">   2 </td> </tr>
+  <tr> <td align="right"> FORALL_SET </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right"> 3.7 </td> <td align="right">   3 </td> <td align="right"> 2.2e+02 </td> <td align="right"> 9.4 </td> <td align="right"> 2.5 </td> </tr>
+  <tr> <td align="right"> TOTAL_SET </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right">   2 </td> <td align="right">   3 </td> <td align="right">   3 </td> <td align="right"> 8.3 </td> <td align="right">   7 </td> <td align="right"> 4.4e+02 </td> <td align="right">  19 </td> <td align="right"> 2.2 </td> </tr>
+  <tr> <td align="right"> UNARY_CLAUSES </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   1 </td> <td align="right"> 3.1e+03 </td> <td align="right">  29 </td> <td align="right"> 1.1e+05 </td> <td align="right"> 1.3e+04 </td> <td align="right"> 4.2 </td> </tr>
+  <tr> <td align="right"> BINARY_CLAUSES </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right">   0 </td> <td align="right"> 1.1e+03 </td> <td align="right"> 9.2e+03 </td> <td align="right"> 1.3e+05 </td> <td align="right"> 4.8e+04 </td> <td align="right"> 5.1e+06 </td> <td align="right"> 4.3e+05 </td> <td align="right"> 3.2 </td> </tr>
+  <tr> <td align="right"> TERNARY_MORE_CLAUSES </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right">  47 </td> <td align="right"> 2.4e+03 </td> <td align="right"> 6e+03 </td> <td align="right"> 2.1e+04 </td> <td align="right"> 1.5e+04 </td> <td align="right"> 2.9e+06 </td> <td align="right"> 1.1e+05 </td> <td align="right"> 5.3 </td> </tr>
+  <tr> <td align="right"> POS_HORN </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right">  14 </td> <td align="right"> 3.3e+03 </td> <td align="right"> 1.3e+04 </td> <td align="right"> 1.4e+05 </td> <td align="right"> 5.6e+04 </td> <td align="right"> 5.1e+06 </td> <td align="right"> 4.5e+05 </td> <td align="right"> 3.1 </td> </tr>
+  <tr> <td align="right"> NEG_HORN </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right">   4 </td> <td align="right"> 1.2e+03 </td> <td align="right"> 4.4e+03 </td> <td align="right"> 1.8e+04 </td> <td align="right"> 2.1e+04 </td> <td align="right"> 6.9e+05 </td> <td align="right"> 3.6e+04 </td> <td align="right"> 2.1 </td> </tr>
+  <tr> <td align="right"> EXIST_LIT_PER_CLAUSE </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right">   1 </td> <td align="right"> 2.1 </td> <td align="right"> 2.4 </td> <td align="right"> 8.1 </td> <td align="right">   4 </td> <td align="right"> 2.3e+02 </td> <td align="right">  24 </td> <td align="right">   3 </td> </tr>
+  <tr> <td align="right"> FORALL_LIT_PER_CLAUSE </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right"> 2.7e-05 </td> <td align="right"> 0.015 </td> <td align="right"> 0.12 </td> <td align="right"> 1.2 </td> <td align="right"> 0.49 </td> <td align="right">  40 </td> <td align="right"> 3.6 </td> <td align="right"> 2.9 </td> </tr>
+  <tr> <td align="right"> EXIST_VARS_PER_SET </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right">  24 </td> <td align="right"> 2.5e+02 </td> <td align="right"> 9.9e+02 </td> <td align="right"> 5.1e+03 </td> <td align="right"> 4.4e+03 </td> <td align="right"> 2.9e+05 </td> <td align="right"> 1.6e+04 </td> <td align="right">   3 </td> </tr>
+  <tr> <td align="right"> FORALL_POS_LITS_PER_CLAUSE </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right"> 1.8e-05 </td> <td align="right"> 0.0076 </td> <td align="right"> 0.059 </td> <td align="right"> 0.72 </td> <td align="right"> 0.25 </td> <td align="right">  20 </td> <td align="right"> 2.3 </td> <td align="right"> 3.2 </td> </tr>
+  <tr> <td align="right"> FORALL_NEG_LITS_PER_CLAUSE </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right"> 7e-06 </td> <td align="right"> 0.0074 </td> <td align="right"> 0.056 </td> <td align="right"> 0.51 </td> <td align="right"> 0.22 </td> <td align="right">  20 </td> <td align="right"> 1.5 </td> <td align="right"> 2.9 </td> </tr>
+  <tr> <td align="right"> OCCS_POS_NO_PER_VAR </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right"> 1.1 </td> <td align="right"> 3.2 </td> <td align="right">   4 </td> <td align="right">  48 </td> <td align="right">  24 </td> <td align="right"> 3.8e+03 </td> <td align="right"> 2e+02 </td> <td align="right"> 4.2 </td> </tr>
+  <tr> <td align="right"> OCCS_FORALL_NO_PER_VAR </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right">   2 </td> <td align="right"> 8.6 </td> <td align="right">  27 </td> <td align="right"> 5.1e+03 </td> <td align="right"> 2.5e+02 </td> <td align="right"> 5.7e+05 </td> <td align="right"> 3.7e+04 </td> <td align="right"> 7.2 </td> </tr>
+  <tr> <td align="right"> OCCS_FORALL_POS_NO_PER_VAR </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right">   1 </td> <td align="right"> 4.4 </td> <td align="right">  16 </td> <td align="right"> 2.6e+03 </td> <td align="right"> 1.3e+02 </td> <td align="right"> 2.9e+05 </td> <td align="right"> 1.9e+04 </td> <td align="right"> 7.3 </td> </tr>
+  <tr> <td align="right"> W_OCCS_POS_NO_PER_VAR </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right"> 2.5 </td> <td align="right"> 6.7 </td> <td align="right">  13 </td> <td align="right"> 2.1e+02 </td> <td align="right"> 1e+02 </td> <td align="right"> 7.9e+03 </td> <td align="right"> 6.4e+02 </td> <td align="right"> 3.1 </td> </tr>
+  <tr> <td align="right"> W_OCCS_FORALL_NO_PER_VAR </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right">   4 </td> <td align="right">  23 </td> <td align="right">  77 </td> <td align="right"> 1.4e+04 </td> <td align="right"> 8.6e+02 </td> <td align="right"> 1.1e+06 </td> <td align="right"> 7.9e+04 </td> <td align="right"> 5.7 </td> </tr>
+  <tr> <td align="right"> W_OCCS_FORALL_POS_NO_PER_VAR </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right">   2 </td> <td align="right">  10 </td> <td align="right">  38 </td> <td align="right"> 7.2e+03 </td> <td align="right"> 4.4e+02 </td> <td align="right"> 5.7e+05 </td> <td align="right"> 4.1e+04 </td> <td align="right"> 5.6 </td> </tr>
+  <tr> <td align="right"> W_PRODUCTS </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right"> 6.3 </td> <td align="right">  38 </td> <td align="right"> 2.7e+02 </td> <td align="right"> 7e+04 </td> <td align="right"> 3.5e+03 </td> <td align="right"> 7.6e+06 </td> <td align="right"> 3.8e+05 </td> <td align="right"> 5.4 </td> </tr>
+  <tr> <td align="right"> LITN_LIT </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right"> 0.069 </td> <td align="right"> 0.49 </td> <td align="right"> 0.58 </td> <td align="right"> 0.64 </td> <td align="right"> 0.85 </td> <td align="right"> 0.98 </td> <td align="right"> 0.19 </td> <td align="right"> 0.3 </td> </tr>
+  <tr> <td align="right"> LITEP_LIT </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right"> 0.0043 </td> <td align="right"> 0.12 </td> <td align="right"> 0.34 </td> <td align="right"> 0.3 </td> <td align="right"> 0.46 </td> <td align="right"> 0.9 </td> <td align="right"> 0.18 </td> <td align="right"> 0.6 </td> </tr>
+  <tr> <td align="right"> LITEN_LITE </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right"> 0.03 </td> <td align="right"> 0.5 </td> <td align="right"> 0.6 </td> <td align="right"> 0.65 </td> <td align="right"> 0.85 </td> <td align="right">   1 </td> <td align="right"> 0.2 </td> <td align="right"> 0.31 </td> </tr>
+  <tr> <td align="right"> LITEN_LITN </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right"> 0.082 </td> <td align="right"> 0.89 </td> <td align="right"> 0.98 </td> <td align="right"> 0.9 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right"> 0.17 </td> <td align="right"> 0.19 </td> </tr>
+  <tr> <td align="right"> LITFN_LIT </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right"> 3e-06 </td> <td align="right"> 0.003 </td> <td align="right"> 0.013 </td> <td align="right"> 0.048 </td> <td align="right"> 0.058 </td> <td align="right"> 0.46 </td> <td align="right"> 0.081 </td> <td align="right"> 1.7 </td> </tr>
+  <tr> <td align="right"> LITFP_LITFN </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right"> 0.13 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right"> 1.5 </td> <td align="right"> 1.2 </td> <td align="right"> 1.8e+02 </td> <td align="right"> 5.6 </td> <td align="right"> 3.8 </td> </tr>
+  <tr> <td align="right"> OCCP_OCCN </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right"> 0.016 </td> <td align="right"> 0.18 </td> <td align="right"> 0.72 </td> <td align="right"> 0.73 </td> <td align="right">   1 </td> <td align="right">  13 </td> <td align="right"> 0.79 </td> <td align="right"> 1.1 </td> </tr>
+  <tr> <td align="right"> OCCE_OCC </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right"> 0.07 </td> <td align="right"> 0.92 </td> <td align="right">   1 </td> <td align="right"> 0.94 </td> <td align="right">   1 </td> <td align="right"> 1.3 </td> <td align="right"> 0.15 </td> <td align="right"> 0.16 </td> </tr>
+  <tr> <td align="right"> OCCEN_OCC </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right"> 0.031 </td> <td align="right"> 0.48 </td> <td align="right"> 0.56 </td> <td align="right"> 0.63 </td> <td align="right"> 0.86 </td> <td align="right"> 1.3 </td> <td align="right"> 0.25 </td> <td align="right"> 0.39 </td> </tr>
+  <tr> <td align="right"> OCCFP_OCCF </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right"> 0.11 </td> <td align="right"> 0.5 </td> <td align="right"> 0.5 </td> <td align="right"> 0.53 </td> <td align="right"> 0.55 </td> <td align="right"> 0.99 </td> <td align="right"> 0.079 </td> <td align="right"> 0.15 </td> </tr>
+  <tr> <td align="right"> OCCEN_OCCE </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right"> 0.03 </td> <td align="right"> 0.5 </td> <td align="right"> 0.6 </td> <td align="right"> 0.65 </td> <td align="right"> 0.85 </td> <td align="right">   1 </td> <td align="right"> 0.2 </td> <td align="right"> 0.31 </td> </tr>
+  <tr> <td align="right"> OCCEN_OCCN </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right"> 0.086 </td> <td align="right"> 0.93 </td> <td align="right">   1 </td> <td align="right"> 0.95 </td> <td align="right">   1 </td> <td align="right"> 1.5 </td> <td align="right"> 0.16 </td> <td align="right"> 0.17 </td> </tr>
+  <tr> <td align="right"> OCCFP_OCCFN </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right"> 0.13 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right"> 1.5 </td> <td align="right"> 1.2 </td> <td align="right"> 1.8e+02 </td> <td align="right"> 5.6 </td> <td align="right"> 3.8 </td> </tr>
+  <tr> <td align="right"> TERMORE_CLAUSE </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right"> 0.0058 </td> <td align="right"> 0.088 </td> <td align="right"> 0.3 </td> <td align="right"> 0.41 </td> <td align="right"> 0.85 </td> <td align="right">   1 </td> <td align="right"> 0.37 </td> <td align="right"> 0.9 </td> </tr>
+  <tr> <td align="right"> NEG_HORN_CLAUSE </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right"> 0.00042 </td> <td align="right"> 0.037 </td> <td align="right"> 0.3 </td> <td align="right"> 0.37 </td> <td align="right"> 0.73 </td> <td align="right"> 0.98 </td> <td align="right"> 0.33 </td> <td align="right"> 0.89 </td> </tr>
+  <tr> <td align="right"> WOCCN_WOCC </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right"> 0.05 </td> <td align="right"> 0.49 </td> <td align="right"> 0.57 </td> <td align="right"> 0.62 </td> <td align="right"> 0.8 </td> <td align="right"> 0.97 </td> <td align="right"> 0.18 </td> <td align="right"> 0.3 </td> </tr>
+  <tr> <td align="right"> WOCCEP_WOCC </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right"> 0.0044 </td> <td align="right"> 0.18 </td> <td align="right"> 0.39 </td> <td align="right"> 0.35 </td> <td align="right"> 0.49 </td> <td align="right"> 1.2 </td> <td align="right"> 0.19 </td> <td align="right"> 0.54 </td> </tr>
+  <tr> <td align="right"> WOCCFN_WOCC </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right"> 0.0072 </td> <td align="right"> 0.2 </td> <td align="right"> 0.55 </td> <td align="right">  22 </td> <td align="right"> 2.3 </td> <td align="right"> 2.4e+03 </td> <td align="right"> 1.6e+02 </td> <td align="right"> 7.6 </td> </tr>
+  <tr> <td align="right"> WOCCEP_WOCCE </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right"> 0.004 </td> <td align="right"> 0.19 </td> <td align="right"> 0.42 </td> <td align="right"> 0.37 </td> <td align="right"> 0.51 </td> <td align="right"> 0.97 </td> <td align="right"> 0.19 </td> <td align="right"> 0.52 </td> </tr>
+  <tr> <td align="right"> WOCCEP_WOCCP </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right"> 0.06 </td> <td align="right"> 0.91 </td> <td align="right"> 0.98 </td> <td align="right"> 0.91 </td> <td align="right">   1 </td> <td align="right"> 1.7 </td> <td align="right"> 0.21 </td> <td align="right"> 0.23 </td> </tr>
+  <tr> <td align="right"> WOCCFN_WOCCN </td> <td align="right"> 1254 </td> <td align="right">  14 </td> <td align="right"> 0.025 </td> <td align="right"> 0.35 </td> <td align="right"> 0.93 </td> <td align="right">  43 </td> <td align="right">   5 </td> <td align="right"> 4.7e+03 </td> <td align="right"> 3.3e+02 </td> <td align="right"> 7.7 </td> </tr>
+   </table>
+
+
+<br>
+<h2> Summary of feature steps </h2>
+
+The following table summarizes the feature steps over all instances.
+<ul>
+  <li> size (percentage of features affected by this step)
+  <li> ok, ..., other (percentage of run status)
+  <li> cost_min, cost_mean, cost_max (range of costs for this step)
+  <li> cost_na (percentage of missing values occuring in costs)
+</ul>
+
+<br>
+
+<!-- html table generated in R 3.2.2 by xtable 1.8-0 package -->
+<!-- Thu Dec  3 15:44:35 2015 -->
+<table border=1>
+<tr> <th>  </th> <th> size </th> <th> ok </th> <th> timeout </th> <th> memout </th> <th> presolved </th> <th> crash </th> <th> other </th> <th> unknown </th>  </tr>
+  <tr> <td align="right"> default </td> <td align="right">   2 </td> <td align="right">  99 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right"> 1.1 </td> <td align="right">   0 </td> <td align="right">   0 </td> </tr>
+   </table>
+
+
+<br>
+<h2> Duplicated Features </h2>
+
+Underneath, you'll find blocks of duplicated features, i.e., observations that have equal values over all features. Please note, that only a maximum of 5 duplicates per block are shown.<br>
+<br>
+
+<!-- html table generated in R 3.2.2 by xtable 1.8-0 package -->
+<!-- Thu Dec  3 15:44:35 2015 -->
+<table border=1>
+<tr> <th> block </th> <th> numbers </th> <th> instances </th>  </tr>
+  <tr> <td align="right">   1 </td> <td align="right">   2 </td> <td> applications/complexity/query06_query05_1344 +++++++ applications/complexity/query71_query04_1344 </td> </tr>
+  <tr> <td align="right">   2 </td> <td align="right">   2 </td> <td> applications/complexity/query31_eequery_1344n +++++++ applications/complexity/query36_query25_1344n </td> </tr>
+  <tr> <td align="right">   3 </td> <td align="right">   2 </td> <td> applications/complexity/query71_query31_1344n +++++++ applications/complexity/query71_query36_1344n </td> </tr>
+  <tr> <td align="right">   4 </td> <td align="right">   2 </td> <td> applications/planning/depots01_4 +++++++ applications/planning/depots01_5 </td> </tr>
+  <tr> <td align="right">   5 </td> <td align="right">   2 </td> <td> applications/planning/depots03_7 +++++++ applications/planning/depots03_8 </td> </tr>
+  <tr> <td align="right">   6 </td> <td align="right">   2 </td> <td> applications/planning/depots04_7 +++++++ applications/planning/depots04_8 </td> </tr>
+  <tr> <td align="right">   7 </td> <td align="right">   3 </td> <td> applications/planning/depots05_7 +++++++ applications/planning/depots05_8 +++++++ applications/planning/depots05_9 </td> </tr>
+  <tr> <td align="right">   8 </td> <td align="right">   2 </td> <td> applications/planning/depots06_15 +++++++ applications/planning/depots06_16 </td> </tr>
+  <tr> <td align="right">   9 </td> <td align="right">   2 </td> <td> applications/planning/depots08_6 +++++++ applications/planning/depots08_7 </td> </tr>
+  <tr> <td align="right">  10 </td> <td align="right">   2 </td> <td> applications/planning/depots09_11 +++++++ applications/planning/depots09_12 </td> </tr>
+  <tr> <td align="right">  11 </td> <td align="right">   2 </td> <td> applications/planning/depots13_7 +++++++ applications/planning/depots13_8 </td> </tr>
+  <tr> <td align="right">  12 </td> <td align="right">   2 </td> <td> applications/planning/depots16_5 +++++++ applications/planning/depots16_6 </td> </tr>
+  <tr> <td align="right">  13 </td> <td align="right">   2 </td> <td> applications/planning/driverlog01_5 +++++++ applications/planning/driverlog01_6 </td> </tr>
+  <tr> <td align="right">  14 </td> <td align="right">   2 </td> <td> applications/planning/driverlog15_6 +++++++ applications/planning/driverlog15_7 </td> </tr>
+  <tr> <td align="right">  15 </td> <td align="right">   2 </td> <td> applications/planning/freecell02_4 +++++++ applications/planning/freecell02_5 </td> </tr>
+  <tr> <td align="right">  16 </td> <td align="right">   2 </td> <td> applications/planning/freecell03_5 +++++++ applications/planning/freecell03_6 </td> </tr>
+  <tr> <td align="right">  17 </td> <td align="right">   2 </td> <td> applications/planning/freecell04_7 +++++++ applications/planning/freecell04_8 </td> </tr>
+  <tr> <td align="right">  18 </td> <td align="right">   2 </td> <td> applications/planning/pipesnotankage11_6 +++++++ applications/planning/pipesnotankage11_7 </td> </tr>
+  <tr> <td align="right">  19 </td> <td align="right">   2 </td> <td> applications/planning/pipesnotankage12_7 +++++++ applications/planning/pipesnotankage12_8 </td> </tr>
+  <tr> <td align="right">  20 </td> <td align="right">   3 </td> <td> applications/planning/pipesnotankage13_5 +++++++ applications/planning/pipesnotankage13_6 +++++++ applications/planning/pipesnotankage13_7 </td> </tr>
+  <tr> <td align="right">  21 </td> <td align="right">   2 </td> <td> applications/planning/pipesnotankage14_10 +++++++ applications/planning/pipesnotankage14_9 </td> </tr>
+  <tr> <td align="right">  22 </td> <td align="right">   2 </td> <td> applications/planning/pipesnotankage15_8 +++++++ applications/planning/pipesnotankage15_9 </td> </tr>
+  <tr> <td align="right">  23 </td> <td align="right">   2 </td> <td> applications/planning/pipesnotankage16_8 +++++++ applications/planning/pipesnotankage16_9 </td> </tr>
+  <tr> <td align="right">  24 </td> <td align="right">   3 </td> <td> applications/planning/pipesnotankage17_5 +++++++ applications/planning/pipesnotankage17_6 +++++++ applications/planning/pipesnotankage17_7 </td> </tr>
+  <tr> <td align="right">  25 </td> <td align="right">   3 </td> <td> applications/planning/pipesnotankage18_7 +++++++ applications/planning/pipesnotankage18_8 +++++++ applications/planning/pipesnotankage18_9 </td> </tr>
+  <tr> <td align="right">  26 </td> <td align="right">   2 </td> <td> applications/planning/pipesnotankage19_7 +++++++ applications/planning/pipesnotankage19_8 </td> </tr>
+  <tr> <td align="right">  27 </td> <td align="right">   3 </td> <td> applications/testing/b14_PR_1_2 +++++++ applications/testing/b14_PR_1_75 +++++++ applications/testing/b14_PR_7_20 </td> </tr>
+  <tr> <td align="right">  28 </td> <td align="right">   2 </td> <td> applications/testing/b14_PR_1_5 +++++++ applications/testing/b14_PR_7_90 </td> </tr>
+  <tr> <td align="right">  29 </td> <td align="right">   2 </td> <td> applications/testing/b15_PR_2_20 +++++++ applications/testing/b15_PR_2_75 </td> </tr>
+  <tr> <td align="right">  30 </td> <td align="right">   2 </td> <td> applications/testing/b15_PR_3_2 +++++++ applications/testing/b15_PR_3_5 </td> </tr>
+  <tr> <td align="right">  31 </td> <td align="right">   2 </td> <td> applications/testing/b15_PR_3_50 +++++++ applications/testing/b15_PR_3_75 </td> </tr>
+  <tr> <td align="right">  32 </td> <td align="right">   2 </td> <td> applications/testing/b15_PR_4_10 +++++++ applications/testing/b15_PR_4_5 </td> </tr>
+  <tr> <td align="right">  33 </td> <td align="right">   4 </td> <td> applications/testing/b17_PR_1_2 +++++++ applications/testing/b17_PR_1_75 +++++++ applications/testing/b17_PR_2_2 +++++++ applications/testing/b17_PR_2_75 </td> </tr>
+  <tr> <td align="right">  34 </td> <td align="right">   2 </td> <td> applications/testing/b17_PR_2_10 +++++++ applications/testing/b17_PR_2_20 </td> </tr>
+  <tr> <td align="right">  35 </td> <td align="right">   4 </td> <td> applications/testing/b17_PR_5_5 +++++++ applications/testing/b17_PR_6_2 +++++++ applications/testing/b17_PR_6_20 +++++++ applications/testing/b17_PR_6_90 </td> </tr>
+  <tr> <td align="right">  36 </td> <td align="right">   2 </td> <td> applications/testing/b17_PR_6_50 +++++++ applications/testing/b17_PR_7_50 </td> </tr>
+  <tr> <td align="right">  37 </td> <td align="right">   2 </td> <td> applications/testing/b18_PR_1_90 +++++++ applications/testing/b18_PR_3_50 </td> </tr>
+  <tr> <td align="right">  38 </td> <td align="right">   2 </td> <td> applications/testing/b18_PR_2_10 +++++++ applications/testing/b18_PR_2_5 </td> </tr>
+  <tr> <td align="right">  39 </td> <td align="right">   2 </td> <td> applications/testing/b18_PR_6_50 +++++++ applications/testing/b18_PR_8_75 </td> </tr>
+  <tr> <td align="right">  40 </td> <td align="right">   6 </td> <td> applications/testing/b20_PR_5_10 +++++++ applications/testing/b20_PR_5_2 +++++++ applications/testing/b20_PR_5_50 +++++++ applications/testing/b20_PR_6_10 +++++++ applications/testing/b20_PR_6_50 +++++++ ... </td> </tr>
+  <tr> <td align="right">  41 </td> <td align="right">   3 </td> <td> applications/testing/b20_PR_5_20 +++++++ applications/testing/b20_PR_7_20 +++++++ applications/testing/b20_PR_7_90 </td> </tr>
+  <tr> <td align="right">  42 </td> <td align="right">   2 </td> <td> applications/testing/b20_PR_8_75 +++++++ applications/testing/b20_PR_9_20 </td> </tr>
+  <tr> <td align="right">  43 </td> <td align="right">   3 </td> <td> applications/testing/b21_PR_0_20 +++++++ applications/testing/b21_PR_0_5 +++++++ applications/testing/b21_PR_2_5 </td> </tr>
+  <tr> <td align="right">  44 </td> <td align="right">   4 </td> <td> applications/testing/b22_PR_3_75 +++++++ applications/testing/b22_PR_3_90 +++++++ applications/testing/b22_PR_4_2 +++++++ applications/testing/b22_PR_4_5 </td> </tr>
+  <tr> <td align="right">  45 </td> <td align="right">   2 </td> <td> applications/testing/b22_PR_9_2 +++++++ applications/testing/b22_PR_9_50 </td> </tr>
+  <tr> <td align="right">  46 </td> <td align="right">   3 </td> <td> applications/testing/s01423_PR_6_20 +++++++ applications/testing/s01423_PR_6_5 +++++++ applications/testing/s01423_PR_8_2 </td> </tr>
+  <tr> <td align="right">  47 </td> <td align="right">   7 </td> <td> applications/testing/s05378_PR_0_20 +++++++ applications/testing/s05378_PR_1_2 +++++++ applications/testing/s05378_PR_1_75 +++++++ applications/testing/s05378_PR_2_2 +++++++ applications/testing/s05378_PR_4_2 +++++++ ... </td> </tr>
+  <tr> <td align="right">  48 </td> <td align="right">   2 </td> <td> applications/testing/s05378_PR_1_10 +++++++ applications/testing/s05378_PR_7_50 </td> </tr>
+  <tr> <td align="right">  49 </td> <td align="right">   2 </td> <td> applications/testing/s05378_PR_6_5 +++++++ applications/testing/s05378_PR_6_50 </td> </tr>
+  <tr> <td align="right">  50 </td> <td align="right">   9 </td> <td> applications/testing/s09234_PR_2_2 +++++++ applications/testing/s09234_PR_2_75 +++++++ applications/testing/s09234_PR_3_5 +++++++ applications/testing/s09234_PR_3_50 +++++++ applications/testing/s09234_PR_4_75 +++++++ ... </td> </tr>
+  <tr> <td align="right">  51 </td> <td align="right">   4 </td> <td> applications/testing/s15850_PR_0_2 +++++++ applications/testing/s15850_PR_5_90 +++++++ applications/testing/s15850_PR_8_10 +++++++ applications/testing/s15850_PR_8_50 </td> </tr>
+  <tr> <td align="right">  52 </td> <td align="right">   2 </td> <td> applications/testing/s15850_PR_3_5 +++++++ applications/testing/s15850_PR_6_20 </td> </tr>
+  <tr> <td align="right">  53 </td> <td align="right">   2 </td> <td> applications/testing/s15850_PR_5_75 +++++++ applications/testing/s15850_PR_9_5 </td> </tr>
+  <tr> <td align="right">  54 </td> <td align="right">   2 </td> <td> applications/testing/s38584_PR_1_2 +++++++ applications/testing/s38584_PR_3_5 </td> </tr>
+  <tr> <td align="right">  55 </td> <td align="right">   4 </td> <td> applications/testing/s38584_PR_4_10 +++++++ applications/testing/s38584_PR_5_10 +++++++ applications/testing/s38584_PR_5_90 +++++++ applications/testing/s38584_PR_7_10 </td> </tr>
+  <tr> <td align="right">  56 </td> <td align="right">   2 </td> <td> eval2012r2/C880.blif_0.10_0.20_0_0_out_exact +++++++ eval2012r2/C880.blif_0.10_0.20_0_1_out_exact </td> </tr>
+  <tr> <td align="right">  57 </td> <td align="right">   3 </td> <td> eval2012r2/lights3_021_0_009 +++++++ eval2012r2/lights3_021_0_013 +++++++ eval2012r2/lights3_021_0_027 </td> </tr>
+  <tr> <td align="right">  58 </td> <td align="right">   3 </td> <td> eval2012r2/lights3_035_0_002 +++++++ eval2012r2/lights3_035_0_027 +++++++ eval2012r2/lights3_035_0_051 </td> </tr>
+  <tr> <td align="right">  59 </td> <td align="right">   2 </td> <td> eval2012r2/s510_d26_s +++++++ preproc_track_set/s510_d26_s </td> </tr>
+  <tr> <td align="right">  60 </td> <td align="right">   2 </td> <td> eval2012r2/test1_quant_squaring2 +++++++ eval2012r2/test1_quant2 </td> </tr>
+  <tr> <td align="right">  61 </td> <td align="right">   2 </td> <td> eval2012r2/test2_quant_squaring2 +++++++ eval2012r2/test2_quant2 </td> </tr>
+  <tr> <td align="right">  62 </td> <td align="right">   2 </td> <td> eval2012r2/Umbrella_tbm_26.tex.moduleQ3.2S.000020 +++++++ eval2012r2/Umbrella_tbm_26.tex.moduleQ3.2S.000037 </td> </tr>
+  <tr> <td align="right">  63 </td> <td align="right">  14 </td> <td> preproc_track_set/k_ph_n-16 +++++++ preproc_track_set/k_ph_n-17 +++++++ preproc_track_set/k_ph_n-18 +++++++ preproc_track_set/k_ph_n-20 +++++++ preproc_track_set/k_ph_n-21 +++++++ ... </td> </tr>
+   </table>
+
+
+</body>
+</html>

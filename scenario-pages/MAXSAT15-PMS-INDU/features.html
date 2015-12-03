@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+.knitr .inline {
+  background-color: #f7f7f7;
+  border:solid 1px #B0B0B0;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
+.warning {
+	font-weight: bold;
+}
+.message {
+	font-style: italic;
+}
+.source, .output, .warning, .error, .message {
+	padding: 0 1em;
+  border:solid 1px #F7F7F7;
+}
+.source {
+  background-color: #f5f5f5;
+}
+.rimage .left {
+  text-align: left;
+}
+.rimage .right {
+  text-align: right;
+}
+.rimage .center {
+  text-align: center;
+}
+.hl.num {
+  color: #AF0F91;
+}
+.hl.str {
+  color: #317ECC;
+}
+.hl.com {
+  color: #AD95AF;
+  font-style: italic;
+}
+.hl.opt {
+  color: #000000;
+}
+.hl.std {
+  color: #585858;
+}
+.hl.kwa {
+  color: #295F94;
+  font-weight: bold;
+}
+.hl.kwb {
+  color: #B05A65;
+}
+.hl.kwc {
+  color: #55aa55;
+}
+.hl.kwd {
+  color: #BC5A65;
+  font-weight: bold;
+}
+</style>
+  <title>Feature performance overview</title>
+</head>
+<body>
+
+
+<h2> Overview of Feature Values</h2>
+
+The following measures were taken for the results of each feature:
+<ul>
+
+  <li> <a>obs (number of observations within the feature set)</a>
+  <li> <a>NAs (number of NAs, i.e., missing values, within the feature set)</a>
+  <li> <a>min (minimum), mean (arithmetic mean), max (maximum), std_dev (standard deviation)</a>
+  <li> <a>1st_qu (1st quartile = lower quartile = 25%-quantile)</a>
+  <li> <a>median (median = 50%-quantile)</a>
+  <li> <a>3rd_qu (3rd quartile = upper quartile = 75%-quantile)</a>
+  <li> <a>co_var (coefficient of variation = standard deviation / arithmetic mean)</a>
+
+</ul>
+
+<!-- html table generated in R 3.2.2 by xtable 1.8-0 package -->
+<!-- Thu Dec  3 15:43:39 2015 -->
+<table border=1>
+<tr> <th>  </th> <th> obs </th> <th> nas </th> <th> min </th> <th> qu_1st </th> <th> med </th> <th> mean </th> <th> qu_3rd </th> <th> max </th> <th> sd </th> <th> coeff_var </th>  </tr>
+  <tr> <td align="right"> f_1 </td> <td align="right"> 601 </td> <td align="right">   0 </td> <td align="right">  61 </td> <td align="right"> 4.6e+03 </td> <td align="right"> 1.2e+04 </td> <td align="right"> 5.7e+04 </td> <td align="right"> 5.1e+04 </td> <td align="right"> 9.1e+05 </td> <td align="right"> 1.1e+05 </td> <td align="right"> 1.9 </td> </tr>
+  <tr> <td align="right"> f_2 </td> <td align="right"> 601 </td> <td align="right">   0 </td> <td align="right"> 1.1e+02 </td> <td align="right"> 2.6e+04 </td> <td align="right"> 8.5e+04 </td> <td align="right"> 4.9e+05 </td> <td align="right"> 3.7e+05 </td> <td align="right"> 1.4e+07 </td> <td align="right"> 1.5e+06 </td> <td align="right"> 3.1 </td> </tr>
+  <tr> <td align="right"> f_3 </td> <td align="right"> 601 </td> <td align="right">   0 </td> <td align="right"> 1e-05 </td> <td align="right"> 0.0036 </td> <td align="right"> 0.013 </td> <td align="right"> 0.083 </td> <td align="right"> 0.097 </td> <td align="right"> 0.98 </td> <td align="right"> 0.15 </td> <td align="right"> 1.8 </td> </tr>
+  <tr> <td align="right"> f_4 </td> <td align="right"> 601 </td> <td align="right">   0 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right">   0 </td> <td align="right">   0 </td> </tr>
+  <tr> <td align="right"> f_5 </td> <td align="right"> 601 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">  </td> </tr>
+  <tr> <td align="right"> f_6 </td> <td align="right"> 601 </td> <td align="right">   0 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right">   0 </td> <td align="right">   0 </td> </tr>
+  <tr> <td align="right"> f_7 </td> <td align="right"> 601 </td> <td align="right">   0 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right">   0 </td> <td align="right">   0 </td> </tr>
+  <tr> <td align="right"> f_8 </td> <td align="right"> 601 </td> <td align="right">   0 </td> <td align="right"> 0.00078 </td> <td align="right"> 0.13 </td> <td align="right"> 0.23 </td> <td align="right"> 0.24 </td> <td align="right"> 0.33 </td> <td align="right"> 0.98 </td> <td align="right"> 0.14 </td> <td align="right"> 0.61 </td> </tr>
+  <tr> <td align="right"> f_9 </td> <td align="right"> 601 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right"> 5e-05 </td> <td align="right"> 0.0002 </td> <td align="right"> 0.002 </td> <td align="right"> 0.00055 </td> <td align="right"> 0.15 </td> <td align="right"> 0.011 </td> <td align="right"> 5.4 </td> </tr>
+  <tr> <td align="right"> f_10 </td> <td align="right"> 601 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right"> 0.63 </td> <td align="right"> 1.1 </td> <td align="right"> 1.5 </td> <td align="right"> 1.4 </td> <td align="right">  29 </td> <td align="right"> 1.7 </td> <td align="right"> 1.2 </td> </tr>
+  <tr> <td align="right"> f_11 </td> <td align="right"> 601 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right"> 1e-05 </td> <td align="right"> 2e-05 </td> <td align="right"> 0.0006 </td> <td align="right"> 0.00011 </td> <td align="right"> 0.095 </td> <td align="right"> 0.0048 </td> <td align="right"> 7.9 </td> </tr>
+  <tr> <td align="right"> f_12 </td> <td align="right"> 601 </td> <td align="right">   0 </td> <td align="right"> 5e-05 </td> <td align="right"> 0.0013 </td> <td align="right"> 0.003 </td> <td align="right"> 0.015 </td> <td align="right"> 0.0091 </td> <td align="right"> 0.23 </td> <td align="right"> 0.031 </td> <td align="right">   2 </td> </tr>
+  <tr> <td align="right"> f_13 </td> <td align="right"> 601 </td> <td align="right">   0 </td> <td align="right"> 4e-05 </td> <td align="right"> 0.0013 </td> <td align="right"> 0.003 </td> <td align="right"> 0.015 </td> <td align="right"> 0.0087 </td> <td align="right"> 0.2 </td> <td align="right"> 0.029 </td> <td align="right">   2 </td> </tr>
+  <tr> <td align="right"> f_14 </td> <td align="right"> 601 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right"> 5e-05 </td> <td align="right"> 0.0002 </td> <td align="right"> 0.002 </td> <td align="right"> 0.00055 </td> <td align="right"> 0.15 </td> <td align="right"> 0.011 </td> <td align="right"> 5.4 </td> </tr>
+  <tr> <td align="right"> f_15 </td> <td align="right"> 601 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right"> 0.3 </td> <td align="right"> 0.37 </td> <td align="right"> 0.56 </td> <td align="right"> 0.7 </td> <td align="right"> 7.3 </td> <td align="right"> 0.59 </td> <td align="right"> 1.1 </td> </tr>
+  <tr> <td align="right"> f_16 </td> <td align="right"> 601 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right"> 2e-05 </td> <td align="right"> 8e-05 </td> <td align="right"> 0.00039 </td> <td align="right"> 0.00022 </td> <td align="right"> 0.016 </td> <td align="right"> 0.0013 </td> <td align="right"> 3.3 </td> </tr>
+  <tr> <td align="right"> f_17 </td> <td align="right"> 601 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right"> 0.00029 </td> <td align="right"> 0.0036 </td> <td align="right"> 0.015 </td> <td align="right"> 0.015 </td> <td align="right"> 0.67 </td> <td align="right"> 0.048 </td> <td align="right"> 3.2 </td> </tr>
+  <tr> <td align="right"> f_18 </td> <td align="right"> 601 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right"> 0.00025 </td> <td align="right"> 0.0033 </td> <td align="right"> 0.014 </td> <td align="right"> 0.015 </td> <td align="right"> 0.67 </td> <td align="right"> 0.047 </td> <td align="right"> 3.2 </td> </tr>
+  <tr> <td align="right"> f_19 </td> <td align="right"> 601 </td> <td align="right">   0 </td> <td align="right"> 0.0004 </td> <td align="right"> 0.4 </td> <td align="right"> 0.45 </td> <td align="right"> 0.47 </td> <td align="right"> 0.5 </td> <td align="right">   1 </td> <td align="right"> 0.17 </td> <td align="right"> 0.35 </td> </tr>
+  <tr> <td align="right"> f_20 </td> <td align="right"> 601 </td> <td align="right">   0 </td> <td align="right"> 0.002 </td> <td align="right"> 0.18 </td> <td align="right"> 0.25 </td> <td align="right"> 0.34 </td> <td align="right"> 0.43 </td> <td align="right"> 1.5 </td> <td align="right"> 0.24 </td> <td align="right"> 0.72 </td> </tr>
+  <tr> <td align="right"> f_21 </td> <td align="right"> 601 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right"> 0.0053 </td> <td align="right"> 0.12 </td> <td align="right"> 0.22 </td> <td align="right"> 0.99 </td> <td align="right"> 0.18 </td> <td align="right"> 1.6 </td> </tr>
+  <tr> <td align="right"> f_22 </td> <td align="right"> 601 </td> <td align="right">   0 </td> <td align="right"> 0.001 </td> <td align="right"> 0.82 </td> <td align="right"> 0.97 </td> <td align="right"> 0.89 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right"> 0.17 </td> <td align="right"> 0.2 </td> </tr>
+  <tr> <td align="right"> f_23 </td> <td align="right"> 601 </td> <td align="right">   0 </td> <td align="right"> 0.00065 </td> <td align="right"> 0.61 </td> <td align="right"> 0.82 </td> <td align="right"> 0.77 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right"> 0.25 </td> <td align="right"> 0.33 </td> </tr>
+  <tr> <td align="right"> f_24 </td> <td align="right"> 601 </td> <td align="right">   0 </td> <td align="right"> 2e-05 </td> <td align="right"> 0.4 </td> <td align="right"> 0.44 </td> <td align="right"> 0.46 </td> <td align="right"> 0.54 </td> <td align="right"> 0.95 </td> <td align="right"> 0.17 </td> <td align="right"> 0.38 </td> </tr>
+  <tr> <td align="right"> f_25 </td> <td align="right"> 601 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right"> 0.35 </td> <td align="right"> 0.64 </td> <td align="right"> 4.2 </td> <td align="right"> 0.81 </td> <td align="right"> 2.3e+02 </td> <td align="right">  26 </td> <td align="right"> 6.1 </td> </tr>
+  <tr> <td align="right"> f_26 </td> <td align="right"> 601 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">  </td> </tr>
+  <tr> <td align="right"> f_27 </td> <td align="right"> 601 </td> <td align="right">   0 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right">   0 </td> <td align="right">   0 </td> </tr>
+  <tr> <td align="right"> f_28 </td> <td align="right"> 601 </td> <td align="right">   0 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right">   0 </td> <td align="right">   0 </td> </tr>
+  <tr> <td align="right"> f_29 </td> <td align="right"> 601 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right"> 0.0048 </td> <td align="right"> 0.034 </td> <td align="right"> 0.093 </td> <td align="right"> 0.11 </td> <td align="right"> 0.98 </td> <td align="right"> 0.15 </td> <td align="right"> 1.6 </td> </tr>
+  <tr> <td align="right"> f_30 </td> <td align="right"> 601 </td> <td align="right">   0 </td> <td align="right"> 0.032 </td> <td align="right"> 0.45 </td> <td align="right"> 0.66 </td> <td align="right"> 0.59 </td> <td align="right"> 0.76 </td> <td align="right">   1 </td> <td align="right"> 0.24 </td> <td align="right"> 0.4 </td> </tr>
+  <tr> <td align="right"> f_31 </td> <td align="right"> 601 </td> <td align="right">   0 </td> <td align="right"> 0.072 </td> <td align="right"> 0.8 </td> <td align="right"> 0.94 </td> <td align="right"> 0.86 </td> <td align="right"> 0.99 </td> <td align="right">   1 </td> <td align="right"> 0.18 </td> <td align="right"> 0.21 </td> </tr>
+  <tr> <td align="right"> f_32 </td> <td align="right"> 601 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right"> 3e-05 </td> <td align="right"> 0.0001 </td> <td align="right"> 0.00032 </td> <td align="right"> 0.00024 </td> <td align="right"> 0.012 </td> <td align="right"> 0.00084 </td> <td align="right"> 2.6 </td> </tr>
+  <tr> <td align="right"> f_33 </td> <td align="right"> 601 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">  </td> </tr>
+  <tr> <td align="right"> f_34 </td> <td align="right"> 601 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right"> 0.00015 </td> <td align="right"> 4e-05 </td> <td align="right"> 0.009 </td> <td align="right"> 0.00069 </td> <td align="right"> 4.7 </td> </tr>
+  <tr> <td align="right"> f_35 </td> <td align="right"> 601 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right"> 0.00057 </td> <td align="right"> 0.0014 </td> <td align="right"> 0.0073 </td> <td align="right"> 0.0045 </td> <td align="right"> 0.12 </td> <td align="right"> 0.016 </td> <td align="right"> 2.2 </td> </tr>
+  <tr> <td align="right"> f_36 </td> <td align="right"> 601 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right"> 0.00037 </td> <td align="right"> 0.0013 </td> <td align="right"> 0.0071 </td> <td align="right"> 0.0045 </td> <td align="right"> 0.12 </td> <td align="right"> 0.016 </td> <td align="right"> 2.2 </td> </tr>
+  <tr> <td align="right"> f_37 </td> <td align="right"> 601 </td> <td align="right">   0 </td> <td align="right"> 0.046 </td> <td align="right"> 0.47 </td> <td align="right"> 0.71 </td> <td align="right"> 0.65 </td> <td align="right"> 0.79 </td> <td align="right">   1 </td> <td align="right"> 0.22 </td> <td align="right"> 0.34 </td> </tr>
+   </table>
+
+
+<br>
+<h2> Summary of feature steps </h2>
+
+The following table summarizes the feature steps over all instances.
+<ul>
+  <li> size (percentage of features affected by this step)
+  <li> ok, ..., other (percentage of run status)
+  <li> cost_min, cost_mean, cost_max (range of costs for this step)
+  <li> cost_na (percentage of missing values occuring in costs)
+</ul>
+
+<br>
+
+<!-- html table generated in R 3.2.2 by xtable 1.8-0 package -->
+<!-- Thu Dec  3 15:43:39 2015 -->
+<table border=1>
+<tr> <th>  </th> <th> size </th> <th> ok </th> <th> timeout </th> <th> memout </th> <th> presolved </th> <th> crash </th> <th> other </th> <th> unknown </th>  </tr>
+  <tr> <td align="right"> ALL </td> <td align="right">   2 </td> <td align="right"> 1e+02 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> </tr>
+   </table>
+
+
+<br>
+<h2> Duplicated Features </h2>
+
+Underneath, you'll find blocks of duplicated features, i.e., observations that have equal values over all features. Please note, that only a maximum of 5 duplicates per block are shown.<br>
+<br>
+
+<!-- html table generated in R 3.2.2 by xtable 1.8-0 package -->
+<!-- Thu Dec  3 15:43:40 2015 -->
+<table border=1>
+<tr> <th> block </th> <th> numbers </th> <th> instances </th>  </tr>
+  <tr> <td align="right">   1 </td> <td align="right">   3 </td> <td> pms_industrial/bcp/mtg/c1355_F106gat-409gat@1.wcnf +++++++ pms_industrial/bcp/mtg/c1355_F120gat-414gat@1.wcnf +++++++ pms_industrial/bcp/mtg/c1355_F127gat-418gat@1.wcnf </td> </tr>
+  <tr> <td align="right">   2 </td> <td align="right">   3 </td> <td> pms_industrial/bcp/mtg/c1355_F106gat@0.wcnf +++++++ pms_industrial/bcp/mtg/c1355_F141gat@0.wcnf +++++++ pms_industrial/bcp/mtg/c1355_F183gat@0.wcnf </td> </tr>
+  <tr> <td align="right">   3 </td> <td align="right">   2 </td> <td> pms_industrial/bcp/mtg/c1355_F113gat-1260gat@1.wcnf +++++++ pms_industrial/bcp/mtg/c1355_F176gat-1278gat@1.wcnf </td> </tr>
+  <tr> <td align="right">   4 </td> <td align="right">   5 </td> <td> pms_industrial/bcp/mtg/c1355_F155gat@1.wcnf +++++++ pms_industrial/bcp/mtg/c1355_F43gat@1.wcnf +++++++ pms_industrial/bcp/mtg/c1355_F50gat@1.wcnf +++++++ pms_industrial/bcp/mtg/c1355_F57gat@1.wcnf +++++++ pms_industrial/bcp/mtg/c1355_F71gat@1.wcnf </td> </tr>
+  <tr> <td align="right">   5 </td> <td align="right">   2 </td> <td> pms_industrial/bcp/mtg/c3540_F45@0.wcnf +++++++ pms_industrial/bcp/mtg/c3540_F45@1.wcnf </td> </tr>
+  <tr> <td align="right">   6 </td> <td align="right">   3 </td> <td> pms_industrial/close_solutions/SAT07__industrial__vliw_sat_4.0__9vliw_m_9stages_iq3_C1_bug6.cnf.wcnf.1.wcnf +++++++ pms_industrial/close_solutions/SAT07__industrial__vliw_sat_4.0__9vliw_m_9stages_iq3_C1_bug6.cnf.wcnf.4.wcnf +++++++ pms_industrial/close_solutions/SAT07__industrial__vliw_sat_4.0__9vliw_m_9stages_iq3_C1_bug6.cnf.wcnf.7.wcnf </td> </tr>
+  <tr> <td align="right">   7 </td> <td align="right">   2 </td> <td> pms_industrial/close_solutions/SAT11__application__fuhs__AProVE11__AProVE11-09.cnf.wcnf.4.wcnf +++++++ pms_industrial/close_solutions/SAT11__application__fuhs__AProVE11__AProVE11-09.cnf.wcnf.8.wcnf </td> </tr>
+  <tr> <td align="right">   8 </td> <td align="right">   2 </td> <td> pms_industrial/close_solutions/SAT11__application__jarvisalo__AAAI2010-SATPlanning__aaai10-planning-ipc5-pipesworld-12-step16.cnf.wcnf.2.wcnf +++++++ pms_industrial/close_solutions/SAT11__application__jarvisalo__AAAI2010-SATPlanning__aaai10-planning-ipc5-pipesworld-12-step16.cnf.wcnf.7.wcnf </td> </tr>
+  <tr> <td align="right">   9 </td> <td align="right">   2 </td> <td> pms_industrial/close_solutions/SAT11__application__jarvisalo__smtqfbv-aigs__smtlib-qfbv-aigs-rfunit_flat-64-tseitin.cnf.wcnf.10.wcnf +++++++ pms_industrial/close_solutions/SAT11__application__jarvisalo__smtqfbv-aigs__smtlib-qfbv-aigs-rfunit_flat-64-tseitin.cnf.wcnf.2.wcnf </td> </tr>
+  <tr> <td align="right">  10 </td> <td align="right">   2 </td> <td> pms_industrial/des/cnf.20.d.10.wcnf +++++++ pms_industrial/des/cnf.20.d.9.wcnf </td> </tr>
+  <tr> <td align="right">  11 </td> <td align="right">   2 </td> <td> pms_industrial/packup-pms/1aabfc32-d491-11df-9a24-00163e3d3b7c_l3.wcnf +++++++ pms_industrial/packup-pms/ff4a1d84-d490-11df-9e6c-00163e3d3b7c_l3.wcnf </td> </tr>
+  <tr> <td align="right">  12 </td> <td align="right">   2 </td> <td> pms_industrial/tpr/One_path/b21-s_PathRelaxation_FS_10.wcnf +++++++ pms_industrial/tpr/One_path/b21-s_PathRelaxation_FS_8.wcnf </td> </tr>
+  <tr> <td align="right">  13 </td> <td align="right">   4 </td> <td> pms_industrial/tpr/One_path/b21-s_PathRelaxation_FS_11.wcnf +++++++ pms_industrial/tpr/One_path/b21-s_PathRelaxation_FS_17.wcnf +++++++ pms_industrial/tpr/One_path/b21-s_PathRelaxation_FS_24.wcnf +++++++ pms_industrial/tpr/One_path/b21-s_PathRelaxation_FS_6.wcnf </td> </tr>
+  <tr> <td align="right">  14 </td> <td align="right">   2 </td> <td> pms_industrial/tpr/One_path/b21-s_PathRelaxation_FS_12.wcnf +++++++ pms_industrial/tpr/One_path/b21-s_PathRelaxation_FS_16.wcnf </td> </tr>
+  <tr> <td align="right">  15 </td> <td align="right">   2 </td> <td> pms_industrial/tpr/One_path/b21-s_PathRelaxation_FS_13.wcnf +++++++ pms_industrial/tpr/One_path/b21-s_PathRelaxation_FS_14.wcnf </td> </tr>
+  <tr> <td align="right">  16 </td> <td align="right">   4 </td> <td> pms_industrial/tpr/One_path/b21-s_PathRelaxation_FS_18.wcnf +++++++ pms_industrial/tpr/One_path/b21-s_PathRelaxation_FS_5.wcnf +++++++ pms_industrial/tpr/One_path/b21-s_PathRelaxation_FS_7.wcnf +++++++ pms_industrial/tpr/One_path/b21-s_PathRelaxation_FS_9.wcnf </td> </tr>
+  <tr> <td align="right">  17 </td> <td align="right">   3 </td> <td> pms_industrial/tpr/One_path/b21-s_PathRelaxation_FS_19.wcnf +++++++ pms_industrial/tpr/One_path/b21-s_PathRelaxation_FS_21.wcnf +++++++ pms_industrial/tpr/One_path/b21-s_PathRelaxation_FS_23.wcnf </td> </tr>
+  <tr> <td align="right">  18 </td> <td align="right">   2 </td> <td> pms_industrial/treewidth-computation/TWComp_barle_N48.wcnf +++++++ pms_industrial/treewidth-computation/TWComp_barley2_N48.wcnf </td> </tr>
+   </table>
+
+
+</body>
+</html>
