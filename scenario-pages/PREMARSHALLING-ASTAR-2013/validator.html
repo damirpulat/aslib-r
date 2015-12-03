@@ -70,11 +70,29 @@
 
 <h1>Output of data validator</h1>
 
-<div class="chunk" id="unnamed-chunk-1"><div class="rcode"><div class="error"><pre class="knitr r">## Error in system3(&quot;python&quot;, args, stdout = TRUE, stderr = TRUE): Command: python ../../aslib_data//data_check_tool_python/src/main.py --dir /Users/Pascal/Documents/repos/pkgs/aslib_data/PREMARSHALLING-ASTAR-2013; exit code: 2; output: /usr/local/Cellar/python/2.7.10_2/Frameworks/Python.framework/Versions/2.7/Resources/Python.app/Contents/MacOS/Python: can't open file '../../aslib_data//data_check_tool_python/src/main.py': [Errno 2] No such file or directory
-</pre></div>
-<div class="error"><pre class="knitr r">## Error in shortenPathsInValidator(s, scenario.dir): Objekt 's' nicht gefunden
-</pre></div>
-<div class="error"><pre class="knitr r">## Error in paste0(x, collapse = sep): Objekt 's' nicht gefunden
+<div class="chunk" id="unnamed-chunk-1"><div class="rcode"><div class="output"><pre class="knitr r">## % [WARNING]: Not found: PREMARSHALLING-ASTAR-2013/ground_truth.arff (maybe you want to add it)
+## % [WARNING]: Not found: PREMARSHALLING-ASTAR-2013/feature_costs.arff (maybe you want to add it)
+## % [WARNING]: Have not found algorithm_cutoff_memory
+## % [WARNING]: Have not found features_stochastic
+## % [WARNING]: Have not found algorithms_stochastic
+## % Read PREMARSHALLING-ASTAR-2013/description.txt
+## % Read PREMARSHALLING-ASTAR-2013/algorithm_runs.arff
+## % Read PREMARSHALLING-ASTAR-2013/feature_values.arff
+## % Read PREMARSHALLING-ASTAR-2013/feature_runstatus.arff
+## % Read /Users/Pascal/Documents/repos/pkgs/aslib_data/PREMARSHALLING-ASTAR-2013/cv.arff
+## % 1-th repetition: 53,53,53,53,53,53,52,52,53,52 distribution
+## % Used Feature Steps (3): lfa1,lfa2,orig
+## % Remove features: 
+## % 
+## % Used features (22): avg-l1-top-left-lg-group,top-good-min,container-density,group-same-min,empty-stack-pct,tier-weighted-groups,pct-bottom-pct-on-top,group-same-max,overstowing-2cont-stack-pct,cont-empty-grt-estack,bflb,overstowage-pct,group-same-stdev,tiers,top-good-mean,group-same-mean,stack-tier-ratio,top-good-max,overstowing-stack-pct,left-density,top-good-stdev,stacks
+## % 
+## % Check Consistency and Completeness of input data
+## % Instances: 			 527
+## % Incomplete Feature Vector: 	 0
+## % Unsolvable Instances (status): 	 0
+## % Valid Instances: 			 527
+## % Presolved: 			 0
+## % Average Feature Costs on all features: 	 0.0000
 </pre></div>
 
 </div></div>
