@@ -96,21 +96,21 @@ solver always has a misclassification penalty of zero.</li>
 
 <p>
 
-<!-- html table generated in R 3.2.2 by xtable 1.8-0 package -->
-<!-- Sat Dec 12 14:32:09 2015 -->
+<!-- html table generated in R 3.2.3 by xtable 1.8-2 package -->
+<!-- Thu Mar  3 12:26:27 2016 -->
 <table border=1>
 <tr> <th> algo </th> <th> model </th> <th> succ </th> <th> par10 </th> <th> mcp </th>  </tr>
   <tr> <td> baseline </td> <td> vbs </td> <td>  0.770 </td> <td> 8337.099 </td> <td>  0.000 </td> </tr>
   <tr> <td> baseline </td> <td> singleBest </td> <td> <b><FONT COLOR="#00FF00"> 0.577</FONT></b> </td> <td> <b><FONT COLOR="#00FF00">15330.171</FONT></b> </td> <td> <b><FONT COLOR="#00FF00">716.756</FONT></b> </td> </tr>
   <tr> <td> baseline </td> <td> singleBestByPar </td> <td> <b><FONT COLOR="#00FF00"> 0.577</FONT></b> </td> <td> <b><FONT COLOR="#00FF00">15330.171</FONT></b> </td> <td> <b><FONT COLOR="#00FF00">716.756</FONT></b> </td> </tr>
   <tr> <td> baseline </td> <td> singleBestBySuccesses </td> <td> <b><FONT COLOR="#00FF00"> 0.577</FONT></b> </td> <td> <b><FONT COLOR="#00FF00">15330.171</FONT></b> </td> <td> <b><FONT COLOR="#00FF00">716.756</FONT></b> </td> </tr>
-  <tr> <td> classif </td> <td> randomForest </td> <td> <b><FONT COLOR="#FFAAAA"> 0.731</FONT></b> </td> <td> <b><FONT COLOR="#FFAAAA">9776.119</FONT></b> </td> <td> <b><FONT COLOR="#FFAAAA">160.073</FONT></b> </td> </tr>
-  <tr> <td> classif </td> <td> ksvm </td> <td>  0.713 </td> <td> 10428.655 </td> <td> <b><FONT COLOR="#FFAAAA">220.503</FONT></b> </td> </tr>
-  <tr> <td> classif </td> <td> rpart </td> <td> <b><FONT COLOR="#FFAAAA"> 0.716</FONT></b> </td> <td> <b><FONT COLOR="#FFAAAA">10316.902</FONT></b> </td> <td> 227.172 </td> </tr>
-  <tr> <td> cluster </td> <td> XMeans </td> <td> <b><FONT COLOR="#00FF00"> 0.667</FONT></b> </td> <td> <b><FONT COLOR="#00FF00">12089.123</FONT></b> </td> <td> <b><FONT COLOR="#00FF00">412.549</FONT></b> </td> </tr>
-  <tr> <td> regr </td> <td> randomForest </td> <td> <b><FONT COLOR="#FF0000"> 0.751</FONT></b> </td> <td> <b><FONT COLOR="#FF0000">9074.968</FONT></b> </td> <td> <b><FONT COLOR="#FF0000">98.395</FONT></b> </td> </tr>
+  <tr> <td> classif </td> <td> rpart </td> <td> <b><FONT COLOR="#FFAAAA"> 0.717</FONT></b> </td> <td> <b><FONT COLOR="#FFAAAA">10293.055</FONT></b> </td> <td> <b><FONT COLOR="#FFAAAA">227.008</FONT></b> </td> </tr>
+  <tr> <td> classif </td> <td> randomForest </td> <td> <b><FONT COLOR="#FFAAAA"> 0.730</FONT></b> </td> <td> <b><FONT COLOR="#FFAAAA">9828.029</FONT></b> </td> <td> <b><FONT COLOR="#FFAAAA">164.614</FONT></b> </td> </tr>
+  <tr> <td> classif </td> <td> ksvm </td> <td>  0.706 </td> <td> 10665.585 </td> <td> 244.276 </td> </tr>
+  <tr> <td> cluster </td> <td> XMeans </td> <td> <b><FONT COLOR="#00FF00"> 0.660</FONT></b> </td> <td> <b><FONT COLOR="#00FF00">12343.237</FONT></b> </td> <td> <b><FONT COLOR="#00FF00">429.822</FONT></b> </td> </tr>
   <tr> <td> regr </td> <td> lm </td> <td>  0.714 </td> <td> 10388.712 </td> <td> 227.928 </td> </tr>
-  <tr> <td> regr </td> <td> rpart </td> <td>  0.714 </td> <td> 10405.470 </td> <td> 244.686 </td> </tr>
+  <tr> <td> regr </td> <td> rpart </td> <td>  0.714 </td> <td> 10405.537 </td> <td> 244.754 </td> </tr>
+  <tr> <td> regr </td> <td> randomForest </td> <td> <b><FONT COLOR="#FF0000"> 0.748</FONT></b> </td> <td> <b><FONT COLOR="#FF0000">9177.617</FONT></b> </td> <td> <b><FONT COLOR="#FF0000">106.307</FONT></b> </td> </tr>
    </table>
 
 
@@ -128,8 +128,18 @@ or on average: <code class="knitr inline">NA</code>
 <p>
 The feature steps correspond to the following <code class="knitr inline">46</code> / <code class="knitr inline">46</code> features:
 <p>
-EXIST_VARS, FORALL_VARS, TOTAL_VARS, CLAUSES, LITERALS, <br>EXIST_SET, FORALL_SET, TOTAL_SET, UNARY_CLAUSES, BINARY_CLAUSES, <br>TERNARY_MORE_CLAUSES, POS_HORN, NEG_HORN, EXIST_LIT_PER_CLAUSE, FORALL_LIT_PER_CLAUSE, <br>EXIST_VARS_PER_SET, FORALL_POS_LITS_PER_CLAUSE, FORALL_NEG_LITS_PER_CLAUSE, OCCS_POS_NO_PER_VAR, OCCS_FORALL_NO_PER_VAR, <br>OCCS_FORALL_POS_NO_PER_VAR, W_OCCS_POS_NO_PER_VAR, W_OCCS_FORALL_NO_PER_VAR, W_OCCS_FORALL_POS_NO_PER_VAR, W_PRODUCTS, <br>LITN_LIT, LITEP_LIT, LITEN_LITE, LITEN_LITN, LITFN_LIT, <br>LITFP_LITFN, OCCP_OCCN, OCCE_OCC, OCCEN_OCC, OCCFP_OCCF, <br>OCCEN_OCCE, OCCEN_OCCN, OCCFP_OCCFN, TERMORE_CLAUSE, NEG_HORN_CLAUSE, <br>WOCCN_WOCC, WOCCEP_WOCC, WOCCFN_WOCC, WOCCEP_WOCCE, WOCCEP_WOCCP, <br>WOCCFN_WOCCN, 
+EXIST_VARS, FORALL_VARS, TOTAL_VARS, CLAUSES, LITERALS, <br>EXIST_SET, FORALL_SET, TOTAL_SET, UNARY_CLAUSES, BINARY_CLAUSES, <br>TERNARY_MORE_CLAUSES, POS_HORN, NEG_HORN, EXIST_LIT_PER_CLAUSE, FORALL_LIT_PER_CLAUSE, <br>EXIST_VARS_PER_SET, FORALL_POS_LITS_PER_CLAUSE, FORALL_NEG_LITS_PER_CLAUSE, OCCS_POS_NO_PER_VAR, OCCS_FORALL_NO_PER_VAR, <br>OCCS_FORALL_POS_NO_PER_VAR, W_OCCS_POS_NO_PER_VAR, W_OCCS_FORALL_NO_PER_VAR, W_OCCS_FORALL_POS_NO_PER_VAR, W_PRODUCTS, <br>LITN_LIT, LITEP_LIT, LITEN_LITE, LITEN_LITN, LITFN_LIT, <br>LITFP_LITFN, OCCP_OCCN, OCCE_OCC, OCCEN_OCC, OCCFP_OCCF, <br>OCCEN_OCCE, OCCEN_OCCN, OCCFP_OCCFN, TERMORE_CLAUSE, NEG_HORN_CLAUSE, <br>WOCCN_WOCC, WOCCEP_WOCC, WOCCFN_WOCC, WOCCEP_WOCCE, WOCCEP_WOCCP, <br>WOCCFN_WOCCN
 <p>
+
+<h3> Algorithm and Feature Subset Selection </h3>
+
+In order to get a better insight of the scenarios, forward selections have been applied to the solvers and features to determine whether small subsets achieve comparable performances. Following this approach, we reduced the number of solvers from  <code class="knitr inline">5</code> to <code class="knitr inline">4</code>, resulting in a PAR10 score of <code class="knitr inline">9198.007</code> for the reduced model. Analogously, the model that was generated based on <code class="knitr inline">5</code> of the originally <code class="knitr inline">46</code> features resulted in a PAR10 score of <code class="knitr inline">8995.622</code>.
+Below, you can find the list of the selected features and solvers:
+
+<p>
+Selected Features:<br>FORALL_POS_LITS_PER_CLAUSE, OCCS_POS_NO_PER_VAR, W_OCCS_FORALL_NO_PER_VAR, LITN_LIT, NEG_HORN_CLAUSE<br><br><br>Selected Solvers:<br>quantor, QuBE, sKizzo, sSolve
+<p>
+
 
 </body>
 </html>
