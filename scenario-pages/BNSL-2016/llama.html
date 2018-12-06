@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+.knitr .inline {
+  background-color: #f7f7f7;
+  border:solid 1px #B0B0B0;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
+.warning {
+	font-weight: bold;
+}
+.message {
+	font-style: italic;
+}
+.source, .output, .warning, .error, .message {
+	padding: 0 1em;
+  border:solid 1px #F7F7F7;
+}
+.source {
+  background-color: #f5f5f5;
+}
+.rimage .left {
+  text-align: left;
+}
+.rimage .right {
+  text-align: right;
+}
+.rimage .center {
+  text-align: center;
+}
+.hl.num {
+  color: #AF0F91;
+}
+.hl.str {
+  color: #317ECC;
+}
+.hl.com {
+  color: #AD95AF;
+  font-style: italic;
+}
+.hl.opt {
+  color: #000000;
+}
+.hl.std {
+  color: #585858;
+}
+.hl.kwa {
+  color: #295F94;
+  font-weight: bold;
+}
+.hl.kwb {
+  color: #B05A65;
+}
+.hl.kwc {
+  color: #55aa55;
+}
+.hl.kwd {
+  color: #BC5A65;
+  font-weight: bold;
+}
+</style>
+<title>Some LLAMA benchmark results</title>
+</head>
+<body>
+
+
+<h2> LLAMA results </h2>
+
+All results were produced by using the cross-validation splits in the repository with
+<code class="knitr inline">10</code> folds and <code class="knitr inline">1</code> repetitions.<br>
+The best values within a type (i.e., baseline (except for vbs), classif, regr and cluster) and performance measure (i.e., Percentage solved, PAR10, MCP) are colored green. Furthermore, the three best values over all groups within a performance measure are colored pink, the absolute best one is red. 
+
+<p>
+
+The performance is measured in three different ways.
+<ul>
+<li><strong>Percentage solved</strong> records the percentage of problem
+instances in the data set for which the selector selected an algorithm that was
+able to solve it with runstatus "ok" and the algorithm time plus the feature
+computation time was at most the timeout.</li>
+<li>The <strong>penalized average runtime score (PAR10)</strong> measures the time required to
+run on all problem instances. If an instance was solved within the timeout by
+the algorithm the selector chose, the
+actual runtime is taken. If a timeout occurred, the timeout value was multiplied
+by 10.</li>
+<li>The <strong>misclassification penalty (mcp)</strong> measures the additional time required to run
+on all problems if sub-optimal algorithms were used. That is, if an algorithm is
+run on a problem instance that is not the best, a performance loss is incurred.
+There are no additional penalties or factors for timeouts. The virtual best
+solver always has a misclassification penalty of zero.</li>
+</ul>
+
+<p>
+
+<!-- html table generated in R 3.5.1 by xtable 1.8-2 package -->
+<!-- Thu Dec  6 15:59:54 2018 -->
+<table border=1>
+<tr> <th> algo </th> <th> model </th> <th> succ </th> <th> par10 </th> <th> mcp </th>  </tr>
+  <tr> <td> baseline </td> <td> vbs </td> <td>  1.000 </td> <td> 219.867 </td> <td>  0.000 </td> </tr>
+  <tr> <td> baseline </td> <td> singleBest </td> <td> <b><FONT COLOR="#00FF00"> 0.879</FONT></b> </td> <td> <b><FONT COLOR="#00FF00">9017.077</FONT></b> </td> <td> <b><FONT COLOR="#00FF00">937.668</FONT></b> </td> </tr>
+  <tr> <td> baseline </td> <td> singleBestByPar </td> <td> <b><FONT COLOR="#00FF00"> 0.879</FONT></b> </td> <td> <b><FONT COLOR="#00FF00">9017.077</FONT></b> </td> <td> <b><FONT COLOR="#00FF00">937.668</FONT></b> </td> </tr>
+  <tr> <td> baseline </td> <td> singleBestBySuccesses </td> <td> <b><FONT COLOR="#00FF00"> 0.879</FONT></b> </td> <td> <b><FONT COLOR="#00FF00">9017.077</FONT></b> </td> <td> <b><FONT COLOR="#00FF00">937.668</FONT></b> </td> </tr>
+  <tr> <td> classif </td> <td> rpart </td> <td>  0.955 </td> <td> 3441.043 </td> <td> 293.571 </td> </tr>
+  <tr> <td> classif </td> <td> randomForest </td> <td>  0.973 </td> <td> 2195.195 </td> <td> 201.551 </td> </tr>
+  <tr> <td> classif </td> <td> ksvm </td> <td> <b><FONT COLOR="#00FF00"> 0.975</FONT></b> </td> <td> <b><FONT COLOR="#00FF00">2024.671</FONT></b> </td> <td> <b><FONT COLOR="#FFAAAA">195.858</FONT></b> </td> </tr>
+  <tr> <td> regr </td> <td> lm </td> <td> <b><FONT COLOR="#FF0000"> 0.985</FONT></b> </td> <td> <b><FONT COLOR="#FF0000">1395.820</FONT></b> </td> <td> <b><FONT COLOR="#FFAAAA">171.390</FONT></b> </td> </tr>
+  <tr> <td> regr </td> <td> rpart </td> <td> <b><FONT COLOR="#FFAAAA"> 0.977</FONT></b> </td> <td> <b><FONT COLOR="#FFAAAA">1959.323</FONT></b> </td> <td> 240.377 </td> </tr>
+  <tr> <td> regr </td> <td> randomForest </td> <td> <b><FONT COLOR="#FFAAAA"> 0.984</FONT></b> </td> <td> <b><FONT COLOR="#FFAAAA">1436.701</FONT></b> </td> <td> <b><FONT COLOR="#FF0000">157.335</FONT></b> </td> </tr>
+   </table>
+
+
+<p>
+
+
+The following default feature steps were used for model building:
+<p>
+<code class="knitr inline">basic, basic_extended, lower_bounding, greedy_probing, A._probing, ILP_probing, CP_probing</code>
+<p>
+Number of presolved instances: <code class="knitr inline">0</code>
+<p>
+The cost for using the feature steps (adapted for presolving) is: <code class="knitr inline">1.836 &times; 10<sup>4</sup></code>
+or on average: <code class="knitr inline">15.5725191</code>
+<p>
+The feature steps correspond to the following <code class="knitr inline">86</code> / <code class="knitr inline">86</code> features:
+<p>
+Variable.Count, VPOPS.Mean, POPS.Count, PSS.Maximum, PSS.Mean, <br>PSS.Standard.Deviation, VPOPS.Maximum, VPOPS.Standard.Deviation, Pattern.database.lower.bound.In.degree.Maximum, Pattern.database.lower.bound.In.degree.Mean, <br>Pattern.database.lower.bound.In.degree.Standard.Deviation, Pattern.database.lower.bound.Leaf.Count, Pattern.database.lower.bound.NTC.Count, Pattern.database.lower.bound.NTC.Max, Pattern.database.lower.bound.NTC.Mean, <br>Pattern.database.lower.bound.NTC.Standard.Deviation, Pattern.database.lower.bound.Out.degree.Maximum, Pattern.database.lower.bound.Out.degree.Mean, Pattern.database.lower.bound.Out.degree.Standard.Deviation, Pattern.database.lower.bound.Root.Count, <br>Pattern.database.lower.bound.Total.Degree.Maximum, Pattern.database.lower.bound.Total.Degree.Mean, Pattern.database.lower.bound.Total.Degree.Standard.Deviation, Simple.lower.bound.In.degree.Maximum, Simple.lower.bound.In.degree.Mean, <br>Simple.lower.bound.In.degree.Standard.Deviation, Simple.lower.bound.Leaf.Count, Simple.lower.bound.NTC.Count, Simple.lower.bound.NTC.Max, Simple.lower.bound.NTC.Mean, <br>Simple.lower.bound.NTC.Standard.Deviation, Simple.lower.bound.Out.degree.Maximum, Simple.lower.bound.Out.degree.Mean, Simple.lower.bound.Out.degree.Standard.Deviation, Simple.lower.bound.Root.Count, <br>Simple.lower.bound.Total.Degree.Maximum, Simple.lower.bound.Total.Degree.Mean, Simple.lower.bound.Total.Degree.Standard.Deviation, Greedy.hill.climbing.Error.bound, Greedy.hill.climbing.In.degree.Maximum, <br>Greedy.hill.climbing.In.degree.Mean, Greedy.hill.climbing.In.degree.Standard.Deviation, Greedy.hill.climbing.Leaf.Count, Greedy.hill.climbing.Out.degree.Maximum, Greedy.hill.climbing.Out.degree.Mean, <br>Greedy.hill.climbing.Out.degree.Standard.Deviation, Greedy.hill.climbing.Root.Count, Greedy.hill.climbing.Total.Degree.Maximum, Greedy.hill.climbing.Total.Degree.Mean, Greedy.hill.climbing.Total.Degree.Standard.Deviation, <br>Anytime.window.A..Error.bound, Anytime.window.A..In.degree.Maximum, Anytime.window.A..In.degree.Mean, Anytime.window.A..In.degree.Standard.Deviation, Anytime.window.A..Leaf.Count, <br>Anytime.window.A..Out.degree.Maximum, Anytime.window.A..Out.degree.Mean, Anytime.window.A..Out.degree.Standard.Deviation, Anytime.window.A..Root.Count, Anytime.window.A..Total.Degree.Maximum, <br>Anytime.window.A..Total.Degree.Mean, Anytime.window.A..Total.Degree.Standard.Deviation, GOBNILP.Error.bound, GOBNILP.In.degree.Maximum, GOBNILP.In.degree.Mean, <br>GOBNILP.In.degree.Standard.Deviation, GOBNILP.Leaf.Count, GOBNILP.Out.degree.Maximum, GOBNILP.Out.degree.Mean, GOBNILP.Out.degree.Standard.Deviation, <br>GOBNILP.Root.Count, GOBNILP.Total.Degree.Maximum, GOBNILP.Total.Degree.Mean, GOBNILP.Total.Degree.Standard.Deviation, CPBayes.Error.bound, <br>CPBayes.In.degree.Maximum, CPBayes.In.degree.Mean, CPBayes.In.degree.Standard.Deviation, CPBayes.Leaf.Count, CPBayes.Out.degree.Maximum, <br>CPBayes.Out.degree.Mean, CPBayes.Out.degree.Standard.Deviation, CPBayes.Root.Count, CPBayes.Total.Degree.Maximum, CPBayes.Total.Degree.Mean, <br>CPBayes.Total.Degree.Standard.Deviation
+<p>
+
+<h3> Algorithm and Feature Subset Selection </h3>
+
+In order to get a better insight of the scenarios, forward selections have been applied to the solvers and features to determine whether small subsets achieve comparable performances. Following this approach, we reduced the number of solvers from   to , resulting in a PAR10 score of  for the reduced model. Analogously, the model that was generated based on  of the originally  features resulted in a PAR10 score of .
+Below, you can find the list of the selected features and solvers:
+
+<p>
+Selected Features:<br><br><br>Selected Solvers:<br>
+<p>
+
+
+</body>
+</html>
+

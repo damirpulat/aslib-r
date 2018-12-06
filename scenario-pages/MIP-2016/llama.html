@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+.knitr .inline {
+  background-color: #f7f7f7;
+  border:solid 1px #B0B0B0;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
+.warning {
+	font-weight: bold;
+}
+.message {
+	font-style: italic;
+}
+.source, .output, .warning, .error, .message {
+	padding: 0 1em;
+  border:solid 1px #F7F7F7;
+}
+.source {
+  background-color: #f5f5f5;
+}
+.rimage .left {
+  text-align: left;
+}
+.rimage .right {
+  text-align: right;
+}
+.rimage .center {
+  text-align: center;
+}
+.hl.num {
+  color: #AF0F91;
+}
+.hl.str {
+  color: #317ECC;
+}
+.hl.com {
+  color: #AD95AF;
+  font-style: italic;
+}
+.hl.opt {
+  color: #000000;
+}
+.hl.std {
+  color: #585858;
+}
+.hl.kwa {
+  color: #295F94;
+  font-weight: bold;
+}
+.hl.kwb {
+  color: #B05A65;
+}
+.hl.kwc {
+  color: #55aa55;
+}
+.hl.kwd {
+  color: #BC5A65;
+  font-weight: bold;
+}
+</style>
+<title>Some LLAMA benchmark results</title>
+</head>
+<body>
+
+
+<h2> LLAMA results </h2>
+
+All results were produced by using the cross-validation splits in the repository with
+<code class="knitr inline">10</code> folds and <code class="knitr inline">1</code> repetitions.<br>
+The best values within a type (i.e., baseline (except for vbs), classif, regr and cluster) and performance measure (i.e., Percentage solved, PAR10, MCP) are colored green. Furthermore, the three best values over all groups within a performance measure are colored pink, the absolute best one is red. 
+
+<p>
+
+The performance is measured in three different ways.
+<ul>
+<li><strong>Percentage solved</strong> records the percentage of problem
+instances in the data set for which the selector selected an algorithm that was
+able to solve it with runstatus "ok" and the algorithm time plus the feature
+computation time was at most the timeout.</li>
+<li>The <strong>penalized average runtime score (PAR10)</strong> measures the time required to
+run on all problem instances. If an instance was solved within the timeout by
+the algorithm the selector chose, the
+actual runtime is taken. If a timeout occurred, the timeout value was multiplied
+by 10.</li>
+<li>The <strong>misclassification penalty (mcp)</strong> measures the additional time required to run
+on all problems if sub-optimal algorithms were used. That is, if an algorithm is
+run on a problem instance that is not the best, a performance loss is incurred.
+There are no additional penalties or factors for timeouts. The virtual best
+solver always has a misclassification penalty of zero.</li>
+</ul>
+
+<p>
+
+<!-- html table generated in R 3.5.1 by xtable 1.8-2 package -->
+<!-- Thu Dec  6 16:01:50 2018 -->
+<table border=1>
+<tr> <th> algo </th> <th> model </th> <th> succ </th> <th> par10 </th> <th> mcp </th>  </tr>
+  <tr> <td> baseline </td> <td> vbs </td> <td>  1.000 </td> <td> 281.518 </td> <td>  0.000 </td> </tr>
+  <tr> <td> baseline </td> <td> singleBest </td> <td> <b><FONT COLOR="#FFAAAA"> 0.963</FONT></b> </td> <td> <b><FONT COLOR="#FFAAAA">3007.927</FONT></b> </td> <td> <b><FONT COLOR="#00FF00">348.427</FONT></b> </td> </tr>
+  <tr> <td> baseline </td> <td> singleBestByPar </td> <td> <b><FONT COLOR="#FFAAAA"> 0.963</FONT></b> </td> <td> <b><FONT COLOR="#FFAAAA">3007.927</FONT></b> </td> <td> <b><FONT COLOR="#00FF00">348.427</FONT></b> </td> </tr>
+  <tr> <td> baseline </td> <td> singleBestBySuccesses </td> <td> <b><FONT COLOR="#FFAAAA"> 0.963</FONT></b> </td> <td> <b><FONT COLOR="#FFAAAA">3007.927</FONT></b> </td> <td> <b><FONT COLOR="#00FF00">348.427</FONT></b> </td> </tr>
+  <tr> <td> classif </td> <td> rpart </td> <td>  0.954 </td> <td> 3679.414 </td> <td> 379.248 </td> </tr>
+  <tr> <td> classif </td> <td> randomForest </td> <td> <b><FONT COLOR="#FF0000"> 0.972</FONT></b> </td> <td> <b><FONT COLOR="#FF0000">2367.473</FONT></b> </td> <td> <b><FONT COLOR="#FF0000">255.890</FONT></b> </td> </tr>
+  <tr> <td> classif </td> <td> ksvm </td> <td> <b><FONT COLOR="#FFAAAA"> 0.959</FONT></b> </td> <td> <b><FONT COLOR="#FFAAAA">3332.231</FONT></b> </td> <td> <b><FONT COLOR="#FFAAAA">335.206</FONT></b> </td> </tr>
+  <tr> <td> regr </td> <td> lm </td> <td>  0.890 </td> <td> 8228.457 </td> <td> 774.482 </td> </tr>
+  <tr> <td> regr </td> <td> rpart </td> <td>  0.931 </td> <td> 5385.211 </td> <td> 605.399 </td> </tr>
+  <tr> <td> regr </td> <td> randomForest </td> <td> <b><FONT COLOR="#00FF00"> 0.954</FONT></b> </td> <td> <b><FONT COLOR="#00FF00">3631.380</FONT></b> </td> <td> <b><FONT COLOR="#FFAAAA">337.174</FONT></b> </td> </tr>
+   </table>
+
+
+<p>
+
+
+The following default feature steps were used for model building:
+<p>
+<code class="knitr inline">base</code>
+<p>
+Number of presolved instances: <code class="knitr inline">0</code>
+<p>
+The cost for using the feature steps (adapted for presolving) is: <code class="knitr inline">1.0703173 &times; 10<sup>4</sup></code>
+or on average: <code class="knitr inline">49.0971218</code>
+<p>
+The feature steps correspond to the following <code class="knitr inline">143</code> / <code class="knitr inline">143</code> features:
+<p>
+probtype, n_vars, n_constr, n_nzcnt, nq_vars, <br>nq_constr, nq_nzcnt, lp_avg, lp_l2_avg, lp_linf, <br>lp_objval, num_b_variables, num_i_variables, num_c_variables, num_s_variables, <br>num_n_variables, ratio_b_variables, ratio_i_variables, ratio_c_variables, ratio_s_variables, <br>ratio_n_variables, num_i._variables, ratio_i._variables, num_unbounded_disc, ratio_unbounded_disc, <br>support_size_avg, support_size_median, support_size_varcoef, support_size_q90mq10, rhs_c_0_avg, <br>rhs_c_0_varcoef, rhs_c_1_avg, rhs_c_1_varcoef, rhs_c_2_avg, rhs_c_2_varcoef, <br>vcg_constr_deg0_avg, vcg_constr_deg0_median, vcg_constr_deg0_varcoef, vcg_constr_deg0_q90mq10, vcg_var_deg0_avg, <br>vcg_var_deg0_median, vcg_var_deg0_varcoef, vcg_var_deg0_q90mq10, vcg_constr_weight0_avg, vcg_constr_weight0_varcoef, <br>vcg_var_weight0_avg, vcg_var_weight0_varcoef, A_ij_normalized0_avg, A_ij_normalized0_varcoef, a_normalized_varcoefs0_avg, <br>a_normalized_varcoefs0_varcoef, obj_coefs0_avg, obj_coefs0_std, obj_coef_per_constr0_avg, obj_coef_per_constr0_std, <br>obj_coef_per_sqr_constr0_avg, obj_coef_per_sqr_constr0_std, vcg_constr_deg1_avg, vcg_constr_deg1_median, vcg_constr_deg1_varcoef, <br>vcg_constr_deg1_q90mq10, vcg_var_deg1_avg, vcg_var_deg1_median, vcg_var_deg1_varcoef, vcg_var_deg1_q90mq10, <br>vcg_constr_weight1_avg, vcg_constr_weight1_varcoef, vcg_var_weight1_avg, vcg_var_weight1_varcoef, A_ij_normalized1_avg, <br>A_ij_normalized1_varcoef, a_normalized_varcoefs1_avg, a_normalized_varcoefs1_varcoef, obj_coefs1_avg, obj_coefs1_std, <br>obj_coef_per_constr1_avg, obj_coef_per_constr1_std, obj_coef_per_sqr_constr1_avg, obj_coef_per_sqr_constr1_std, vcg_constr_deg2_avg, <br>vcg_constr_deg2_median, vcg_constr_deg2_varcoef, vcg_constr_deg2_q90mq10, vcg_var_deg2_avg, vcg_var_deg2_median, <br>vcg_var_deg2_varcoef, vcg_var_deg2_q90mq10, vcg_constr_weight2_avg, vcg_constr_weight2_varcoef, vcg_var_weight2_avg, <br>vcg_var_weight2_varcoef, A_ij_normalized2_avg, A_ij_normalized2_varcoef, a_normalized_varcoefs2_avg, a_normalized_varcoefs2_varcoef, <br>obj_coefs2_avg, obj_coefs2_std, obj_coef_per_constr2_avg, obj_coef_per_constr2_std, obj_coef_per_sqr_constr2_avg, <br>obj_coef_per_sqr_constr2_std, mipgap, nodecnt, clqcnt, covcnt, <br>itcnt_max, numnewsolution_sum, newin_sum, nodeleft_avg, nodeleft_varcoef, <br>diffObj_avg, diffObj_median, diffObj_varcoef, diffObj_q90mq10, numfeas, <br>iinf_avg, iinf_median, iinf_varcoef, iinf_q90mq10, diffBestInt_avg, <br>diffBestInt_median, diffBestInt_varcoef, diffBestInt_q90mq10, diffBestObjUp_avg, diffBestObjUp_median, <br>diffBestObjUp_varcoef, diffBestObjUp_q90mq10, numcuts_sum, diffGap_avg, diffGap_median, <br>diffGap_varcoef, diffGap_q90mq10, pre_t, rel_t, new_row, <br>new_col, new_nonzero, clique_table, cliqueCuts, impliedBoundCuts, <br>flowCuts, mixedIntegerRoundingCuts, gomoryFractionalCuts
+<p>
+
+<h3> Algorithm and Feature Subset Selection </h3>
+
+In order to get a better insight of the scenarios, forward selections have been applied to the solvers and features to determine whether small subsets achieve comparable performances. Following this approach, we reduced the number of solvers from   to , resulting in a PAR10 score of  for the reduced model. Analogously, the model that was generated based on  of the originally  features resulted in a PAR10 score of .
+Below, you can find the list of the selected features and solvers:
+
+<p>
+Selected Features:<br><br><br>Selected Solvers:<br>
+<p>
+
+
+</body>
+</html>
+

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+.knitr .inline {
+  background-color: #f7f7f7;
+  border:solid 1px #B0B0B0;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
+.warning {
+	font-weight: bold;
+}
+.message {
+	font-style: italic;
+}
+.source, .output, .warning, .error, .message {
+	padding: 0 1em;
+  border:solid 1px #F7F7F7;
+}
+.source {
+  background-color: #f5f5f5;
+}
+.rimage .left {
+  text-align: left;
+}
+.rimage .right {
+  text-align: right;
+}
+.rimage .center {
+  text-align: center;
+}
+.hl.num {
+  color: #AF0F91;
+}
+.hl.str {
+  color: #317ECC;
+}
+.hl.com {
+  color: #AD95AF;
+  font-style: italic;
+}
+.hl.opt {
+  color: #000000;
+}
+.hl.std {
+  color: #585858;
+}
+.hl.kwa {
+  color: #295F94;
+  font-weight: bold;
+}
+.hl.kwb {
+  color: #B05A65;
+}
+.hl.kwc {
+  color: #55aa55;
+}
+.hl.kwd {
+  color: #BC5A65;
+  font-weight: bold;
+}
+</style>
+  <title>Algorithm performance overview</title>
+</head>
+<body>
+
+
+<h2> Overview of performance values </h2>
+
+The following statistics were calculated from the performance values of each algorithm:
+<ul>
+
+  <li> <a>obs (number of observations within performance values)</a>
+  <li> <a>nas (number of NAs, i.e., missing values, within performance values)</a>
+  <li> <a>min (minimum), mean (arithmetic mean), max (maximum), sd (standard deviation)</a>
+  <li> <a>qu_1st (1st quartile = lower quartile = 25%-quantile)</a>
+  <li> <a>med (median = 50%-quantile)</a>
+  <li> <a>qu_3rd (3rd quartile = upper quartile = 75%-quantile)</a>
+  <li> <a>coeff_var (coefficient of variation = standard deviation / arithmetic mean)</a>
+
+</ul>
+
+<!-- html table generated in R 3.5.1 by xtable 1.8-2 package -->
+<!-- Thu Dec  6 16:01:03 2018 -->
+<table border=1>
+<tr> <th>  </th> <th> obs </th> <th> nas </th> <th> min </th> <th> qu_1st </th> <th> med </th> <th> mean </th> <th> qu_3rd </th> <th> max </th> <th> sd </th> <th> coeff_var </th>  </tr>
+  <tr> <td align="right"> CCEHC2akms </td> <td align="right">     630 </td> <td align="right">       0 </td> <td align="right">    0.01 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right"> 17013.7 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right"> 4070.73 </td> <td align="right"> 0.239261 </td> </tr>
+  <tr> <td align="right"> CCLS2akms </td> <td align="right">     630 </td> <td align="right">       0 </td> <td align="right">    0.01 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right"> 17291.9 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right"> 3487.03 </td> <td align="right"> 0.201657 </td> </tr>
+  <tr> <td align="right"> LMHS.2016 </td> <td align="right">     630 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">    1.88 </td> <td align="right"> 124.675 </td> <td align="right"> 6118.08 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right"> 8413.72 </td> <td align="right"> 1.37522 </td> </tr>
+  <tr> <td align="right"> Naps.1.02.ms </td> <td align="right">     630 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right"> 14397.9 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right"> 7175.56 </td> <td align="right"> 0.498374 </td> </tr>
+  <tr> <td align="right"> Open.WBO16 </td> <td align="right">     630 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">   1.745 </td> <td align="right">   7.725 </td> <td align="right"> 6737.64 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right"> 8694.91 </td> <td align="right">  1.2905 </td> </tr>
+  <tr> <td align="right"> Optiriss6 </td> <td align="right">     630 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">  8.5025 </td> <td align="right">   18000 </td> <td align="right"> 10289.3 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right"> 8882.83 </td> <td align="right"> 0.86331 </td> </tr>
+  <tr> <td align="right"> QMaxSAT14 </td> <td align="right">     630 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">  35.965 </td> <td align="right"> 1049.35 </td> <td align="right"> 8434.22 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right">  8874.5 </td> <td align="right">  1.0522 </td> </tr>
+  <tr> <td align="right"> QMaxSAT16UC </td> <td align="right">     630 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">  35.025 </td> <td align="right">  940.61 </td> <td align="right"> 8349.72 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right"> 8867.36 </td> <td align="right"> 1.06199 </td> </tr>
+  <tr> <td align="right"> WMaxSatz. </td> <td align="right">     630 </td> <td align="right">       0 </td> <td align="right">    0.01 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right"> 15801.2 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right"> 5855.84 </td> <td align="right"> 0.370595 </td> </tr>
+  <tr> <td align="right"> WMaxSatz09 </td> <td align="right">     630 </td> <td align="right">       0 </td> <td align="right">    0.01 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right"> 15826.8 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right"> 5830.12 </td> <td align="right"> 0.36837 </td> </tr>
+  <tr> <td align="right"> WPM3.2015.co </td> <td align="right">     630 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">  3.3525 </td> <td align="right">   13.98 </td> <td align="right"> 6914.71 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right"> 8733.37 </td> <td align="right"> 1.26301 </td> </tr>
+  <tr> <td align="right"> ahms.1.70 </td> <td align="right">     630 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right"> 16484.5 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right"> 4955.78 </td> <td align="right"> 0.300633 </td> </tr>
+  <tr> <td align="right"> ahms.ls.1.70 </td> <td align="right">     630 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right"> 16564.3 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right">  4842.8 </td> <td align="right"> 0.292363 </td> </tr>
+  <tr> <td align="right"> maxhs.b </td> <td align="right">     630 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">  1.9125 </td> <td align="right">   59.95 </td> <td align="right"> 3892.78 </td> <td align="right"> 779.135 </td> <td align="right">   18000 </td> <td align="right"> 7273.97 </td> <td align="right"> 1.86858 </td> </tr>
+  <tr> <td align="right"> maxino16.c10 </td> <td align="right">     630 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">    0.97 </td> <td align="right">  21.285 </td> <td align="right"> 6124.67 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right"> 8495.27 </td> <td align="right"> 1.38706 </td> </tr>
+  <tr> <td align="right"> maxino16.dis </td> <td align="right">     630 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">    1.03 </td> <td align="right">    7.54 </td> <td align="right">    6054 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right"> 8484.68 </td> <td align="right">  1.4015 </td> </tr>
+  <tr> <td align="right"> mscg2015a </td> <td align="right">     630 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">    0.88 </td> <td align="right">    6.36 </td> <td align="right"> 6228.38 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right"> 8540.72 </td> <td align="right"> 1.37126 </td> </tr>
+  <tr> <td align="right"> mscg2015b </td> <td align="right">     630 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">  1.2225 </td> <td align="right">  15.635 </td> <td align="right"> 5902.53 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right">  8410.8 </td> <td align="right"> 1.42495 </td> </tr>
+   </table>
+
+
+<br>
+<h2> Summary of the runstatus per algorithm </h2>
+
+The following table summarizes the runstatus of each algorithm over all instances (in %).<br>
+<br>
+
+<!-- html table generated in R 3.5.1 by xtable 1.8-2 package -->
+<!-- Thu Dec  6 16:01:03 2018 -->
+<table border=1>
+<tr> <th>  </th> <th> ok </th> <th> timeout </th> <th> memout </th> <th> not_applicable </th> <th> crash </th> <th> other </th>  </tr>
+  <tr> <td align="right"> ahms.1.70 </td> <td align="right"> 8.571 </td> <td align="right"> 91.429 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> ahms.ls.1.70 </td> <td align="right"> 8.095 </td> <td align="right"> 91.905 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> CCEHC2akms </td> <td align="right"> 5.556 </td> <td align="right"> 94.444 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> CCLS2akms </td> <td align="right"> 3.968 </td> <td align="right"> 96.032 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> LMHS.2016 </td> <td align="right"> 66.667 </td> <td align="right"> 33.333 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> maxhs.b </td> <td align="right"> 79.048 </td> <td align="right"> 20.952 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> maxino16.c10 </td> <td align="right"> 66.190 </td> <td align="right"> 33.810 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> maxino16.dis </td> <td align="right"> 66.508 </td> <td align="right"> 33.492 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> mscg2015a </td> <td align="right"> 65.556 </td> <td align="right"> 34.444 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> mscg2015b </td> <td align="right"> 67.460 </td> <td align="right"> 32.540 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> Naps.1.02.ms </td> <td align="right"> 20.159 </td> <td align="right"> 79.841 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> Open.WBO16 </td> <td align="right"> 62.698 </td> <td align="right"> 37.302 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> Optiriss6 </td> <td align="right"> 43.016 </td> <td align="right"> 56.984 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> QMaxSAT14 </td> <td align="right"> 53.810 </td> <td align="right"> 46.190 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> QMaxSAT16UC </td> <td align="right"> 54.286 </td> <td align="right"> 45.714 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> WMaxSatz. </td> <td align="right"> 12.381 </td> <td align="right"> 87.619 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> WMaxSatz09 </td> <td align="right"> 12.222 </td> <td align="right"> 87.778 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> WPM3.2015.co </td> <td align="right"> 61.746 </td> <td align="right"> 38.254 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+   </table>
+
+
+<br>
+<h2> Dominated Algorithms </h2>
+
+Here, you'll find an overview of dominating/dominated algorithms: <br>
+
+<!-- html table generated in R 3.5.1 by xtable 1.8-2 package -->
+<!-- Thu Dec  6 16:01:03 2018 -->
+<table border=1>
+<tr> <th>  </th> <th> CCEHC2akms </th> <th> CCLS2akms </th> <th> Open.WBO16 </th> <th> Optiriss6 </th> <th> QMaxSAT14 </th> <th> QMaxSAT16UC </th> <th> WPM3.2015.co </th> <th> ahms.ls.1.70 </th> <th> maxino16.c10 </th> <th> maxino16.dis </th> <th> mscg2015a </th> <th> mscg2015b </th>  </tr>
+  <tr> <td align="right"> CCEHC2akms </td> <td> - </td> <td> - </td> <td> better </td> <td> better </td> <td> better </td> <td> better </td> <td> better </td> <td> - </td> <td> better </td> <td> better </td> <td> better </td> <td> better </td> </tr>
+  <tr> <td align="right"> CCLS2akms </td> <td> - </td> <td> - </td> <td> better </td> <td> better </td> <td> better </td> <td> better </td> <td> better </td> <td> - </td> <td> better </td> <td> better </td> <td> better </td> <td> better </td> </tr>
+  <tr> <td align="right"> Open.WBO16 </td> <td> worse </td> <td> worse </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> </tr>
+  <tr> <td align="right"> Optiriss6 </td> <td> worse </td> <td> worse </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> </tr>
+  <tr> <td align="right"> QMaxSAT14 </td> <td> worse </td> <td> worse </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> </tr>
+  <tr> <td align="right"> QMaxSAT16UC </td> <td> worse </td> <td> worse </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> </tr>
+  <tr> <td align="right"> WPM3.2015.co </td> <td> worse </td> <td> worse </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> </tr>
+  <tr> <td align="right"> ahms.ls.1.70 </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> better </td> <td> better </td> <td> - </td> <td> - </td> </tr>
+  <tr> <td align="right"> maxino16.c10 </td> <td> worse </td> <td> worse </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> worse </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> </tr>
+  <tr> <td align="right"> maxino16.dis </td> <td> worse </td> <td> worse </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> worse </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> </tr>
+  <tr> <td align="right"> mscg2015a </td> <td> worse </td> <td> worse </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> </tr>
+  <tr> <td align="right"> mscg2015b </td> <td> worse </td> <td> worse </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> <td> - </td> </tr>
+   </table>
+
+
+<br> <br>
+An algorithm (A) is considered to be superior to an other algorithm (B), if it has at least an equal performance on all instances (compared to B) <u>and</u> if it is better on at least one of them. A missing value is automatically a worse performance. However, instances which could not be solved by either one of the algorithms, were not considered for the dominance relation.<br>
+
+<br>
+<br>
+
+<h1>Visualisations</h1>
+<b><FONT COLOR = "#FF0000"> Important note w.r.t. some of the following plots:</b><br>
+If appropriate, we imputed performance values for failed or censored runs.
+We used max + 0.3 * (max - min), in case of minimization problems,
+or min - 0.3 * (max - min), in case of maximization problems.<br>
+In addition, a small noise is added to the imputed values (except for the cluster matrix,
+based on correlations, which is shown at the end of this page). </FONT>
+<br>
+<br>
+
+<h2> Boxplots of performance values </h2>
+
+<br>Imputing the performance values of failed or censored runs (as described in the red note at the beginning of this section):<br>
+<div class="chunk" id="unnamed-chunk-4"><div class="rimage default"><img src="figure/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" class="plot" /></div></div>
+
+<br>Discarding the performance values of failed or censored runs:<br>
+<div class="chunk" id="unnamed-chunk-5"><div class="rcode"><div class="warning"><pre class="knitr r">## Warning: Removed 6565 rows containing non-finite values (stat_boxplot).
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" class="plot" /></div></div>
+
+<br>
+<h2> Estimated densitities of performance values </h2>
+
+<br>Imputing the performance values of failed or censored runs (as described in the red note at the beginning of this section):<br>
+<div class="chunk" id="unnamed-chunk-6"><div class="rimage default"><img src="figure/unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" class="plot" /></div></div>
+
+<br>Discarding the performance values of failed or censored runs:<br>
+<div class="chunk" id="unnamed-chunk-7"><div class="rimage default"><img src="figure/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" class="plot" /></div></div>
+<br>
+
+<h2> Estimated cumulative distribution functions of performance values </h2>
+
+<br>Imputing the performance values of failed runs (as described in the red note at the beginning of this section):<br>
+<div class="chunk" id="unnamed-chunk-8"><div class="rimage default"><img src="figure/unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" class="plot" /></div></div>
+
+<br>Discarding the performance values of failed or censored runs:<br>
+<div class="chunk" id="unnamed-chunk-9"><div class="rimage default"><img src="figure/unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" class="plot" /></div></div>
+
+
+<br>
+<h2> Scatterplot matrix of the performance values </h2>
+The figure underneath shows pairwise scatterplots of the performance values.<br>
+
+<br>Imputing the performance values of failed and censored runs (as described in the red note at the beginning of this section):<br>
+
+</div><div class="rimage default"><img src="figure/unnamed-chunk-10-1.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" class="plot" /></div><div class="rcode">
+
+
+
+<br>
+<h2> Clustering algorithms based on their correlations </h2>
+The following figure shows the correlations of the <b>ranks</b> of the performance
+values. Per default it will show the correlation coefficient of spearman. Missing values were imputed <u>prior</u> to computing the correlation coefficients. The algorithms are ordered in a way that similar (highly correlated) algorithms are close to each other. Per default the clustering is based on hierarchical clustering, using Ward's method. <br>
+<br>
+
+<div class="chunk" id="unnamed-chunk-11"><div class="rimage default"><img src="figure/unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" class="plot" /></div></div>
+
+
+</body>
+</html>

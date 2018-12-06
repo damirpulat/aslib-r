@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+.knitr .inline {
+  background-color: #f7f7f7;
+  border:solid 1px #B0B0B0;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
+.warning {
+	font-weight: bold;
+}
+.message {
+	font-style: italic;
+}
+.source, .output, .warning, .error, .message {
+	padding: 0 1em;
+  border:solid 1px #F7F7F7;
+}
+.source {
+  background-color: #f5f5f5;
+}
+.rimage .left {
+  text-align: left;
+}
+.rimage .right {
+  text-align: right;
+}
+.rimage .center {
+  text-align: center;
+}
+.hl.num {
+  color: #AF0F91;
+}
+.hl.str {
+  color: #317ECC;
+}
+.hl.com {
+  color: #AD95AF;
+  font-style: italic;
+}
+.hl.opt {
+  color: #000000;
+}
+.hl.std {
+  color: #585858;
+}
+.hl.kwa {
+  color: #295F94;
+  font-weight: bold;
+}
+.hl.kwb {
+  color: #B05A65;
+}
+.hl.kwc {
+  color: #55aa55;
+}
+.hl.kwd {
+  color: #BC5A65;
+  font-weight: bold;
+}
+</style>
+<title>Some LLAMA benchmark results</title>
+</head>
+<body>
+
+
+<h2> LLAMA results </h2>
+
+All results were produced by using the cross-validation splits in the repository with
+<code class="knitr inline">10</code> folds and <code class="knitr inline">1</code> repetitions.<br>
+The best values within a type (i.e., baseline (except for vbs), classif, regr and cluster) and performance measure (i.e., Percentage solved, PAR10, MCP) are colored green. Furthermore, the three best values over all groups within a performance measure are colored pink, the absolute best one is red. 
+
+<p>
+
+The performance is measured in three different ways.
+<ul>
+<li><strong>Percentage solved</strong> records the percentage of problem
+instances in the data set for which the selector selected an algorithm that was
+able to solve it with runstatus "ok" and the algorithm time plus the feature
+computation time was at most the timeout.</li>
+<li>The <strong>penalized average runtime score (PAR10)</strong> measures the time required to
+run on all problem instances. If an instance was solved within the timeout by
+the algorithm the selector chose, the
+actual runtime is taken. If a timeout occurred, the timeout value was multiplied
+by 10.</li>
+<li>The <strong>misclassification penalty (mcp)</strong> measures the additional time required to run
+on all problems if sub-optimal algorithms were used. That is, if an algorithm is
+run on a problem instance that is not the best, a performance loss is incurred.
+There are no additional penalties or factors for timeouts. The virtual best
+solver always has a misclassification penalty of zero.</li>
+</ul>
+
+<p>
+
+<!-- html table generated in R 3.5.1 by xtable 1.8-2 package -->
+<!-- Thu Dec  6 16:03:58 2018 -->
+<table border=1>
+<tr> <th> algo </th> <th> model </th> <th> succ </th> <th> par10 </th> <th> mcp </th>  </tr>
+  <tr> <td> baseline </td> <td> vbs </td> <td>  0.863 </td> <td> 7137.571 </td> <td> 10.836 </td> </tr>
+  <tr> <td> baseline </td> <td> singleBest </td> <td>  0.804 </td> <td> <b><FONT COLOR="#00FF00">10126.835</FONT></b> </td> <td> <b><FONT COLOR="#00FF00">390.100</FONT></b> </td> </tr>
+  <tr> <td> baseline </td> <td> singleBestByPar </td> <td>  0.804 </td> <td> <b><FONT COLOR="#00FF00">10126.835</FONT></b> </td> <td> <b><FONT COLOR="#00FF00">390.100</FONT></b> </td> </tr>
+  <tr> <td> baseline </td> <td> singleBestBySuccesses </td> <td> <b><FONT COLOR="#00FF00"> 0.805</FONT></b> </td> <td> 10213.286 </td> <td> 521.551 </td> </tr>
+  <tr> <td> classif </td> <td> rpart </td> <td>  0.814 </td> <td> 9693.348 </td> <td> 314.755 </td> </tr>
+  <tr> <td> classif </td> <td> randomForest </td> <td> <b><FONT COLOR="#FFAAAA"> 0.815</FONT></b> </td> <td> <b><FONT COLOR="#FFAAAA">9602.287</FONT></b> </td> <td> <b><FONT COLOR="#FFAAAA">264.633</FONT></b> </td> </tr>
+  <tr> <td> classif </td> <td> ksvm </td> <td>  0.814 </td> <td> 9673.797 </td> <td> 290.881 </td> </tr>
+  <tr> <td> regr </td> <td> lm </td> <td> <b><FONT COLOR="#FFAAAA"> 0.822</FONT></b> </td> <td> <b><FONT COLOR="#FFAAAA">9278.063</FONT></b> </td> <td> <b><FONT COLOR="#FFAAAA">278.841</FONT></b> </td> </tr>
+  <tr> <td> regr </td> <td> rpart </td> <td>  0.806 </td> <td> 10107.674 </td> <td> 391.658 </td> </tr>
+  <tr> <td> regr </td> <td> randomForest </td> <td> <b><FONT COLOR="#FF0000"> 0.826</FONT></b> </td> <td> <b><FONT COLOR="#FF0000">9046.638</FONT></b> </td> <td> <b><FONT COLOR="#FF0000">226.415</FONT></b> </td> </tr>
+   </table>
+
+
+<p>
+
+
+The following default feature steps were used for model building:
+<p>
+<code class="knitr inline">base, tud_base</code>
+<p>
+Number of presolved instances: <code class="knitr inline">33</code>
+<p>
+The cost for using the feature steps (adapted for presolving) is: <code class="knitr inline">3.3865468 &times; 10<sup>5</sup></code>
+or on average: <code class="knitr inline">169.327341</code>
+<p>
+The feature steps correspond to the following <code class="knitr inline">142</code> / <code class="knitr inline">483</code> features:
+<p>
+nvarsOrig, nclausesOrig, nvars, nclauses, reducedVars, <br>reducedClauses, vars.clauses.ratio, POSNEG.RATIO.CLAUSE.mean, POSNEG.RATIO.CLAUSE.coeff.variation, POSNEG.RATIO.CLAUSE.min, <br>POSNEG.RATIO.CLAUSE.max, POSNEG.RATIO.CLAUSE.entropy, VCG.CLAUSE.mean, VCG.CLAUSE.coeff.variation, VCG.CLAUSE.min, <br>VCG.CLAUSE.max, VCG.CLAUSE.entropy, UNARY, BINARYp, TRINARYp, <br>VCG.VAR.mean, VCG.VAR.coeff.variation, VCG.VAR.min, VCG.VAR.max, VCG.VAR.entropy, <br>POSNEG.RATIO.VAR.mean, POSNEG.RATIO.VAR.stdev, POSNEG.RATIO.VAR.min, POSNEG.RATIO.VAR.max, POSNEG.RATIO.VAR.entropy, <br>HORNY.VAR.mean, HORNY.VAR.coeff.variation, HORNY.VAR.min, HORNY.VAR.max, HORNY.VAR.entropy, <br>horn.clauses.fraction, VG.mean, VG.coeff.variation, VG.min, VG.max, <br>CG.mean, CG.coeff.variation, CG.min, CG.max, CG.entropy, <br>cluster.coeff.mean, cluster.coeff.coeff.variation, cluster.coeff.min, cluster.coeff.max, cluster.coeff.entropy, <br>tud_clauses, tud_vars, tud_clauses_size_1, tud_clauses_size_2, tud_clauses_size_3, <br>tud_clauses_size_4, tud_clauses_size_5, tud_clauses_size_6, tud_clauses_size_7, tud_clauses_size_8, <br>tud_clauses_size_.._9, tud_horn_clauses, tud_clause.variable_degree_min, tud_clause.variable_degree_max, tud_clause.variable_degree_mode, <br>tud_clause.variable_degree_mean, tud_clause.variable_degree_stdev, tud_clause.variable_degree_entropy, tud_clause.variable_degree_valuesRate, tud_clause.variable_degree_Q1, <br>tud_clause.variable_degree_Q2, tud_clause.variable_degree_Q3, tud_variable.clause_degree_zcount, tud_variable.clause_degree_min, tud_variable.clause_degree_max, <br>tud_variable.clause_degree_mode, tud_variable.clause_degree_mean, tud_variable.clause_degree_stdev, tud_variable.clause_degree_entropy, tud_variable.clause_degree_valuesRate, <br>tud_variable.clause_degree_Q1, tud_variable.clause_degree_Q2, tud_variable.clause_degree_Q3, tud_clause.variable_polarity_min, tud_clause.variable_polarity_max, <br>tud_clause.variable_polarity_mode, tud_clause.variable_polarity_mean, tud_clause.variable_polarity_stdev, tud_clause.variable_polarity_entropy, tud_clause.variable_polarity_valuesRate, <br>tud_clause.variable_polarity_Q1, tud_clause.variable_polarity_Q2, tud_clause.variable_polarity_Q3, tud_variable.clause_polarity_zcount, tud_variable.clause_polarity_min, <br>tud_variable.clause_polarity_max, tud_variable.clause_polarity_mode, tud_variable.clause_polarity_mean, tud_variable.clause_polarity_stdev, tud_variable.clause_polarity_entropy, <br>tud_variable.clause_polarity_valuesRate, tud_variable.clause_polarity_Q1, tud_variable.clause_polarity_Q2, tud_variable.clause_polarity_Q3, tud_Clause.Var_steps, <br>tud_SymmTime0_zcount, tud_SymmTime0_min, tud_SymmTime0_max, tud_SymmTime0_mode, tud_SymmTime0_mean, <br>tud_SymmTime0_stdev, tud_SymmTime0_entropy, tud_SymmTime0_valuesRate, tud_SymmTime0_Q1, tud_SymmTime0_Q2, <br>tud_SymmTime0_Q3, tud_Symmetry0_steps, tud_SymmTime1_zcount, tud_SymmTime1_min, tud_SymmTime1_max, <br>tud_SymmTime1_mode, tud_SymmTime1_mean, tud_SymmTime1_stdev, tud_SymmTime1_entropy, tud_SymmTime1_valuesRate, <br>tud_SymmTime1_Q1, tud_SymmTime1_Q2, tud_SymmTime1_Q3, tud_Symmetry1_steps, tud_SymmTime2_zcount, <br>tud_SymmTime2_min, tud_SymmTime2_max, tud_SymmTime2_mode, tud_SymmTime2_mean, tud_SymmTime2_stdev, <br>tud_SymmTime2_entropy, tud_SymmTime2_valuesRate, tud_SymmTime2_Q1, tud_SymmTime2_Q2, tud_SymmTime2_Q3, <br>tud_Symmetry2_steps, tud_Symmetry_computation_steps
+<p>
+
+<h3> Algorithm and Feature Subset Selection </h3>
+
+In order to get a better insight of the scenarios, forward selections have been applied to the solvers and features to determine whether small subsets achieve comparable performances. Following this approach, we reduced the number of solvers from   to , resulting in a PAR10 score of  for the reduced model. Analogously, the model that was generated based on  of the originally  features resulted in a PAR10 score of .
+Below, you can find the list of the selected features and solvers:
+
+<p>
+Selected Features:<br><br><br>Selected Solvers:<br>
+<p>
+
+
+</body>
+</html>
+

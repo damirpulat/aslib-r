@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+.knitr .inline {
+  background-color: #f7f7f7;
+  border:solid 1px #B0B0B0;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
+.warning {
+	font-weight: bold;
+}
+.message {
+	font-style: italic;
+}
+.source, .output, .warning, .error, .message {
+	padding: 0 1em;
+  border:solid 1px #F7F7F7;
+}
+.source {
+  background-color: #f5f5f5;
+}
+.rimage .left {
+  text-align: left;
+}
+.rimage .right {
+  text-align: right;
+}
+.rimage .center {
+  text-align: center;
+}
+.hl.num {
+  color: #AF0F91;
+}
+.hl.str {
+  color: #317ECC;
+}
+.hl.com {
+  color: #AD95AF;
+  font-style: italic;
+}
+.hl.opt {
+  color: #000000;
+}
+.hl.std {
+  color: #585858;
+}
+.hl.kwa {
+  color: #295F94;
+  font-weight: bold;
+}
+.hl.kwb {
+  color: #B05A65;
+}
+.hl.kwc {
+  color: #55aa55;
+}
+.hl.kwd {
+  color: #BC5A65;
+  font-weight: bold;
+}
+</style>
+  <title>Algorithm performance overview</title>
+</head>
+<body>
+
+
+<h2> Overview of performance values </h2>
+
+The following statistics were calculated from the performance values of each algorithm:
+<ul>
+
+  <li> <a>obs (number of observations within performance values)</a>
+  <li> <a>nas (number of NAs, i.e., missing values, within performance values)</a>
+  <li> <a>min (minimum), mean (arithmetic mean), max (maximum), sd (standard deviation)</a>
+  <li> <a>qu_1st (1st quartile = lower quartile = 25%-quantile)</a>
+  <li> <a>med (median = 50%-quantile)</a>
+  <li> <a>qu_3rd (3rd quartile = upper quartile = 75%-quantile)</a>
+  <li> <a>coeff_var (coefficient of variation = standard deviation / arithmetic mean)</a>
+
+</ul>
+
+<!-- html table generated in R 3.5.1 by xtable 1.8-2 package -->
+<!-- Thu Dec  6 16:07:44 2018 -->
+<table border=1>
+<tr> <th>  </th> <th> obs </th> <th> nas </th> <th> min </th> <th> qu_1st </th> <th> med </th> <th> mean </th> <th> qu_3rd </th> <th> max </th> <th> sd </th> <th> coeff_var </th>  </tr>
+  <tr> <td align="right"> SH </td> <td align="right">    9720 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right"> 0.0654365 </td> <td align="right">       0 </td> <td align="right">       1 </td> <td align="right"> 0.189658 </td> <td align="right"> 2.89836 </td> </tr>
+  <tr> <td align="right"> DH </td> <td align="right">    9720 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right"> 0.176171 </td> <td align="right"> 0.526597 </td> <td align="right"> 0.463617 </td> <td align="right"> 0.733267 </td> <td align="right">       1 </td> <td align="right"> 0.302214 </td> <td align="right"> 0.651863 </td> </tr>
+  <tr> <td align="right"> S1 </td> <td align="right">    9720 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right"> 0.825559 </td> <td align="right"> 0.92781 </td> <td align="right"> 0.862848 </td> <td align="right"> 0.971526 </td> <td align="right">       1 </td> <td align="right"> 0.175589 </td> <td align="right"> 0.203499 </td> </tr>
+  <tr> <td align="right"> S2 </td> <td align="right">    9720 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right"> 0.827812 </td> <td align="right"> 0.928269 </td> <td align="right"> 0.869213 </td> <td align="right"> 0.972663 </td> <td align="right">       1 </td> <td align="right"> 0.164272 </td> <td align="right"> 0.188989 </td> </tr>
+  <tr> <td align="right"> S3 </td> <td align="right">    9720 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right"> 0.823114 </td> <td align="right"> 0.924814 </td> <td align="right"> 0.861145 </td> <td align="right"> 0.971168 </td> <td align="right">       1 </td> <td align="right"> 0.176032 </td> <td align="right"> 0.204417 </td> </tr>
+  <tr> <td align="right"> S4 </td> <td align="right">    9720 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right"> 0.822936 </td> <td align="right"> 0.928488 </td> <td align="right"> 0.863616 </td> <td align="right"> 0.972174 </td> <td align="right">       1 </td> <td align="right">  0.1728 </td> <td align="right"> 0.200088 </td> </tr>
+  <tr> <td align="right"> S5 </td> <td align="right">    9720 </td> <td align="right">       0 </td> <td align="right"> 0.0912738 </td> <td align="right"> 0.957948 </td> <td align="right"> 0.991551 </td> <td align="right"> 0.958651 </td> <td align="right"> 0.999892 </td> <td align="right">       1 </td> <td align="right"> 0.0803643 </td> <td align="right"> 0.0838305 </td> </tr>
+  <tr> <td align="right"> C1 </td> <td align="right">    9720 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right"> 0.824994 </td> <td align="right"> 0.929119 </td> <td align="right"> 0.864831 </td> <td align="right"> 0.972397 </td> <td align="right">       1 </td> <td align="right"> 0.173337 </td> <td align="right"> 0.200429 </td> </tr>
+  <tr> <td align="right"> C2 </td> <td align="right">    9720 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right"> 0.823229 </td> <td align="right"> 0.92707 </td> <td align="right"> 0.863586 </td> <td align="right"> 0.973199 </td> <td align="right">       1 </td> <td align="right"> 0.175737 </td> <td align="right"> 0.203497 </td> </tr>
+  <tr> <td align="right"> C3 </td> <td align="right">    9720 </td> <td align="right">       0 </td> <td align="right"> 0.0937109 </td> <td align="right"> 0.945044 </td> <td align="right"> 0.980686 </td> <td align="right"> 0.950617 </td> <td align="right"> 0.995428 </td> <td align="right">       1 </td> <td align="right"> 0.0805107 </td> <td align="right"> 0.0846931 </td> </tr>
+  <tr> <td align="right"> C4 </td> <td align="right">    9720 </td> <td align="right">       0 </td> <td align="right"> 0.238806 </td> <td align="right"> 0.946774 </td> <td align="right"> 0.981723 </td> <td align="right"> 0.952247 </td> <td align="right"> 0.996085 </td> <td align="right">       1 </td> <td align="right"> 0.0788972 </td> <td align="right"> 0.0828537 </td> </tr>
+  <tr> <td align="right"> C5 </td> <td align="right">    9720 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right"> 0.911212 </td> <td align="right"> 0.967027 </td> <td align="right"> 0.929154 </td> <td align="right"> 0.989967 </td> <td align="right">       1 </td> <td align="right"> 0.101949 </td> <td align="right"> 0.109722 </td> </tr>
+  <tr> <td align="right"> C6 </td> <td align="right">    9720 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right"> 0.915644 </td> <td align="right"> 0.968252 </td> <td align="right"> 0.934383 </td> <td align="right"> 0.990156 </td> <td align="right">       1 </td> <td align="right"> 0.0920129 </td> <td align="right"> 0.0984745 </td> </tr>
+  <tr> <td align="right"> MATLS </td> <td align="right">    9720 </td> <td align="right">       0 </td> <td align="right">      -1 </td> <td align="right"> 0.921055 </td> <td align="right"> 0.97606 </td> <td align="right"> 0.901995 </td> <td align="right"> 0.993368 </td> <td align="right">       1 </td> <td align="right"> 0.29003 </td> <td align="right"> 0.321543 </td> </tr>
+  <tr> <td align="right"> M3 </td> <td align="right">    9720 </td> <td align="right">       0 </td> <td align="right">      -1 </td> <td align="right">  0.9188 </td> <td align="right"> 0.971976 </td> <td align="right"> 0.798366 </td> <td align="right"> 0.996757 </td> <td align="right">       1 </td> <td align="right"> 0.520406 </td> <td align="right"> 0.651839 </td> </tr>
+  <tr> <td align="right"> M4 </td> <td align="right">    9720 </td> <td align="right">       0 </td> <td align="right">      -1 </td> <td align="right"> 0.916371 </td> <td align="right"> 0.969609 </td> <td align="right"> 0.794719 </td> <td align="right"> 0.994387 </td> <td align="right">       1 </td> <td align="right"> 0.521044 </td> <td align="right"> 0.655634 </td> </tr>
+  <tr> <td align="right"> M3B </td> <td align="right">    9720 </td> <td align="right">       0 </td> <td align="right">      -1 </td> <td align="right"> 0.875342 </td> <td align="right"> 0.962477 </td> <td align="right"> 0.66952 </td> <td align="right"> 0.996041 </td> <td align="right">       1 </td> <td align="right"> 0.677517 </td> <td align="right"> 1.01195 </td> </tr>
+  <tr> <td align="right"> M4B </td> <td align="right">    9720 </td> <td align="right">       0 </td> <td align="right">      -1 </td> <td align="right"> 0.873767 </td> <td align="right"> 0.961336 </td> <td align="right"> 0.671609 </td> <td align="right"> 0.996559 </td> <td align="right">       1 </td> <td align="right"> 0.672626 </td> <td align="right"> 1.00151 </td> </tr>
+  <tr> <td align="right"> CS2SA </td> <td align="right">    9720 </td> <td align="right">       0 </td> <td align="right">      -1 </td> <td align="right">      -1 </td> <td align="right">      -1 </td> <td align="right"> -0.329502 </td> <td align="right"> 0.882458 </td> <td align="right">       1 </td> <td align="right"> 0.91136 </td> <td align="right"> -2.76587 </td> </tr>
+  <tr> <td align="right"> RLS </td> <td align="right">    9720 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right"> 0.738949 </td> <td align="right"> 0.888945 </td> <td align="right"> 0.805317 </td> <td align="right"> 0.956102 </td> <td align="right">       1 </td> <td align="right"> 0.220471 </td> <td align="right"> 0.27377 </td> </tr>
+  <tr> <td align="right"> EA </td> <td align="right">    9720 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right"> 0.746093 </td> <td align="right"> 0.885765 </td> <td align="right"> 0.811733 </td> <td align="right"> 0.954539 </td> <td align="right">       1 </td> <td align="right"> 0.208075 </td> <td align="right"> 0.256334 </td> </tr>
+   </table>
+
+
+<br>
+<h2> Summary of the runstatus per algorithm </h2>
+
+The following table summarizes the runstatus of each algorithm over all instances (in %).<br>
+<br>
+
+<!-- html table generated in R 3.5.1 by xtable 1.8-2 package -->
+<!-- Thu Dec  6 16:07:44 2018 -->
+<table border=1>
+<tr> <th>  </th> <th> ok </th> <th> timeout </th> <th> memout </th> <th> not_applicable </th> <th> crash </th> <th> other </th>  </tr>
+  <tr> <td align="right"> C1 </td> <td align="right"> 100.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> C2 </td> <td align="right"> 100.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> C3 </td> <td align="right"> 100.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> C4 </td> <td align="right"> 100.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> C5 </td> <td align="right"> 100.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> C6 </td> <td align="right"> 100.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> CS2SA </td> <td align="right"> 35.350 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 64.650 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> DH </td> <td align="right"> 100.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> EA </td> <td align="right"> 100.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> M3 </td> <td align="right"> 92.582 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 7.418 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> M3B </td> <td align="right"> 86.193 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 13.807 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> M4 </td> <td align="right"> 92.593 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 7.407 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> M4B </td> <td align="right"> 86.461 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 13.539 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> MATLS </td> <td align="right"> 97.901 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 2.099 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> RLS </td> <td align="right"> 100.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> S1 </td> <td align="right"> 100.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> S2 </td> <td align="right"> 100.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> S3 </td> <td align="right"> 100.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> S4 </td> <td align="right"> 100.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> S5 </td> <td align="right"> 100.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> SH </td> <td align="right"> 100.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+   </table>
+
+
+<br>
+<h2> Dominated Algorithms </h2>
+
+Here, you'll find an overview of dominating/dominated algorithms: <br>
+
+None of the algorithms was superior to any of the other.
+
+<br> <br>
+An algorithm (A) is considered to be superior to an other algorithm (B), if it has at least an equal performance on all instances (compared to B) <u>and</u> if it is better on at least one of them. A missing value is automatically a worse performance. However, instances which could not be solved by either one of the algorithms, were not considered for the dominance relation.<br>
+
+<br>
+<br>
+
+<h1>Visualisations</h1>
+<b><FONT COLOR = "#FF0000"> Important note w.r.t. some of the following plots:</b><br>
+If appropriate, we imputed performance values for failed or censored runs.
+We used max + 0.3 * (max - min), in case of minimization problems,
+or min - 0.3 * (max - min), in case of maximization problems.<br>
+In addition, a small noise is added to the imputed values (except for the cluster matrix,
+based on correlations, which is shown at the end of this page). </FONT>
+<br>
+<br>
+
+<h2> Boxplots of performance values </h2>
+
+<br>Imputing the performance values of failed or censored runs (as described in the red note at the beginning of this section):<br>
+<div class="chunk" id="unnamed-chunk-4"><div class="rimage default"><img src="figure/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" class="plot" /></div></div>
+
+<br>Discarding the performance values of failed or censored runs:<br>
+<div class="chunk" id="unnamed-chunk-5"><div class="rcode"><div class="warning"><pre class="knitr r">## Warning: Removed 10587 rows containing non-finite values (stat_boxplot).
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" class="plot" /></div></div>
+
+<br>
+<h2> Estimated densitities of performance values </h2>
+
+<br>Imputing the performance values of failed or censored runs (as described in the red note at the beginning of this section):<br>
+<div class="chunk" id="unnamed-chunk-6"><div class="rimage default"><img src="figure/unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" class="plot" /></div></div>
+
+<br>Discarding the performance values of failed or censored runs:<br>
+<div class="chunk" id="unnamed-chunk-7"><div class="rimage default"><img src="figure/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" class="plot" /></div></div>
+<br>
+
+<h2> Estimated cumulative distribution functions of performance values </h2>
+
+<br>Imputing the performance values of failed runs (as described in the red note at the beginning of this section):<br>
+<div class="chunk" id="unnamed-chunk-8"><div class="rimage default"><img src="figure/unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" class="plot" /></div></div>
+
+<br>Discarding the performance values of failed or censored runs:<br>
+<div class="chunk" id="unnamed-chunk-9"><div class="rimage default"><img src="figure/unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" class="plot" /></div></div>
+
+
+<br>
+<h2> Scatterplot matrix of the performance values </h2>
+The figure underneath shows pairwise scatterplots of the performance values.<br>
+
+<br>Imputing the performance values of failed and censored runs (as described in the red note at the beginning of this section):<br>
+
+</div><div class="rimage default"><img src="figure/unnamed-chunk-10-1.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" class="plot" /></div><div class="rcode">
+
+
+
+<br>
+<h2> Clustering algorithms based on their correlations </h2>
+The following figure shows the correlations of the <b>ranks</b> of the performance
+values. Per default it will show the correlation coefficient of spearman. Missing values were imputed <u>prior</u> to computing the correlation coefficients. The algorithms are ordered in a way that similar (highly correlated) algorithms are close to each other. Per default the clustering is based on hierarchical clustering, using Ward's method. <br>
+<br>
+
+<div class="chunk" id="unnamed-chunk-11"><div class="rimage default"><img src="figure/unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" class="plot" /></div></div>
+
+
+</body>
+</html>

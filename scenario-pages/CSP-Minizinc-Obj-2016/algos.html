@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+.knitr .inline {
+  background-color: #f7f7f7;
+  border:solid 1px #B0B0B0;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
+.warning {
+	font-weight: bold;
+}
+.message {
+	font-style: italic;
+}
+.source, .output, .warning, .error, .message {
+	padding: 0 1em;
+  border:solid 1px #F7F7F7;
+}
+.source {
+  background-color: #f5f5f5;
+}
+.rimage .left {
+  text-align: left;
+}
+.rimage .right {
+  text-align: right;
+}
+.rimage .center {
+  text-align: center;
+}
+.hl.num {
+  color: #AF0F91;
+}
+.hl.str {
+  color: #317ECC;
+}
+.hl.com {
+  color: #AD95AF;
+  font-style: italic;
+}
+.hl.opt {
+  color: #000000;
+}
+.hl.std {
+  color: #585858;
+}
+.hl.kwa {
+  color: #295F94;
+  font-weight: bold;
+}
+.hl.kwb {
+  color: #B05A65;
+}
+.hl.kwc {
+  color: #55aa55;
+}
+.hl.kwd {
+  color: #BC5A65;
+  font-weight: bold;
+}
+</style>
+  <title>Algorithm performance overview</title>
+</head>
+<body>
+
+
+<h2> Overview of performance values </h2>
+
+The following statistics were calculated from the performance values of each algorithm:
+<ul>
+
+  <li> <a>obs (number of observations within performance values)</a>
+  <li> <a>nas (number of NAs, i.e., missing values, within performance values)</a>
+  <li> <a>min (minimum), mean (arithmetic mean), max (maximum), sd (standard deviation)</a>
+  <li> <a>qu_1st (1st quartile = lower quartile = 25%-quantile)</a>
+  <li> <a>med (median = 50%-quantile)</a>
+  <li> <a>qu_3rd (3rd quartile = upper quartile = 75%-quantile)</a>
+  <li> <a>coeff_var (coefficient of variation = standard deviation / arithmetic mean)</a>
+
+</ul>
+
+<!-- html table generated in R 3.5.1 by xtable 1.8-2 package -->
+<!-- Thu Dec  6 16:00:01 2018 -->
+<table border=1>
+<tr> <th>  </th> <th> obs </th> <th> nas </th> <th> min </th> <th> qu_1st </th> <th> med </th> <th> mean </th> <th> qu_3rd </th> <th> max </th> <th> sd </th> <th> coeff_var </th>  </tr>
+  <tr> <td align="right"> Choco.free </td> <td align="right">     100 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right"> 0.166234 </td> <td align="right"> 0.411776 </td> <td align="right">     0.9 </td> <td align="right">       1 </td> <td align="right"> 0.437917 </td> <td align="right"> 1.06348 </td> </tr>
+  <tr> <td align="right"> Chuffed.free </td> <td align="right">     100 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right"> 0.300961 </td> <td align="right">     0.9 </td> <td align="right">       1 </td> <td align="right"> 0.432091 </td> <td align="right">  1.4357 </td> </tr>
+  <tr> <td align="right"> Concrete.free </td> <td align="right">     100 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right"> 0.109562 </td> <td align="right">     0.9 </td> <td align="right"> 0.581231 </td> <td align="right">       1 </td> <td align="right">       1 </td> <td align="right"> 0.434662 </td> <td align="right"> 0.747831 </td> </tr>
+  <tr> <td align="right"> G12FD.free </td> <td align="right">     100 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right"> 0.539284 </td> <td align="right"> 0.495805 </td> <td align="right">       1 </td> <td align="right">       1 </td> <td align="right"> 0.442611 </td> <td align="right"> 0.892712 </td> </tr>
+  <tr> <td align="right"> Gecode.free </td> <td align="right">     100 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right"> 0.235714 </td> <td align="right"> 0.434368 </td> <td align="right">     0.9 </td> <td align="right">       1 </td> <td align="right"> 0.442049 </td> <td align="right"> 1.01768 </td> </tr>
+  <tr> <td align="right"> HaifaCSP.free </td> <td align="right">     100 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right"> 0.336321 </td> <td align="right">     0.9 </td> <td align="right">       1 </td> <td align="right"> 0.447955 </td> <td align="right"> 1.33193 </td> </tr>
+  <tr> <td align="right"> JaCoP.fd </td> <td align="right">     100 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right"> 0.159453 </td> <td align="right"> 0.413044 </td> <td align="right">     0.9 </td> <td align="right">       1 </td> <td align="right"> 0.444695 </td> <td align="right"> 1.07663 </td> </tr>
+  <tr> <td align="right"> LCG.Glucose.UC.free </td> <td align="right">     100 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">    0.43 </td> <td align="right">       1 </td> <td align="right">       1 </td> <td align="right"> 0.488349 </td> <td align="right">  1.1357 </td> </tr>
+  <tr> <td align="right"> LCG.Glucose.free </td> <td align="right">     100 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right"> 0.282567 </td> <td align="right">     0.9 </td> <td align="right">       1 </td> <td align="right"> 0.429608 </td> <td align="right"> 1.52038 </td> </tr>
+  <tr> <td align="right"> MZN.Cbc.free </td> <td align="right">     100 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right"> 0.454443 </td> <td align="right"> 0.500385 </td> <td align="right">       1 </td> <td align="right">       1 </td> <td align="right"> 0.468417 </td> <td align="right"> 0.936113 </td> </tr>
+  <tr> <td align="right"> MZN.CPLEX.free </td> <td align="right">     100 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right"> 0.366926 </td> <td align="right">       1 </td> <td align="right">       1 </td> <td align="right"> 0.463174 </td> <td align="right"> 1.26231 </td> </tr>
+  <tr> <td align="right"> MZN.Gurobi.free </td> <td align="right">     100 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right"> 0.326295 </td> <td align="right">     0.9 </td> <td align="right">       1 </td> <td align="right"> 0.456041 </td> <td align="right"> 1.39764 </td> </tr>
+  <tr> <td align="right"> MZN.SCIP.free </td> <td align="right">     100 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right"> 0.0140583 </td> <td align="right"> 0.431279 </td> <td align="right">       1 </td> <td align="right">       1 </td> <td align="right"> 0.476795 </td> <td align="right"> 1.10554 </td> </tr>
+  <tr> <td align="right"> MinisatID.free </td> <td align="right">     100 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right"> 0.380747 </td> <td align="right"> 0.471968 </td> <td align="right">       1 </td> <td align="right">       1 </td> <td align="right"> 0.459282 </td> <td align="right"> 0.973121 </td> </tr>
+  <tr> <td align="right"> Mistral.free </td> <td align="right">     100 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right"> 0.152299 </td> <td align="right"> 0.432955 </td> <td align="right">       1 </td> <td align="right">       1 </td> <td align="right"> 0.458928 </td> <td align="right"> 1.05999 </td> </tr>
+  <tr> <td align="right"> OR.Tools.free </td> <td align="right">     100 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right"> 0.481852 </td> <td align="right"> 0.483913 </td> <td align="right">       1 </td> <td align="right">       1 </td> <td align="right"> 0.443082 </td> <td align="right"> 0.915623 </td> </tr>
+  <tr> <td align="right"> OscaR.CBLS.free </td> <td align="right">     100 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right"> 0.685118 </td> <td align="right"> 0.534991 </td> <td align="right">       1 </td> <td align="right">       1 </td> <td align="right"> 0.459867 </td> <td align="right"> 0.85958 </td> </tr>
+  <tr> <td align="right"> Picat.CP.fd </td> <td align="right">     100 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right"> 0.111665 </td> <td align="right">     0.9 </td> <td align="right"> 0.598213 </td> <td align="right">       1 </td> <td align="right">       1 </td> <td align="right"> 0.426639 </td> <td align="right"> 0.713188 </td> </tr>
+  <tr> <td align="right"> Picat.SAT.free </td> <td align="right">     100 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right"> 0.00219681 </td> <td align="right"> 0.375436 </td> <td align="right">     0.9 </td> <td align="right">       1 </td> <td align="right"> 0.455132 </td> <td align="right"> 1.21228 </td> </tr>
+  <tr> <td align="right"> SICStus.Prolog.fd </td> <td align="right">     100 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right"> 0.644254 </td> <td align="right"> 0.51297 </td> <td align="right">       1 </td> <td align="right">       1 </td> <td align="right"> 0.447546 </td> <td align="right"> 0.87246 </td> </tr>
+  <tr> <td align="right"> Yuck.free </td> <td align="right">     100 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right"> 0.0221889 </td> <td align="right">     0.9 </td> <td align="right"> 0.603013 </td> <td align="right">       1 </td> <td align="right">       1 </td> <td align="right"> 0.449341 </td> <td align="right"> 0.74516 </td> </tr>
+  <tr> <td align="right"> iZplus.free </td> <td align="right">     100 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right"> 0.314971 </td> <td align="right">     0.9 </td> <td align="right">       1 </td> <td align="right"> 0.452849 </td> <td align="right"> 1.43775 </td> </tr>
+   </table>
+
+
+<br>
+<h2> Summary of the runstatus per algorithm </h2>
+
+The following table summarizes the runstatus of each algorithm over all instances (in %).<br>
+<br>
+
+<!-- html table generated in R 3.5.1 by xtable 1.8-2 package -->
+<!-- Thu Dec  6 16:00:01 2018 -->
+<table border=1>
+<tr> <th>  </th> <th> ok </th> <th> timeout </th> <th> memout </th> <th> not_applicable </th> <th> crash </th> <th> other </th>  </tr>
+  <tr> <td align="right"> Choco.free </td> <td align="right"> 94.000 </td> <td align="right"> 6.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> Chuffed.free </td> <td align="right"> 99.000 </td> <td align="right"> 1.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> Concrete.free </td> <td align="right"> 65.000 </td> <td align="right"> 35.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> G12FD.free </td> <td align="right"> 80.000 </td> <td align="right"> 20.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> Gecode.free </td> <td align="right"> 94.000 </td> <td align="right"> 6.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> HaifaCSP.free </td> <td align="right"> 94.000 </td> <td align="right"> 6.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> iZplus.free </td> <td align="right"> 88.000 </td> <td align="right"> 12.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> JaCoP.fd </td> <td align="right"> 89.000 </td> <td align="right"> 11.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> LCG.Glucose.free </td> <td align="right"> 99.000 </td> <td align="right"> 1.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> LCG.Glucose.UC.free </td> <td align="right"> 82.000 </td> <td align="right"> 18.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> MinisatID.free </td> <td align="right"> 86.000 </td> <td align="right"> 14.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> Mistral.free </td> <td align="right"> 82.000 </td> <td align="right"> 18.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> MZN.Cbc.free </td> <td align="right"> 68.000 </td> <td align="right"> 32.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> MZN.CPLEX.free </td> <td align="right"> 84.000 </td> <td align="right"> 16.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> MZN.Gurobi.free </td> <td align="right"> 85.000 </td> <td align="right"> 15.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> MZN.SCIP.free </td> <td align="right"> 76.000 </td> <td align="right"> 24.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> OR.Tools.free </td> <td align="right"> 88.000 </td> <td align="right"> 12.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> OscaR.CBLS.free </td> <td align="right"> 61.000 </td> <td align="right"> 39.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> Picat.CP.fd </td> <td align="right"> 77.000 </td> <td align="right"> 23.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> Picat.SAT.free </td> <td align="right"> 92.000 </td> <td align="right"> 8.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> SICStus.Prolog.fd </td> <td align="right"> 83.000 </td> <td align="right"> 17.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> Yuck.free </td> <td align="right"> 56.000 </td> <td align="right"> 44.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+   </table>
+
+
+<br>
+<h2> Dominated Algorithms </h2>
+
+Here, you'll find an overview of dominating/dominated algorithms: <br>
+
+<!-- html table generated in R 3.5.1 by xtable 1.8-2 package -->
+<!-- Thu Dec  6 16:00:01 2018 -->
+<table border=1>
+<tr> <th>  </th> <th> MZN.Cbc.free </th> <th> MZN.Gurobi.free </th>  </tr>
+  <tr> <td align="right"> MZN.Cbc.free </td> <td> - </td> <td> better </td> </tr>
+  <tr> <td align="right"> MZN.Gurobi.free </td> <td> worse </td> <td> - </td> </tr>
+   </table>
+
+
+<br> <br>
+An algorithm (A) is considered to be superior to an other algorithm (B), if it has at least an equal performance on all instances (compared to B) <u>and</u> if it is better on at least one of them. A missing value is automatically a worse performance. However, instances which could not be solved by either one of the algorithms, were not considered for the dominance relation.<br>
+
+<br>
+<br>
+
+<h1>Visualisations</h1>
+<b><FONT COLOR = "#FF0000"> Important note w.r.t. some of the following plots:</b><br>
+If appropriate, we imputed performance values for failed or censored runs.
+We used max + 0.3 * (max - min), in case of minimization problems,
+or min - 0.3 * (max - min), in case of maximization problems.<br>
+In addition, a small noise is added to the imputed values (except for the cluster matrix,
+based on correlations, which is shown at the end of this page). </FONT>
+<br>
+<br>
+
+<h2> Boxplots of performance values </h2>
+
+<br>Imputing the performance values of failed or censored runs (as described in the red note at the beginning of this section):<br>
+<div class="chunk" id="unnamed-chunk-4"><div class="rcode"><div class="error"><pre class="knitr r">## Error in checkLogarithm(check.log, algo.runs, measure): Cannot compute logarithm of &lt;= 0 value!
+</pre></div>
+</div></div>
+
+<br>Discarding the performance values of failed or censored runs:<br>
+<div class="chunk" id="unnamed-chunk-5"><div class="rcode"><div class="error"><pre class="knitr r">## Error in checkLogarithm(check.log, algo.runs, measure): Cannot compute logarithm of &lt;= 0 value!
+</pre></div>
+</div></div>
+
+<br>
+<h2> Estimated densitities of performance values </h2>
+
+<br>Imputing the performance values of failed or censored runs (as described in the red note at the beginning of this section):<br>
+<div class="chunk" id="unnamed-chunk-6"><div class="rcode"><div class="error"><pre class="knitr r">## Error in checkLogarithm(check.log, algo.runs, measure): Cannot compute logarithm of &lt;= 0 value!
+</pre></div>
+</div></div>
+
+<br>Discarding the performance values of failed or censored runs:<br>
+<div class="chunk" id="unnamed-chunk-7"><div class="rcode"><div class="error"><pre class="knitr r">## Error in checkLogarithm(check.log, algo.runs, measure): Cannot compute logarithm of &lt;= 0 value!
+</pre></div>
+</div></div>
+<br>
+
+<h2> Estimated cumulative distribution functions of performance values </h2>
+
+<br>Imputing the performance values of failed runs (as described in the red note at the beginning of this section):<br>
+<div class="chunk" id="unnamed-chunk-8"><div class="rcode"><div class="error"><pre class="knitr r">## Error in checkLogarithm(check.log, algo.runs, measure): Cannot compute logarithm of &lt;= 0 value!
+</pre></div>
+</div></div>
+
+<br>Discarding the performance values of failed or censored runs:<br>
+<div class="chunk" id="unnamed-chunk-9"><div class="rcode"><div class="error"><pre class="knitr r">## Error in checkLogarithm(check.log, algo.runs, measure): Cannot compute logarithm of &lt;= 0 value!
+</pre></div>
+</div></div>
+
+
+<br>
+<h2> Scatterplot matrix of the performance values </h2>
+The figure underneath shows pairwise scatterplots of the performance values.<br>
+
+<br>Imputing the performance values of failed and censored runs (as described in the red note at the beginning of this section):<br>
+
+<div class="error"><pre class="knitr r">## Error in checkLogarithm(check.log, algo.runs, measure): Cannot compute logarithm of &lt;= 0 value!
+</pre></div>
+
+
+
+<br>
+<h2> Clustering algorithms based on their correlations </h2>
+The following figure shows the correlations of the <b>ranks</b> of the performance
+values. Per default it will show the correlation coefficient of spearman. Missing values were imputed <u>prior</u> to computing the correlation coefficients. The algorithms are ordered in a way that similar (highly correlated) algorithms are close to each other. Per default the clustering is based on hierarchical clustering, using Ward's method. <br>
+<br>
+
+<div class="chunk" id="unnamed-chunk-11"><div class="rimage default"><img src="figure/unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" class="plot" /></div></div>
+
+
+</body>
+</html>

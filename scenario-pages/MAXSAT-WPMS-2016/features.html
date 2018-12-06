@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+.knitr .inline {
+  background-color: #f7f7f7;
+  border:solid 1px #B0B0B0;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
+.warning {
+	font-weight: bold;
+}
+.message {
+	font-style: italic;
+}
+.source, .output, .warning, .error, .message {
+	padding: 0 1em;
+  border:solid 1px #F7F7F7;
+}
+.source {
+  background-color: #f5f5f5;
+}
+.rimage .left {
+  text-align: left;
+}
+.rimage .right {
+  text-align: right;
+}
+.rimage .center {
+  text-align: center;
+}
+.hl.num {
+  color: #AF0F91;
+}
+.hl.str {
+  color: #317ECC;
+}
+.hl.com {
+  color: #AD95AF;
+  font-style: italic;
+}
+.hl.opt {
+  color: #000000;
+}
+.hl.std {
+  color: #585858;
+}
+.hl.kwa {
+  color: #295F94;
+  font-weight: bold;
+}
+.hl.kwb {
+  color: #B05A65;
+}
+.hl.kwc {
+  color: #55aa55;
+}
+.hl.kwd {
+  color: #BC5A65;
+  font-weight: bold;
+}
+</style>
+  <title>Feature performance overview</title>
+</head>
+<body>
+
+
+<h2> Overview of Feature Values</h2>
+
+The following measures were taken for the results of each feature:
+<ul>
+
+  <li> <a>obs (number of observations within the feature set)</a>
+  <li> <a>NAs (number of NAs, i.e., missing values, within the feature set)</a>
+  <li> <a>min (minimum), mean (arithmetic mean), max (maximum), std_dev (standard deviation)</a>
+  <li> <a>1st_qu (1st quartile = lower quartile = 25%-quantile)</a>
+  <li> <a>median (median = 50%-quantile)</a>
+  <li> <a>3rd_qu (3rd quartile = upper quartile = 75%-quantile)</a>
+  <li> <a>co_var (coefficient of variation = standard deviation / arithmetic mean)</a>
+
+</ul>
+
+<!-- html table generated in R 3.5.1 by xtable 1.8-2 package -->
+<!-- Thu Dec  6 16:01:15 2018 -->
+<table border=1>
+<tr> <th>  </th> <th> obs </th> <th> nas </th> <th> min </th> <th> qu_1st </th> <th> med </th> <th> mean </th> <th> qu_3rd </th> <th> max </th> <th> sd </th> <th> coeff_var </th>  </tr>
+  <tr> <td align="right"> f_1 </td> <td align="right"> 630 </td> <td align="right">   0 </td> <td align="right">  12 </td> <td align="right"> 7.8e+03 </td> <td align="right"> 1.8e+04 </td> <td align="right"> 2.6e+05 </td> <td align="right"> 8.3e+04 </td> <td align="right"> 1.9e+07 </td> <td align="right"> 1.4e+06 </td> <td align="right"> 5.3 </td> </tr>
+  <tr> <td align="right"> f_2 </td> <td align="right"> 630 </td> <td align="right">   0 </td> <td align="right">  25 </td> <td align="right"> 5.1e+04 </td> <td align="right"> 1.1e+05 </td> <td align="right"> 1.2e+06 </td> <td align="right"> 8e+05 </td> <td align="right"> 2.7e+07 </td> <td align="right"> 3.1e+06 </td> <td align="right"> 2.6 </td> </tr>
+  <tr> <td align="right"> f_3 </td> <td align="right"> 630 </td> <td align="right">   0 </td> <td align="right"> 3e-05 </td> <td align="right"> 0.0049 </td> <td align="right"> 0.021 </td> <td align="right"> 0.063 </td> <td align="right"> 0.11 </td> <td align="right">   1 </td> <td align="right"> 0.099 </td> <td align="right"> 1.6 </td> </tr>
+  <tr> <td align="right"> f_4 </td> <td align="right"> 630 </td> <td align="right">   0 </td> <td align="right">   1 </td> <td align="right"> 3.6e+02 </td> <td align="right"> 2.7e+03 </td> <td align="right"> 1.2e+07 </td> <td align="right"> 9e+05 </td> <td align="right"> 1.1e+09 </td> <td align="right"> 8.5e+07 </td> <td align="right"> 7.4 </td> </tr>
+  <tr> <td align="right"> f_5 </td> <td align="right"> 630 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right"> 1e+02 </td> <td align="right"> 6.4e+03 </td> <td align="right"> 6.3e+06 </td> <td align="right"> 1.3e+06 </td> <td align="right"> 4.7e+08 </td> <td align="right"> 4e+07 </td> <td align="right"> 6.3 </td> </tr>
+  <tr> <td align="right"> f_6 </td> <td align="right"> 630 </td> <td align="right">   0 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right">   2 </td> <td align="right"> 4.4e+05 </td> <td align="right">  80 </td> <td align="right"> 5.3e+07 </td> <td align="right"> 3.7e+06 </td> <td align="right"> 8.3 </td> </tr>
+  <tr> <td align="right"> f_7 </td> <td align="right"> 630 </td> <td align="right">   0 </td> <td align="right">   1 </td> <td align="right"> 5.8e+02 </td> <td align="right"> 5e+04 </td> <td align="right"> 2.6e+07 </td> <td align="right"> 7.2e+06 </td> <td align="right"> 2.3e+09 </td> <td align="right"> 1.8e+08 </td> <td align="right"> 6.9 </td> </tr>
+  <tr> <td align="right"> f_8 </td> <td align="right"> 630 </td> <td align="right">   0 </td> <td align="right"> 0.0034 </td> <td align="right"> 0.12 </td> <td align="right"> 0.16 </td> <td align="right"> 0.18 </td> <td align="right"> 0.22 </td> <td align="right"> 0.84 </td> <td align="right"> 0.11 </td> <td align="right"> 0.59 </td> </tr>
+  <tr> <td align="right"> f_9 </td> <td align="right"> 630 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right"> 3e-05 </td> <td align="right"> 0.00012 </td> <td align="right"> 0.0013 </td> <td align="right"> 0.00034 </td> <td align="right"> 0.25 </td> <td align="right"> 0.011 </td> <td align="right"> 8.3 </td> </tr>
+  <tr> <td align="right"> f_10 </td> <td align="right"> 630 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right"> 0.97 </td> <td align="right"> 3.1 </td> <td align="right"> 3.7 </td> <td align="right"> 5.2 </td> <td align="right">  11 </td> <td align="right">   3 </td> <td align="right"> 0.83 </td> </tr>
+  <tr> <td align="right"> f_11 </td> <td align="right"> 630 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right"> 2e-05 </td> <td align="right"> 0.00021 </td> <td align="right"> 5e-05 </td> <td align="right"> 0.04 </td> <td align="right"> 0.0021 </td> <td align="right">  10 </td> </tr>
+  <tr> <td align="right"> f_12 </td> <td align="right"> 630 </td> <td align="right">   0 </td> <td align="right"> 2e-05 </td> <td align="right"> 0.00096 </td> <td align="right"> 0.0038 </td> <td align="right"> 0.03 </td> <td align="right"> 0.071 </td> <td align="right"> 0.4 </td> <td align="right"> 0.041 </td> <td align="right"> 1.4 </td> </tr>
+  <tr> <td align="right"> f_13 </td> <td align="right"> 630 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right"> 0.00095 </td> <td align="right"> 0.0038 </td> <td align="right"> 0.029 </td> <td align="right"> 0.071 </td> <td align="right"> 0.36 </td> <td align="right"> 0.04 </td> <td align="right"> 1.4 </td> </tr>
+  <tr> <td align="right"> f_14 </td> <td align="right"> 630 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right"> 3e-05 </td> <td align="right"> 0.00012 </td> <td align="right"> 0.0013 </td> <td align="right"> 0.00034 </td> <td align="right"> 0.25 </td> <td align="right"> 0.011 </td> <td align="right"> 8.3 </td> </tr>
+  <tr> <td align="right"> f_15 </td> <td align="right"> 630 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right"> 0.32 </td> <td align="right"> 0.49 </td> <td align="right"> 0.74 </td> <td align="right"> 0.62 </td> <td align="right"> 4.9 </td> <td align="right"> 0.83 </td> <td align="right"> 1.1 </td> </tr>
+  <tr> <td align="right"> f_16 </td> <td align="right"> 630 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right"> 1e-05 </td> <td align="right"> 6e-05 </td> <td align="right"> 0.00051 </td> <td align="right"> 0.00013 </td> <td align="right"> 0.083 </td> <td align="right"> 0.004 </td> <td align="right"> 7.8 </td> </tr>
+  <tr> <td align="right"> f_17 </td> <td align="right"> 630 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right"> 0.00033 </td> <td align="right"> 0.0041 </td> <td align="right"> 0.0064 </td> <td align="right"> 0.0064 </td> <td align="right"> 0.33 </td> <td align="right"> 0.017 </td> <td align="right"> 2.6 </td> </tr>
+  <tr> <td align="right"> f_18 </td> <td align="right"> 630 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right"> 0.0003 </td> <td align="right"> 0.004 </td> <td align="right"> 0.0059 </td> <td align="right"> 0.0057 </td> <td align="right"> 0.25 </td> <td align="right"> 0.013 </td> <td align="right"> 2.2 </td> </tr>
+  <tr> <td align="right"> f_19 </td> <td align="right"> 630 </td> <td align="right">   0 </td> <td align="right"> 0.19 </td> <td align="right"> 0.36 </td> <td align="right"> 0.46 </td> <td align="right"> 0.46 </td> <td align="right"> 0.5 </td> <td align="right"> 0.87 </td> <td align="right"> 0.17 </td> <td align="right"> 0.38 </td> </tr>
+  <tr> <td align="right"> f_20 </td> <td align="right"> 630 </td> <td align="right">   0 </td> <td align="right"> 0.00068 </td> <td align="right"> 0.25 </td> <td align="right"> 0.36 </td> <td align="right"> 0.5 </td> <td align="right"> 0.6 </td> <td align="right"> 1.3 </td> <td align="right"> 0.39 </td> <td align="right"> 0.77 </td> </tr>
+  <tr> <td align="right"> f_21 </td> <td align="right"> 630 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right"> 0.013 </td> <td align="right"> 0.059 </td> <td align="right"> 0.091 </td> <td align="right"> 0.5 </td> <td align="right"> 0.094 </td> <td align="right"> 1.6 </td> </tr>
+  <tr> <td align="right"> f_22 </td> <td align="right"> 630 </td> <td align="right">   0 </td> <td align="right"> 0.33 </td> <td align="right"> 0.96 </td> <td align="right">   1 </td> <td align="right"> 0.9 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right"> 0.2 </td> <td align="right"> 0.22 </td> </tr>
+  <tr> <td align="right"> f_23 </td> <td align="right"> 630 </td> <td align="right">   0 </td> <td align="right"> 0.0011 </td> <td align="right"> 0.85 </td> <td align="right"> 0.98 </td> <td align="right"> 0.84 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right"> 0.26 </td> <td align="right"> 0.31 </td> </tr>
+  <tr> <td align="right"> f_24 </td> <td align="right"> 630 </td> <td align="right">   0 </td> <td align="right"> 0.06 </td> <td align="right"> 0.41 </td> <td align="right"> 0.48 </td> <td align="right"> 0.48 </td> <td align="right"> 0.53 </td> <td align="right"> 0.78 </td> <td align="right"> 0.15 </td> <td align="right"> 0.31 </td> </tr>
+  <tr> <td align="right"> f_25 </td> <td align="right"> 630 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right"> 0.35 </td> <td align="right"> 0.48 </td> <td align="right"> 0.53 </td> <td align="right"> 0.57 </td> <td align="right"> 3.4 </td> <td align="right"> 0.37 </td> <td align="right"> 0.7 </td> </tr>
+  <tr> <td align="right"> f_26 </td> <td align="right"> 630 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">  </td> </tr>
+  <tr> <td align="right"> f_27 </td> <td align="right"> 630 </td> <td align="right">   0 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right">   0 </td> <td align="right">   0 </td> </tr>
+  <tr> <td align="right"> f_28 </td> <td align="right"> 630 </td> <td align="right">   0 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right">   0 </td> <td align="right">   0 </td> </tr>
+  <tr> <td align="right"> f_29 </td> <td align="right"> 630 </td> <td align="right">   0 </td> <td align="right"> 0.00025 </td> <td align="right"> 0.011 </td> <td align="right"> 0.026 </td> <td align="right"> 0.07 </td> <td align="right"> 0.16 </td> <td align="right"> 0.62 </td> <td align="right"> 0.078 </td> <td align="right"> 1.1 </td> </tr>
+  <tr> <td align="right"> f_30 </td> <td align="right"> 630 </td> <td align="right">   0 </td> <td align="right"> 0.00032 </td> <td align="right"> 0.27 </td> <td align="right"> 0.61 </td> <td align="right"> 0.54 </td> <td align="right"> 0.8 </td> <td align="right"> 0.97 </td> <td align="right"> 0.27 </td> <td align="right"> 0.49 </td> </tr>
+  <tr> <td align="right"> f_31 </td> <td align="right"> 630 </td> <td align="right">   0 </td> <td align="right"> 0.073 </td> <td align="right"> 0.82 </td> <td align="right"> 0.98 </td> <td align="right"> 0.88 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right"> 0.19 </td> <td align="right"> 0.22 </td> </tr>
+  <tr> <td align="right"> f_32 </td> <td align="right"> 630 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right"> 1e-05 </td> <td align="right"> 8e-05 </td> <td align="right"> 0.00044 </td> <td align="right"> 0.00014 </td> <td align="right"> 0.066 </td> <td align="right"> 0.0032 </td> <td align="right"> 7.1 </td> </tr>
+  <tr> <td align="right"> f_33 </td> <td align="right"> 630 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right"> 0.054 </td> <td align="right">   0 </td> <td align="right"> 3.4 </td> <td align="right"> 0.37 </td> <td align="right"> 6.7 </td> </tr>
+  <tr> <td align="right"> f_34 </td> <td align="right"> 630 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right"> 0.00016 </td> <td align="right"> 1.8e-05 </td> <td align="right"> 0.04 </td> <td align="right"> 0.0021 </td> <td align="right">  13 </td> </tr>
+  <tr> <td align="right"> f_35 </td> <td align="right"> 630 </td> <td align="right">   0 </td> <td align="right"> 2e-05 </td> <td align="right"> 0.00039 </td> <td align="right"> 0.0019 </td> <td align="right"> 0.011 </td> <td align="right"> 0.023 </td> <td align="right"> 0.13 </td> <td align="right"> 0.019 </td> <td align="right"> 1.7 </td> </tr>
+  <tr> <td align="right"> f_36 </td> <td align="right"> 630 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right"> 0.00036 </td> <td align="right"> 0.0019 </td> <td align="right"> 0.011 </td> <td align="right"> 0.023 </td> <td align="right"> 0.13 </td> <td align="right"> 0.018 </td> <td align="right"> 1.7 </td> </tr>
+  <tr> <td align="right"> f_37 </td> <td align="right"> 630 </td> <td align="right">   0 </td> <td align="right"> 0.021 </td> <td align="right"> 0.49 </td> <td align="right"> 0.81 </td> <td align="right"> 0.7 </td> <td align="right"> 0.83 </td> <td align="right">   1 </td> <td align="right"> 0.24 </td> <td align="right"> 0.34 </td> </tr>
+   </table>
+
+
+<br>
+<h2> Summary of feature steps </h2>
+
+The following table summarizes the feature steps over all instances.
+<ul>
+  <li> size (percentage of features affected by this step)
+  <li> ok, ..., other (percentage of run status)
+  <li> cost_min, cost_mean, cost_max (range of costs for this step)
+  <li> cost_na (percentage of missing values occuring in costs)
+</ul>
+
+<br>
+
+<!-- html table generated in R 3.5.1 by xtable 1.8-2 package -->
+<!-- Thu Dec  6 16:01:15 2018 -->
+<table border=1>
+<tr> <th>  </th> <th> size </th> <th> ok </th> <th> timeout </th> <th> memout </th> <th> presolved </th> <th> crash </th> <th> other </th> <th> unknown </th> <th> cost_min </th> <th> cost_mean </th> <th> cost_max </th> <th> cost_na </th>  </tr>
+  <tr> <td align="right"> base </td> <td align="right">   1 </td> <td align="right"> 1e+02 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right"> 1.5 </td> <td align="right">  41 </td> <td align="right">   0 </td> </tr>
+   </table>
+
+
+<br>
+<h2> Duplicated Features </h2>
+
+Underneath, you'll find blocks of duplicated features, i.e., observations that have equal values over all features. Please note, that only a maximum of 5 duplicates per block are shown.<br>
+<br>
+
+<!-- html table generated in R 3.5.1 by xtable 1.8-2 package -->
+<!-- Thu Dec  6 16:01:15 2018 -->
+<table border=1>
+<tr> <th> block </th> <th> numbers </th> <th> instances </th>  </tr>
+  <tr> <td align="right">   1 </td> <td align="right">   3 </td> <td> 103c9978-5408-11df-9bc1-00163e7a6f5e_l1.wcnf +++++++ 29180036-5408-11df-9f57-00163e7a6f5e_l1.wcnf +++++++ eeee44ce-5407-11df-b11f-00163e7a6f5e_l1.wcnf </td> </tr>
+  <tr> <td align="right">   2 </td> <td align="right">   2 </td> <td> 29180036-5408-11df-9f57-00163e7a6f5e_l2.wcnf +++++++ eeee44ce-5407-11df-b11f-00163e7a6f5e_l2.wcnf </td> </tr>
+  <tr> <td align="right">   3 </td> <td align="right">   2 </td> <td> 3e4f8550-0b33-11df-942d-00163e1d94dc_l1.wcnf +++++++ 3e4f8550-0b33-11df-942d-00163e1d94dc_l2.wcnf </td> </tr>
+  <tr> <td align="right">   4 </td> <td align="right">   3 </td> <td> 4a69cf16-c731-11df-9182-00163e3d3b7c_l1.wcnf +++++++ 5698a62c-c731-11df-9bb9-00163e3d3b7c_l1.wcnf +++++++ d0cc7514-c730-11df-a040-00163e3d3b7c_l1.wcnf </td> </tr>
+  <tr> <td align="right">   5 </td> <td align="right">   2 </td> <td> 4ede8d96-c17a-11df-a7c5-00163e3d3b7c_l1.wcnf +++++++ 56e31304-c17a-11df-b070-00163e3d3b7c_l1.wcnf </td> </tr>
+  <tr> <td align="right">   6 </td> <td align="right">   2 </td> <td> 6b0d1da0-c730-11df-a7c5-00163e3d3b7c_l1.wcnf +++++++ 978532fa-c730-11df-b070-00163e3d3b7c_l1.wcnf </td> </tr>
+  <tr> <td align="right">   7 </td> <td align="right">   2 </td> <td> 7bf50d1c-9b1b-11df-8b50-00163e46d37a_l1.wcnf +++++++ 80cfe9a6-9b1b-11df-965e-00163e46d37a_l1.wcnf </td> </tr>
+  <tr> <td align="right">   8 </td> <td align="right">   2 </td> <td> 7f80e4f0-4fe9-11e0-acd7-00163e1e087d_l1.wcnf +++++++ e2f6303a-4fe9-11e0-aa4f-00163e1e087d_l1.wcnf </td> </tr>
+  <tr> <td align="right">   9 </td> <td align="right">   4 </td> <td> 80e3fda2-9501-11e0-8001-00163e1e087d_l2.wcnf +++++++ a754ac72-95cc-11e0-9181-00163e1e087d_l2.wcnf +++++++ cff22854-9512-11e0-8001-00163e1e087d_l2.wcnf +++++++ e381ba7e-a192-11e0-8647-00163e1e087d_l2.wcnf </td> </tr>
+  <tr> <td align="right">  10 </td> <td align="right">   2 </td> <td> 8afdd89e-51b8-11e0-acd7-00163e1e087d_l1.wcnf +++++++ b2540c52-51b7-11e0-aa4f-00163e1e087d_l1.wcnf </td> </tr>
+  <tr> <td align="right">  11 </td> <td align="right">   2 </td> <td> 8b0e7c16-bab4-11e0-a883-00163e1e087d_l2.wcnf +++++++ ab9005be-bacc-11e0-b0f6-00163e1e087d_l2.wcnf </td> </tr>
+  <tr> <td align="right">  12 </td> <td align="right">   2 </td> <td> bccf69ae-db9e-11df-9a24-00163e3d3b7c_l1.wcnf +++++++ fa3d0fb2-db9e-11df-a0ec-00163e3d3b7c_l1.wcnf </td> </tr>
+  <tr> <td align="right">  13 </td> <td align="right">   2 </td> <td> ca8f656c-db9e-11df-b9cf-00163e3d3b7c_l2.wcnf +++++++ deb285a6-db9e-11df-8f4f-00163e3d3b7c_l2.wcnf </td> </tr>
+  <tr> <td align="right">  14 </td> <td align="right">   4 </td> <td> caefdef6-3477-11e0-84ef-00163e3d3b7c_l1.wcnf +++++++ d023d256-3477-11e0-bdb2-00163e3d3b7c_l1.wcnf +++++++ d5026b8e-3477-11e0-986e-00163e3d3b7c_l1.wcnf +++++++ dba3a3fe-3477-11e0-9e6c-00163e3d3b7c_l1.wcnf </td> </tr>
+  <tr> <td align="right">  15 </td> <td align="right">   3 </td> <td> caefdef6-3477-11e0-84ef-00163e3d3b7c_l2.wcnf +++++++ d023d256-3477-11e0-bdb2-00163e3d3b7c_l2.wcnf +++++++ dba3a3fe-3477-11e0-9e6c-00163e3d3b7c_l2.wcnf </td> </tr>
+  <tr> <td align="right">  16 </td> <td align="right">   2 </td> <td> comp03.wcnf +++++++ comp15.wcnf </td> </tr>
+  <tr> <td align="right">  17 </td> <td align="right">   2 </td> <td> e599f3fc-360e-11e0-986e-00163e3d3b7c_l1.wcnf +++++++ f4ebf9e0-360e-11e0-9e6c-00163e3d3b7c_l1.wcnf </td> </tr>
+  <tr> <td align="right">  18 </td> <td align="right">   2 </td> <td> rc-1.wcnf +++++++ rc-3.wcnf </td> </tr>
+   </table>
+
+
+</body>
+</html>

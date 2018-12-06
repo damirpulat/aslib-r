@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+.knitr .inline {
+  background-color: #f7f7f7;
+  border:solid 1px #B0B0B0;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
+.warning {
+	font-weight: bold;
+}
+.message {
+	font-style: italic;
+}
+.source, .output, .warning, .error, .message {
+	padding: 0 1em;
+  border:solid 1px #F7F7F7;
+}
+.source {
+  background-color: #f5f5f5;
+}
+.rimage .left {
+  text-align: left;
+}
+.rimage .right {
+  text-align: right;
+}
+.rimage .center {
+  text-align: center;
+}
+.hl.num {
+  color: #AF0F91;
+}
+.hl.str {
+  color: #317ECC;
+}
+.hl.com {
+  color: #AD95AF;
+  font-style: italic;
+}
+.hl.opt {
+  color: #000000;
+}
+.hl.std {
+  color: #585858;
+}
+.hl.kwa {
+  color: #295F94;
+  font-weight: bold;
+}
+.hl.kwb {
+  color: #B05A65;
+}
+.hl.kwc {
+  color: #55aa55;
+}
+.hl.kwd {
+  color: #BC5A65;
+  font-weight: bold;
+}
+</style>
+  <title>Algorithm performance overview</title>
+</head>
+<body>
+
+
+<h2> Overview of performance values </h2>
+
+The following statistics were calculated from the performance values of each algorithm:
+<ul>
+
+  <li> <a>obs (number of observations within performance values)</a>
+  <li> <a>nas (number of NAs, i.e., missing values, within performance values)</a>
+  <li> <a>min (minimum), mean (arithmetic mean), max (maximum), sd (standard deviation)</a>
+  <li> <a>qu_1st (1st quartile = lower quartile = 25%-quantile)</a>
+  <li> <a>med (median = 50%-quantile)</a>
+  <li> <a>qu_3rd (3rd quartile = upper quartile = 75%-quantile)</a>
+  <li> <a>coeff_var (coefficient of variation = standard deviation / arithmetic mean)</a>
+
+</ul>
+
+<!-- html table generated in R 3.5.1 by xtable 1.8-2 package -->
+<!-- Thu Dec  6 16:03:20 2018 -->
+<table border=1>
+<tr> <th>  </th> <th> obs </th> <th> nas </th> <th> min </th> <th> qu_1st </th> <th> med </th> <th> mean </th> <th> qu_3rd </th> <th> max </th> <th> sd </th> <th> coeff_var </th>  </tr>
+  <tr> <td align="right"> AIGSolve </td> <td align="right">     825 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">    0.14 </td> <td align="right">       5 </td> <td align="right"> 5168.46 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right"> 8127.47 </td> <td align="right"> 1.57251 </td> </tr>
+  <tr> <td align="right"> aqua.f3v </td> <td align="right">     825 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">    0.07 </td> <td align="right">   13.99 </td> <td align="right"> 7493.27 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right"> 8868.71 </td> <td align="right"> 1.18356 </td> </tr>
+  <tr> <td align="right"> aqua.s2v </td> <td align="right">     825 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">    0.07 </td> <td align="right">   11.49 </td> <td align="right"> 7449.54 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right"> 8861.25 </td> <td align="right">  1.1895 </td> </tr>
+  <tr> <td align="right"> aqua.s3o </td> <td align="right">     825 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">    0.07 </td> <td align="right">   15.01 </td> <td align="right">  7557.3 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right"> 8880.78 </td> <td align="right"> 1.17513 </td> </tr>
+  <tr> <td align="right"> caqe.minisat </td> <td align="right">     825 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">    0.19 </td> <td align="right">    4.41 </td> <td align="right"> 5451.17 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right"> 8256.02 </td> <td align="right"> 1.51454 </td> </tr>
+  <tr> <td align="right"> caqe.picosat </td> <td align="right">     825 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">    0.19 </td> <td align="right">    4.39 </td> <td align="right">  5148.1 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right"> 8116.24 </td> <td align="right"> 1.57655 </td> </tr>
+  <tr> <td align="right"> depqbf.v1 </td> <td align="right">     825 </td> <td align="right">       0 </td> <td align="right">    0.02 </td> <td align="right">    0.21 </td> <td align="right">   45.81 </td> <td align="right"> 8063.03 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right"> 8944.51 </td> <td align="right"> 1.10932 </td> </tr>
+  <tr> <td align="right"> depqbf.v2 </td> <td align="right">     825 </td> <td align="right">       0 </td> <td align="right">    0.02 </td> <td align="right">    0.21 </td> <td align="right">    2.41 </td> <td align="right">  4860.7 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right"> 7977.53 </td> <td align="right"> 1.64123 </td> </tr>
+  <tr> <td align="right"> depqbf.v3 </td> <td align="right">     825 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">    0.14 </td> <td align="right">    9.11 </td> <td align="right"> 6521.44 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right"> 8637.14 </td> <td align="right"> 1.32442 </td> </tr>
+  <tr> <td align="right"> ghostq.cegar </td> <td align="right">     825 </td> <td align="right">       0 </td> <td align="right">    0.06 </td> <td align="right">    0.52 </td> <td align="right">     8.2 </td> <td align="right"> 5253.99 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right">  8169.1 </td> <td align="right"> 1.55484 </td> </tr>
+  <tr> <td align="right"> ghostq.plain </td> <td align="right">     825 </td> <td align="right">       0 </td> <td align="right">    0.05 </td> <td align="right">    0.39 </td> <td align="right">    6.95 </td> <td align="right"> 5623.91 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right"> 8330.12 </td> <td align="right">  1.4812 </td> </tr>
+  <tr> <td align="right"> hiqqer1 </td> <td align="right">     825 </td> <td align="right">       0 </td> <td align="right">    0.03 </td> <td align="right">    0.06 </td> <td align="right">    1.24 </td> <td align="right"> 5381.75 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right"> 8230.07 </td> <td align="right"> 1.52926 </td> </tr>
+  <tr> <td align="right"> hiqqer1ldsq </td> <td align="right">     825 </td> <td align="right">       0 </td> <td align="right">    0.02 </td> <td align="right">    0.05 </td> <td align="right">    1.16 </td> <td align="right"> 5489.64 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right">    8278 </td> <td align="right"> 1.50793 </td> </tr>
+  <tr> <td align="right"> hiqqer3 </td> <td align="right">     825 </td> <td align="right">       0 </td> <td align="right">    0.03 </td> <td align="right">    0.06 </td> <td align="right">    1.45 </td> <td align="right"> 5535.28 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right">  8295.1 </td> <td align="right"> 1.49859 </td> </tr>
+  <tr> <td align="right"> iprover.QBF </td> <td align="right">     825 </td> <td align="right">       0 </td> <td align="right">    0.04 </td> <td align="right">   11.36 </td> <td align="right">   18000 </td> <td align="right"> 10422.9 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right"> 8876.46 </td> <td align="right"> 0.851628 </td> </tr>
+  <tr> <td align="right"> iprover.QBF.bloqqer </td> <td align="right">     825 </td> <td align="right">       0 </td> <td align="right">    0.04 </td> <td align="right">    3.19 </td> <td align="right">   18000 </td> <td align="right"> 10942.3 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right"> 8781.78 </td> <td align="right"> 0.802555 </td> </tr>
+  <tr> <td align="right"> qesto </td> <td align="right">     825 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">    0.03 </td> <td align="right">     1.4 </td> <td align="right"> 5320.67 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right">  8198.2 </td> <td align="right"> 1.54082 </td> </tr>
+  <tr> <td align="right"> qestos </td> <td align="right">     825 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">    0.03 </td> <td align="right">    0.68 </td> <td align="right">  6507.1 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right"> 8647.68 </td> <td align="right"> 1.32896 </td> </tr>
+  <tr> <td align="right"> qsts </td> <td align="right">     825 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">    0.04 </td> <td align="right">    0.56 </td> <td align="right"> 5722.74 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right">  8380.4 </td> <td align="right">  1.4644 </td> </tr>
+  <tr> <td align="right"> rareqs </td> <td align="right">     825 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">    0.02 </td> <td align="right">    0.54 </td> <td align="right"> 4053.54 </td> <td align="right">  212.79 </td> <td align="right">   18000 </td> <td align="right"> 7503.13 </td> <td align="right"> 1.85101 </td> </tr>
+  <tr> <td align="right"> squeezebf.struqs </td> <td align="right">     825 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">    3.18 </td> <td align="right">   18000 </td> <td align="right"> 10269.9 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right"> 8900.05 </td> <td align="right"> 0.866615 </td> </tr>
+  <tr> <td align="right"> struqs.10 </td> <td align="right">     825 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">    1.94 </td> <td align="right">   18000 </td> <td align="right"> 10204.6 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right"> 8908.96 </td> <td align="right"> 0.873031 </td> </tr>
+  <tr> <td align="right"> xb.bid.qsts </td> <td align="right">     825 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">    0.19 </td> <td align="right">    3.95 </td> <td align="right"> 3666.71 </td> <td align="right">   131.6 </td> <td align="right">   18000 </td> <td align="right"> 7225.59 </td> <td align="right">  1.9706 </td> </tr>
+  <tr> <td align="right"> xb.qsts </td> <td align="right">     825 </td> <td align="right">       0 </td> <td align="right">       0 </td> <td align="right">    0.18 </td> <td align="right">    3.12 </td> <td align="right">    4644 </td> <td align="right">   18000 </td> <td align="right">   18000 </td> <td align="right"> 7859.44 </td> <td align="right"> 1.69239 </td> </tr>
+   </table>
+
+
+<br>
+<h2> Summary of the runstatus per algorithm </h2>
+
+The following table summarizes the runstatus of each algorithm over all instances (in %).<br>
+<br>
+
+<!-- html table generated in R 3.5.1 by xtable 1.8-2 package -->
+<!-- Thu Dec  6 16:03:20 2018 -->
+<table border=1>
+<tr> <th>  </th> <th> ok </th> <th> timeout </th> <th> memout </th> <th> not_applicable </th> <th> crash </th> <th> other </th>  </tr>
+  <tr> <td align="right"> AIGSolve </td> <td align="right"> 71.394 </td> <td align="right"> 28.606 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> aqua.f3v </td> <td align="right"> 58.424 </td> <td align="right"> 41.576 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> aqua.s2v </td> <td align="right"> 58.667 </td> <td align="right"> 41.333 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> aqua.s3o </td> <td align="right"> 58.061 </td> <td align="right"> 41.939 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> caqe.minisat </td> <td align="right"> 69.818 </td> <td align="right"> 30.182 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> caqe.picosat </td> <td align="right"> 71.515 </td> <td align="right"> 28.485 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> depqbf.v1 </td> <td align="right"> 55.273 </td> <td align="right"> 44.727 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> depqbf.v2 </td> <td align="right"> 73.091 </td> <td align="right"> 26.909 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> depqbf.v3 </td> <td align="right"> 63.879 </td> <td align="right"> 36.121 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> ghostq.cegar </td> <td align="right"> 70.909 </td> <td align="right"> 29.091 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> ghostq.plain </td> <td align="right"> 68.848 </td> <td align="right"> 31.152 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> hiqqer1 </td> <td align="right"> 70.182 </td> <td align="right"> 29.818 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> hiqqer1ldsq </td> <td align="right"> 69.576 </td> <td align="right"> 30.424 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> hiqqer3 </td> <td align="right"> 69.333 </td> <td align="right"> 30.667 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> iprover.QBF </td> <td align="right"> 42.182 </td> <td align="right"> 57.818 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> iprover.QBF.bloqqer </td> <td align="right"> 39.273 </td> <td align="right"> 60.727 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> qesto </td> <td align="right"> 70.545 </td> <td align="right"> 29.455 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> qestos </td> <td align="right"> 63.879 </td> <td align="right"> 36.121 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> qsts </td> <td align="right"> 68.242 </td> <td align="right"> 31.758 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> rareqs </td> <td align="right"> 77.576 </td> <td align="right"> 22.424 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> squeezebf.struqs </td> <td align="right"> 43.030 </td> <td align="right"> 56.970 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> struqs.10 </td> <td align="right"> 43.394 </td> <td align="right"> 56.606 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> xb.bid.qsts </td> <td align="right"> 79.758 </td> <td align="right"> 20.242 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+  <tr> <td align="right"> xb.qsts </td> <td align="right"> 74.303 </td> <td align="right"> 25.697 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> <td align="right"> 0.000 </td> </tr>
+   </table>
+
+
+<br>
+<h2> Dominated Algorithms </h2>
+
+Here, you'll find an overview of dominating/dominated algorithms: <br>
+
+None of the algorithms was superior to any of the other.
+
+<br> <br>
+An algorithm (A) is considered to be superior to an other algorithm (B), if it has at least an equal performance on all instances (compared to B) <u>and</u> if it is better on at least one of them. A missing value is automatically a worse performance. However, instances which could not be solved by either one of the algorithms, were not considered for the dominance relation.<br>
+
+<br>
+<br>
+
+<h1>Visualisations</h1>
+<b><FONT COLOR = "#FF0000"> Important note w.r.t. some of the following plots:</b><br>
+If appropriate, we imputed performance values for failed or censored runs.
+We used max + 0.3 * (max - min), in case of minimization problems,
+or min - 0.3 * (max - min), in case of maximization problems.<br>
+In addition, a small noise is added to the imputed values (except for the cluster matrix,
+based on correlations, which is shown at the end of this page). </FONT>
+<br>
+<br>
+
+<h2> Boxplots of performance values </h2>
+
+<br>Imputing the performance values of failed or censored runs (as described in the red note at the beginning of this section):<br>
+<div class="chunk" id="unnamed-chunk-4"><div class="rimage default"><img src="figure/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" class="plot" /></div></div>
+
+<br>Discarding the performance values of failed or censored runs:<br>
+<div class="chunk" id="unnamed-chunk-5"><div class="rcode"><div class="warning"><pre class="knitr r">## Warning: Removed 7168 rows containing non-finite values (stat_boxplot).
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" class="plot" /></div></div>
+
+<br>
+<h2> Estimated densitities of performance values </h2>
+
+<br>Imputing the performance values of failed or censored runs (as described in the red note at the beginning of this section):<br>
+<div class="chunk" id="unnamed-chunk-6"><div class="rimage default"><img src="figure/unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" class="plot" /></div></div>
+
+<br>Discarding the performance values of failed or censored runs:<br>
+<div class="chunk" id="unnamed-chunk-7"><div class="rimage default"><img src="figure/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" class="plot" /></div></div>
+<br>
+
+<h2> Estimated cumulative distribution functions of performance values </h2>
+
+<br>Imputing the performance values of failed runs (as described in the red note at the beginning of this section):<br>
+<div class="chunk" id="unnamed-chunk-8"><div class="rimage default"><img src="figure/unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" class="plot" /></div></div>
+
+<br>Discarding the performance values of failed or censored runs:<br>
+<div class="chunk" id="unnamed-chunk-9"><div class="rimage default"><img src="figure/unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" class="plot" /></div></div>
+
+
+<br>
+<h2> Scatterplot matrix of the performance values </h2>
+The figure underneath shows pairwise scatterplots of the performance values.<br>
+
+<br>Imputing the performance values of failed and censored runs (as described in the red note at the beginning of this section):<br>
+
+</div><div class="rimage default"><img src="figure/unnamed-chunk-10-1.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" class="plot" /></div><div class="rcode">
+
+
+
+<br>
+<h2> Clustering algorithms based on their correlations </h2>
+The following figure shows the correlations of the <b>ranks</b> of the performance
+values. Per default it will show the correlation coefficient of spearman. Missing values were imputed <u>prior</u> to computing the correlation coefficients. The algorithms are ordered in a way that similar (highly correlated) algorithms are close to each other. Per default the clustering is based on hierarchical clustering, using Ward's method. <br>
+<br>
+
+<div class="chunk" id="unnamed-chunk-11"><div class="rimage default"><img src="figure/unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" class="plot" /></div></div>
+
+
+</body>
+</html>
