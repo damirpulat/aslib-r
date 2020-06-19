@@ -11,27 +11,12 @@ Maintainer: Lars Kotthoff <larsko@uwyo.edu>
 URL: https://github.com/coseal/aslib-r/
 BugReports: https://github.com/coseal/aslib-r/issues
 License: GPL-3
-Imports:
-    BatchExperiments,
-    BatchJobs,
-    BBmisc,
-    checkmate,
-    corrplot,
-    ggplot2,
-    llama,
-    mlr,
-    parallelMap,
-    ParamHelpers,
-    plyr,
-    reshape2,
-    RWeka,
-    farff,
-    stringr,
-    yaml
-Suggests:
-    testthat,
-    rpart
+Imports: BatchExperiments, BatchJobs, BBmisc, checkmate, corrplot,
+        ggplot2, llama, mlr, parallelMap, ParamHelpers, plyr, reshape2,
+        RWeka, farff, stringr, yaml
+Suggests: testthat, rpart
 LazyData: yes
 ByteCompile: yes
 Version: 0.1.1
 RoxygenNote: 5.0.1
+Built: R 3.6.3; ; 2020-06-19 17:04:55 UTC; unix

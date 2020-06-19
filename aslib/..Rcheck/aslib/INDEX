@@ -1,0 +1,54 @@
+ASScenarioDesc          S3 class for ASScenarioDesc.
+checkDuplicatedInstances
+                        Checks the feature data set for duplicated
+                        instances.
+convertAlgoPerfToWideFormat
+                        Converts 'algo.runs' object of a scenario to
+                        wide format.
+convertToLlama          Convert an ASScenario scenario object to a
+                        llama data object.
+convertToLlamaCVFolds   Convert an ASScenario scenario object to a
+                        llama data object with cross-validation folds.
+createCVSplits          Create cross-validation splits for a scenario.
+findDominatedAlgos      Creates a table that shows the dominance of one
+                        algorithm over another one.
+fixFeckingPresolve      Bakes presolving stuff into a LLAMA data frame.
+getAlgorithmNames       Returns algorithm names of scenario.
+getCosealASScenario     Retrieves a scenario from the Coseal Github
+                        repository and parses into an S3 object.
+getCostsAndPresolvedStatus
+                        Return wether an instance was presolved and
+                        which step did it.
+getDefaultFeatureStepNames
+                        Returns the default feature step names of
+                        scenario.
+getFeatureNames         Returns feature names of scenario.
+getFeatureStepNames     Returns feature step names of scenario.
+getInstanceNames        Returns instance names of scenario.
+getNumberOfCVFolds      Returns number of CV folds.
+getNumberOfCVReps       Returns number of CV repetitions.
+getProvidedFeatures     Return features that are useable for a given
+                        set of feature steps.
+getSummedFeatureCosts   Returns feature costs of scenario, summed over
+                        all instances.
+imputeAlgoPerf          Imputes algorithm performance for runs which
+                        have NA performance values.
+parseASScenario         Parses the data files of an algorithm selection
+                        scenario into an S3 object.
+plotAlgoCorMatrix       Plots the correlation matrix of the algorithms.
+plotAlgoPerf            EDA plots for performance values of algorithms
+                        across all instances.
+runLlamaModels          Creates a registry which can be used for
+                        running several Llama models on a cluster.
+summarizeAlgoPerf       Creates summary data.frame for algorithm
+                        performance values across all instances.
+summarizeAlgoRunstatus
+                        Creates summary data.frame for algorithm
+                        runstatus across all instances.
+summarizeFeatureSteps   Creates a data.frame that summarizes the
+                        feature steps.
+summarizeFeatureValues
+                        Creates summary data.frame for feature values
+                        across all instances.
+writeASScenario         Writes an algorithm selection scenario to a
+                        directory.
