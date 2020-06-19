@@ -25,6 +25,7 @@ Imports:
     plyr,
     reshape2,
     RWeka,
+		farff,
     stringr,
     yaml
 Suggests:

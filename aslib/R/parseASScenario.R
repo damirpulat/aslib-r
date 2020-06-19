@@ -67,7 +67,7 @@ parseASScenario = function(path) {
   fsteps = names(desc$feature_steps)
 
   ### build feature.runstatus
-  feature.runstatus = read.arff(file.path(path, "feature_runstatus.arff"))
+  feature.runstatus = readARFF(file.path(path, "feature_runstatus.arff"))
   colnames(feature.runstatus) = make.names(colnames(feature.runstatus))
   statusLevels = c("ok", "timeout", "memout", "presolved", "crash", "other", "unknown")
   # make sure we have correct levels
@@ -86,7 +86,7 @@ parseASScenario = function(path) {
   ### build feature.costs
   costfile = file.path(path, "feature_costs.arff")
   if (file.exists(costfile)) {
-    feature.costs = read.arff(costfile)
+    feature.costs = readARFF(costfile)
     colnames(feature.costs) = make.names(colnames(feature.costs))
     # sort rows and cols
     feature.costs = feature.costs[, c("instance_id", "repetition", fsteps)]
@@ -96,14 +96,14 @@ parseASScenario = function(path) {
   }
 
   ### build feature.values
-  feature.values = read.arff(file.path(path, "feature_values.arff"))
+  feature.values = readARFF(file.path(path, "feature_values.arff"))
   colnames(feature.values) = make.names(colnames(feature.values))
   # sort rows and cols
   feature.values = feature.values[, c("instance_id", "repetition",
     desc$features_deterministic, desc$features_stochastic)]
   feature.values = sortByCol(feature.values, c("instance_id", "repetition"))
 
-  algo.runs = read.arff(file.path(path, "algorithm_runs.arff"))
+  algo.runs = readARFF(file.path(path, "algorithm_runs.arff"))
   colnames(algo.runs) = make.names(colnames(algo.runs))
   algo.runs$algorithm = make.names(algo.runs$algorithm)
   algo.runs = sortByCol(algo.runs, c("instance_id", "repetition"))
@@ -118,7 +118,7 @@ parseASScenario = function(path) {
   ### build cv.splits
   cv.file = file.path(path, "cv.arff")
   if (file.exists(cv.file)) {
-    cv.splits = read.arff(cv.file)
+    cv.splits = readARFF(cv.file)
     colnames(cv.splits) = make.names(colnames(cv.splits))
     instancesInCV = length(unique(cv.splits$instance_id))
     instancesInAlgos = length(unique(algo.runstatus$instance_id))
