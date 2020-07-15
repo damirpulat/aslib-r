@@ -1,4 +1,4 @@
-library(batchtools)
+library(BatchExperiments)
 library(plyr)
 reg.tune = loadRegistry("run_llama_models-files-tune")
 

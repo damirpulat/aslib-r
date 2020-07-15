@@ -13,6 +13,7 @@ BugReports: https://github.com/coseal/aslib-r/issues
 License: GPL-3
 Imports:
     batchtools,
+    data.table,
     BBmisc,
     checkmate,
     corrplot,
