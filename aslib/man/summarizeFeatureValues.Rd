@@ -16,4 +16,3 @@ Algorithm selection scenario.}
 \description{
 Creates summary data.frame for feature values across all instances.
 }
-

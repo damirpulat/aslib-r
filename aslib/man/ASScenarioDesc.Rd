@@ -21,4 +21,3 @@ Object members
 \item{metainfo_algorithms [named \code{list} of lists of \code{character}]}{Names of algorithms and meta-information about them.}
 }
 }
-

@@ -1,4 +1,4 @@
-library(BatchExperiments)
+library(batchtools)
 library(BBmisc)
 library(plyr)
 

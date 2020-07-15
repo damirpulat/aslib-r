@@ -16,4 +16,3 @@ Algorithm selection scenario.}
 \description{
 Returns feature step names of scenario.
 }
-

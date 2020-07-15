@@ -4,7 +4,6 @@ library(llama)
 library(stringr)
 library(mlr)
 library(ParamHelpers)
-library(BatchExperiments)
 library(aslib)
 source("defs.R")
 
@@ -77,14 +76,40 @@ reg = runLlamaModels(asscenarios, learners = wrapped.learners,
 
 # stop("we dont auto submit :)")
 
-submitJobs(reg)
-waitForJobs(reg)
+walltime = '100:00:00'
+memory = '20gb'
+ncpus = 15
+
+unwrap(getJobPars(reg = reg))
+info = unwrap(getJobPars(reg = reg))
+repls = batchtools:::mergedJobs(reg = reg, ids = findSubmitted(), cols = c("repl", "job.id"))
+
+submitJobs(reg = reg, ids = findNotSubmitted(), resources = list(ncpus = ncpus, walltime = walltime, memory = memory))
+waitForJobs(reg = reg, ids = findSubmitted())
 
 aggrShort = function(job, res) {
     return(list(succ = res$succ, par10 = res$par10, mcp = res$mcp))
 }
 
-d = reduceResultsExperiments(reg, strings.as.factors = FALSE, fun = aggrShort,
-    impute.val = list(succ = 0, par10 = Inf, mcp = Inf))
-e = reduceResultsList(reg)
+d = reduceResultsDataTable(reg = reg, ids = findSubmitted(), fun = aggrShort,
+                           missing.val = list(succ = 0, par10 = Inf, mcp = Inf))
+d = merge(info, d, by = "job.id")
+d = merge(repls, d, by = "job.id")
+
+# rename columns so they match columns from old results
+colnames(d) = c("id", "repl", "prob", "algo", "type", "result")
+d = d[, c(1, 3, 4, 5, 2, 6)]
+d$mcp = NA
+d$par10 = NA
+d$succ = NA
+
+# unlist result
+for(i in seq_along(1:nrow(d))) {
+  d$mcp[i] = d[i, ]$result[[1]]$mcp
+  d$par10[i] = d[i, ]$result[[1]]$par10
+  d$succ[i] = d[i, ]$result[[1]]$succ
+}
+d$result = NULL
+
+e = reduceResultsList(reg = reg, ids = findDone())
 save2(file = "llama_results.RData", res = d, resLong = e)

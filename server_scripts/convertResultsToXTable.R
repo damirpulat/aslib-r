@@ -19,12 +19,13 @@ printResultsAsHTMLTable = function(res, scenario.id, col.best = "#FF0000", col.b
 
   # function to color cell(s) in res.char
   colorize = function(inds, meas, col)
-    res.char[inds, meas] <<- sprintf("<b><FONT COLOR=\"%s\">%6.3f</FONT></b>", col, res[inds, meas])
+    res.char[inds, meas] <<- sprintf("<b><FONT COLOR=\"%s\">%6.3f</FONT></b>", col, res[inds, ..meas][[1]])
 
   for (m in measures) {
     dec = !m$minimize
     minmax = if (m$minimize) min else max
-    perf = res[, m$id]
+    perf = res[[m$id]]
+
     # remove vbs, it would always be best...
     perf2 = setdiff(perf, perf[ind.vbs])
     # control display of numbers
