@@ -23,4 +23,3 @@ Default is all steps.}
 \description{
 Return wether an instance was presolved and which step did it.
 }
-
