@@ -22,13 +22,3 @@ r_packages:
 
 before_install:
   - cd aslib
-
-after_failure:
-  - ./travis-tool.sh dump_logs
-
-notifications:
-  email:
-    recipients:
-      - larsko@uwyo.edu
-on_success: change
-on_failure: always
