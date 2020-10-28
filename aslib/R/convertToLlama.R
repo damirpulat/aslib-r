@@ -27,13 +27,13 @@ convertToLlama = function(asscenario, measure, feature.steps) {
         stopf(paste("Feature step dependency", d, "not satisfied!"))
     }
   }
-  feats = convertFeats(asscenario, with.instance.id = TRUE)
+  inst.feats = convertFeats(asscenario, with.instance.id = TRUE)
   # subset to features used in requested feature steps
   tosel = as.vector(unlist(lapply(asscenario$desc$feature_steps[feature.steps], function(d) d$provides)))
   # some features may have been removed by conversion/imputation
-  tosel = intersect(names(feats), tosel)
+  tosel = intersect(names(inst.feats), tosel)
 
-  feats = feats[c("instance_id", tosel)]
+  inst.feats = inst.feats[c("instance_id", tosel)]
   cp = convertPerf(asscenario, measure = measure, feature.steps = feature.steps,
     add.feature.costs = FALSE, with.instance.id = TRUE)
 
@@ -42,10 +42,10 @@ convertToLlama = function(asscenario, measure, feature.steps) {
       asscenario$feature.costs[is.na(asscenario$feature.costs)] = 0
       costs = list(groups = lapply(asscenario$desc$feature_steps[feature.steps], function(d) d$provides),
           values=asscenario$feature.costs[,c("instance_id", feature.steps)])
-      ldf = input(feats, cp$perf, successes = cp$successes,
+      ldf = input(inst.feats, cp$perf, successes = cp$successes,
           minimize = as.logical(!asscenario$desc$maximize[measure]), costs = costs)
   } else {
-      ldf = input(feats, cp$perf, successes = cp$successes,
+      ldf = input(inst.feats, cp$perf, successes = cp$successes,
           minimize = as.logical(!asscenario$desc$maximize[measure]))
   }
 

@@ -95,13 +95,25 @@ parseASScenario = function(path) {
     feature.costs = NULL
   }
 
-  ### build feature.values
-  feature.values = read.arff(file.path(path, "feature_values.arff"))
-  colnames(feature.values) = make.names(colnames(feature.values))
+  ### build instance.feature.values
+  instance.feature.values = read.arff(file.path(path, "instance_feature_values.arff"))
+  colnames(instance.feature.values) = make.names(colnames(instance.feature.values))
   # sort rows and cols
-  feature.values = feature.values[, c("instance_id", "repetition",
-    desc$features_deterministic, desc$features_stochastic)]
-  feature.values = sortByCol(feature.values, c("instance_id", "repetition"))
+  instance.feature.values = instance.feature.values[, c("instance_id", "repetition",
+    desc$instance_features_deterministic, desc$instance_features_stochastic)]
+  instance.feature.values = sortByCol(instance.feature.values, c("instance_id", "repetition"))
+  
+  ### build algorithm.feature.values
+  if (file.exists(file.path(path, "algorithm_feature_values.arff"))) {
+    algorithm.feature.values = read.arff(file.path(path, "algorithm_feature_values.arff"))
+    colnames(algorithm.feature.values) = make.names(colnames(algorithm.feature.values))
+    # sort rows and cols
+    algorithm.feature.values = algorithm.feature.values[, c("algorithm", 
+                                                            desc$algorithm_features_deterministic, desc$algorithm_features_stochastic)]
+    algorithm.feature.values = sortByCol(algorithm.feature.values, c("algorithm"))
+  } else {
+    algorithm.feature.values = NULL
+  }
 
   algo.runs = read.arff(file.path(path, "algorithm_runs.arff"))
   colnames(algo.runs) = make.names(colnames(algo.runs))
@@ -133,15 +145,29 @@ parseASScenario = function(path) {
     cv.splits = NULL
   }
 
-  makeS3Obj("ASScenario",
-    desc = desc,
-    feature.runstatus = feature.runstatus,
-    feature.costs= feature.costs,
-    feature.values = feature.values,
-    algo.runs = algo.runs,
-    algo.runstatus = algo.runstatus,
-    cv.splits = cv.splits
-  )
+  if (file.exists(file.path(path, "algorithm_feature_values.arff"))) { 
+    makeS3Obj("ASScenario",
+              desc = desc,
+              feature.runstatus = feature.runstatus,
+              feature.costs= feature.costs,
+              instance.feature.values = instance.feature.values,
+              algorithm.feature.values = algorithm.feature.values,
+              algo.runs = algo.runs,
+              algo.runstatus = algo.runstatus,
+              cv.splits = cv.splits
+    )
+  } else {
+    makeS3Obj("ASScenario",
+              desc = desc,
+              feature.runstatus = feature.runstatus,
+              feature.costs= feature.costs,
+              instance.feature.values = instance.feature.values,
+              algo.runs = algo.runs,
+              algo.runstatus = algo.runstatus,
+              cv.splits = cv.splits
+    )
+  }
+
 }
 
 #' @export
@@ -165,9 +191,11 @@ print.ASScenario = function(x, ...) {
   printField1("Feature cutoff time", d$features_cutoff_time)
   printField1("Feature cutoff mem", d$features_cutoff_memory)
   printField1("Nr. of instances", length(unique(x$feature.values$instance_id)))
-  printField1("Features (deterministic)", d$features_deterministic)
-  printField1("Features (stochastic)", d$features_stochastic)
-  printField1("Feature repetitions", collapse(range(x$feature.values$repetition), sep = " - "))
+  printField1("Instance Features (deterministic)", d$instance_features_deterministic)
+  printField1("Instance Features (stochastic)", d$instance_features_stochastic)
+  printField1("Algorithm Features (deterministic)", d$algorithm_features_deterministic)
+  printField1("Algorithm Features (stochastic)", d$algorithm_features_stochastic)
+  printField1("Feature repetitions", collapse(range(x$instance.feature.values$repetition), sep = " - "))
   printField1("Feature costs", ifelse(is.null(x$feature.costs), "No", "Yes"))
   printField1("Algo.", names(d$metainfo_algorithms))
   printField1("Algo. repetitions", collapse(range(x$algo.runs$repetition), sep = " - "))

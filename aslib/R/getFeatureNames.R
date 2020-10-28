@@ -6,5 +6,5 @@
 #' @export
 getFeatureNames = function(asscenario) {
   assertClass(asscenario, "ASScenario")
-  c(asscenario$desc$features_deterministic, asscenario$desc$features_stochastic)
+  c(asscenario$desc$instance_features_deterministic, asscenario$desc$instance_features_stochastic)
 }

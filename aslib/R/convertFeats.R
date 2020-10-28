@@ -3,7 +3,7 @@ convertFeats = function(asscenario, feature.steps, with.instance.id) {
   # reduce to inst + rep + allowed features
   # note that feats is ordered by instance, then repetition
   allowed.features = getProvidedFeatures(asscenario, feature.steps)
-  feats = asscenario$feature.values
+  feats = asscenario$instance.feature.values
   feats = feats[, c("instance_id", "repetition", allowed.features), drop = FALSE]
 
   # aggregate features, only do this if repeated measurements to save time
