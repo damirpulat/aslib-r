@@ -10,26 +10,46 @@
 #  @details
 #' \describe{
 #' \item{desc [\code{\link{ASScenarioDesc}}]}{Description object, containing further info.}
-#' \item{feature.runstatus [\code{data.frame(n, s + 2)}]}{Runstatus of feature computation steps.
+#' \item{instance.feature.runstatus [\code{data.frame(n, s + 2)}]}{Runstatus of instance feature computation steps.
 #'   The first 2 columns are \dQuote{instance_id} and \dQuote{repetition}, the remaining are the status factors.
 #'   The step columns are in the same order as the feature steps in the description object.
 #'   The factor levels are always: ok, presolved, crash, timeout, memout, other.
 #'   No entry can be \code{NA}.
 #'   The data.frame is sorted by \dQuote{instance_id}, then \dQuote{repetition}.}
-#' \item{feature.costs [\code{data.frame(n, s + 2)}]}{Costs of feature computation steps.
+#' \item{algorithm.feature.runstatus [\code{data.frame(k, s + 1)}]}{Runstatus of algorithm feature computation steps.
+#'   The first column is \dQuote{algorithm}, the remaining are the status factors.
+#'   The step columns are in the same order as the feature steps in the description object.
+#'   The factor levels are always: ok, crash, timeout, memout, other.
+#'   No entry can be \code{NA}.
+#'   The data.frame is sorted by \dQuote{algorithm}.}
+#' \item{instance.feature.costs [\code{data.frame(n, s + 2)}]}{Costs of instance feature computation steps.
 #'   The first 2 columns are \dQuote{instance_id} and \dQuote{repetition}, the remaining are
-#'   numeric costs of the feature steps.
+#'   numeric costs of the instance feature steps.
 #'   The step columns are in the same order as the feature steps in the description object.
 #'   code{NA} means the cost is not available, possibly because the feature computation was aborted.
 #'   The data.frame is sorted by \dQuote{instance_id}, then \dQuote{repetition}.
 #'   If no cost file is available at all, \code{NULL} is stored.}
-#' \item{feature.values [\code{data.frame(n, p + 2)}]}{Measured feature values of instances.
+#' \item{algorithm.feature.costs [\code{data.frame(n, s + 1)}]}{Costs of algorithm feature computation steps.
+#'   The first column is \dQuote{algorithm}, the remaining are
+#'   numeric costs of the algorithmic feature steps.
+#'   The step columns are in the same order as the feature steps in the description object.
+#'   code{NA} means the cost is not available, possibly because the feature computation was aborted.
+#'   The data.frame is sorted by \dQuote{algorithm}.
+#'   If no cost file is available at all, \code{NULL} is stored.}
+#' \item{instance.feature.values [\code{data.frame(n, p + 2)}]}{Measured feature values of instances.
 #'   The first 2 columns are \dQuote{instance_id} and \dQuote{repetition}. The remaining ones are
 #'   the measured instance features.
-#'   The feature columns are in the same order as \dQuote{features_deterministic},
-#'   \dQuote{features_stochastic} in the description object.
+#'   The feature columns are in the same order as \dQuote{instance_features_deterministic},
+#'   \dQuote{instance_features_stochastic} in the description object.
 #'   code{NA} means the feature is not available, possibly because the feature computation was aborted.
 #'   The data.frame is sorted by \dQuote{instance_id}, then \dQuote{repetition}.}
+#' \item{algorithm.feature.values [\code{data.frame(k, p + 1)}]}{Measured feature values of algorithms
+#'   The first column is \dQuote{algorithm}. The remaining ones are
+#'   the measured algorithmic features.
+#'   The feature columns are in the same order as \dQuote{algorithm_features_deterministic},
+#'   \dQuote{algorithm_features_stochastic} in the description object.
+#'   code{NA} means the feature is not available, possibly because the feature computation was aborted.
+#'   The data.frame is sorted by \dQuote{algorithm}.}
 #' \item{algo.runs [\code{data.frame}]}{Runstatus and performance information of the
 #'   algorithms. Simply the parsed ARFF file.
 #'   See \code{\link{convertAlgoPerfToWideFormat}} for a more convenient format.}
@@ -66,54 +86,38 @@ parseASScenario = function(path) {
   desc = parseDescription(path)
   fsteps = names(desc$feature_steps)
 
-  ### build feature.runstatus
-  feature.runstatus = read.arff(file.path(path, "feature_runstatus.arff"))
-  colnames(feature.runstatus) = make.names(colnames(feature.runstatus))
-  statusLevels = c("ok", "timeout", "memout", "presolved", "crash", "other", "unknown")
-  # make sure we have correct levels
-  for (j in 3:ncol(feature.runstatus)) {
-    factors = factor(feature.runstatus[, j])
-    if(!setequal(union(factors, statusLevels), statusLevels)) {
-        stop(paste("Feature runstatus file contains illegal levels:", setdiff(factors, statusLevels)))
-    }
-    feature.runstatus[, j] = factor(feature.runstatus[, j],
-      levels = statusLevels)
-  }
-  # sort rows and cols
-  feature.runstatus = feature.runstatus[, c("instance_id", "repetition", fsteps)]
-  feature.runstatus = sortByCol(feature.runstatus, c("instance_id", "repetition"))
+  ### build instance.feature.runstatus
+  instance.feature.runstatus = readRunstatus(path = path, filename = "instance_feature_runstatus.arff", 
+                statusLevels = c("ok", "timeout", "memout", "presolved", "crash", "other", "unknown"), 
+                fsteps = fsteps, sortBy = c("instance_id", "repetition"))
+  
+  ### build algorithm.feature.runstatus
+  algorithm.feature.runstatus = readRunstatus(path = path, filename = "algorithm_feature_runstatus.arff", 
+                statusLevels = c("ok", "timeout", "memout", "crash", "other", "unknown"), 
+                fsteps = fsteps, sortBy = c("algorithm"), ignoreExists = TRUE)
 
   ### build feature.costs
-  costfile = file.path(path, "feature_costs.arff")
-  if (file.exists(costfile)) {
-    feature.costs = read.arff(costfile)
-    colnames(feature.costs) = make.names(colnames(feature.costs))
-    # sort rows and cols
-    feature.costs = feature.costs[, c("instance_id", "repetition", fsteps)]
-    feature.costs = sortByCol(feature.costs, c("instance_id", "repetition"))
-  } else {
-    feature.costs = NULL
-  }
+  instance.costfile = file.path(path, "instance_feature_costs.arff")
+  instance.feature.costs = readCosts(filename = instance.costfile, 
+                                     fsteps = fsteps, sortBy = c("instance_id", "repetition"))
+  
+  algorithm.costfile = file.path(path, "algorithm_feature_costs.arff")
+  algorithm.feature.costs = readCosts(filename = algorithm.costfile, 
+                                     fsteps = fsteps, sortBy = c("algorithm"))
 
   ### build instance.feature.values
-  instance.feature.values = read.arff(file.path(path, "instance_feature_values.arff"))
-  colnames(instance.feature.values) = make.names(colnames(instance.feature.values))
-  # sort rows and cols
-  instance.feature.values = instance.feature.values[, c("instance_id", "repetition",
-    desc$instance_features_deterministic, desc$instance_features_stochastic)]
-  instance.feature.values = sortByCol(instance.feature.values, c("instance_id", "repetition"))
+  instance.feature.values = readFeatureValues(path = path, 
+              filename = "instance_feature_values.arff",
+              sortBy = c("instance_id", "repetition"), 
+              featureSort = c(desc$instance_features_deterministic, desc$instance_features_stochastic), 
+              ignoreExists = FALSE)
   
   ### build algorithm.feature.values
-  if (file.exists(file.path(path, "algorithm_feature_values.arff"))) {
-    algorithm.feature.values = read.arff(file.path(path, "algorithm_feature_values.arff"))
-    colnames(algorithm.feature.values) = make.names(colnames(algorithm.feature.values))
-    # sort rows and cols
-    algorithm.feature.values = algorithm.feature.values[, c("algorithm", 
-                                                            desc$algorithm_features_deterministic, desc$algorithm_features_stochastic)]
-    algorithm.feature.values = sortByCol(algorithm.feature.values, c("algorithm"))
-  } else {
-    algorithm.feature.values = NULL
-  }
+  algorithm.feature.values = readFeatureValues(path = path, 
+              filename = "algorithm_feature_values.arff",
+              sortBy = c("algorithm"), 
+              featureSort = c(desc$algorithm_features_deterministic, desc$algorithm_features_stochastic), 
+              ignoreExists = TRUE)
 
   algo.runs = read.arff(file.path(path, "algorithm_runs.arff"))
   colnames(algo.runs) = make.names(colnames(algo.runs))
@@ -145,28 +149,18 @@ parseASScenario = function(path) {
     cv.splits = NULL
   }
 
-  if (file.exists(file.path(path, "algorithm_feature_values.arff"))) { 
-    makeS3Obj("ASScenario",
-              desc = desc,
-              feature.runstatus = feature.runstatus,
-              feature.costs= feature.costs,
-              instance.feature.values = instance.feature.values,
-              algorithm.feature.values = algorithm.feature.values,
-              algo.runs = algo.runs,
-              algo.runstatus = algo.runstatus,
-              cv.splits = cv.splits
+  makeS3Obj("ASScenario",
+            desc = desc,
+            instance.feature.runstatus = instance.feature.runstatus,
+            instance.feature.costs = instance.feature.costs,
+            instance.feature.values = instance.feature.values,
+            algorithm.feature.runstatus = algorithm.feature.runstatus,
+            algorithm.feature.costs = algorithm.feature.costs,
+            algorithm.feature.values = algorithm.feature.values,
+            algo.runs = algo.runs,
+            algo.runstatus = algo.runstatus,
+            cv.splits = cv.splits
     )
-  } else {
-    makeS3Obj("ASScenario",
-              desc = desc,
-              feature.runstatus = feature.runstatus,
-              feature.costs= feature.costs,
-              instance.feature.values = instance.feature.values,
-              algo.runs = algo.runs,
-              algo.runstatus = algo.runstatus,
-              cv.splits = cv.splits
-    )
-  }
 
 }
 
@@ -188,8 +182,10 @@ print.ASScenario = function(x, ...) {
   printField1("Performance types", d$performance_type)
   printField1("Algorithm cutoff time", d$algorithm_cutoff_time)
   printField1("Algorithm cutoff mem", d$algorithm_cutoff_memory)
-  printField1("Feature cutoff time", d$features_cutoff_time)
-  printField1("Feature cutoff mem", d$features_cutoff_memory)
+  printField1("Instance Feature cutoff time", d$instance_features_cutoff_time)
+  printField1("Instance Feature cutoff mem", d$instance_features_cutoff_memory)
+  printField1("Algorithm Feature cutoff time", d$algorithm_features_cutoff_time)
+  printField1("Algorithm Feature cutoff mem", d$algorithm_features_cutoff_memory)
   printField1("Nr. of instances", length(unique(x$feature.values$instance_id)))
   printField1("Instance Features (deterministic)", d$instance_features_deterministic)
   printField1("Instance Features (stochastic)", d$instance_features_stochastic)
@@ -205,3 +201,66 @@ print.ASScenario = function(x, ...) {
   printField1("CV folds", ifelse(is.null(x$cv.splits), "No", getNumberOfCVFolds(x)))
 }
 
+# Helper function for reading feature runstatus files
+readRunstatus = function(path, filename, statusLevels, fsteps, sortBy, ignoreExists = FALSE) {
+  res = tryCatch({
+      feature.runstatus = read.arff(file.path(path, filename))
+      colnames(feature.runstatus) = make.names(colnames(feature.runstatus))
+      # make sure we have correct levels
+      for (j in 3:ncol(feature.runstatus)) {
+        factors = factor(feature.runstatus[, j])
+        if(!setequal(union(factors, statusLevels), statusLevels)) {
+          stop(paste("Feature runstatus file contains illegal levels:", setdiff(factors, statusLevels)))
+        }
+        feature.runstatus[, j] = factor(feature.runstatus[, j],
+                                        levels = statusLevels)
+      }
+      # sort rows and cols
+      feature.runstatus = feature.runstatus[, c(sortBy, fsteps)]
+      feature.runstatus = sortByCol(feature.runstatus, sortBy)
+    }, error = function(e) {
+      if (ignoreExists) {
+        return(NULL)
+      } else {
+        stop(e)
+      }
+    }
+  )
+  
+  return(res)
+}
+
+# Helper function for reading feature cost files
+readCosts = function(filename, fsteps, sortBy) {
+  if (file.exists(filename)) {
+    feature.costs = read.arff(filename)
+    colnames(feature.costs) = make.names(colnames(feature.costs))
+    # sort rows and cols
+    feature.costs = feature.costs[, c(sortBy, fsteps)]
+    feature.costs = sortByCol(feature.costs, sortBy)
+  } else {
+    feature.costs = NULL
+  }
+  
+  return(feature.costs)
+}
+
+# Helper function for reading feature value files
+readFeatureValues = function(path, filename, sortBy, featureSort, ignoreExists = FALSE) {
+  res = tryCatch({
+    feature.values = read.arff(file.path(path, filename))
+    colnames(feature.values) = make.names(colnames(feature.values))
+    # sort rows and cols
+    feature.values = feature.values[, c(sortBy, featureSort)]
+    feature.values = sortByCol(feature.values, sortBy)
+  }, error = function(e) {
+      if (ignoreExists) {
+        return(NULL)
+      } else {
+        stop(e)
+      }
+    }
+  )
+  
+  return(res)
+}
