@@ -12,18 +12,34 @@
 #'   \item{solve.steps [\code{character(n)}]}{Which step solved it? NA if no step did it. Named by instance ids.}
 #'   \item{costs [\code{numeric(n)}]}{Feature costs for using the steps. Named by instance ids. NULL if no costs are present.}
 #' @export
-getCostsAndPresolvedStatus = function(asscenario, feature.steps) {
+getCostsAndPresolvedStatus = function(asscenario, feature.steps, type) {
   assertClass(asscenario, "ASScenario")
+  assertChoice(type, c("instance", "algorithm"))
+  
+  if (type == "instance") {
+    status.col = "instance.feature.runstatus"
+    cost.col = "instance.feature.costs"
+    id.col = "instance_id"
+  } else if (type == "algorithm") {
+    status.col = "algorithm.feature.runstatus"
+    cost.col = "algorithm.feature.costs"
+    id.col = "algorithm"
+  }
+  
   allsteps = getFeatureStepNames(asscenario)
   if (missing(feature.steps))
     feature.steps = allsteps
   else
     assertSubset(feature.steps, allsteps)
-  frs = asscenario$feature.runstatus
+  
+  frs = asscenario[[status.col]]
   #FIXME:
-  stopifnot(max(frs$repetition) == 1L)
+  if (type == "instance") {
+    stopifnot(max(frs$repetition) == 1L)
+  }
+
   # note that frs and costs are ordered by instance_id
-  iids = frs$instance_id
+  iids = frs[[id.col]]
   # reduce to allowed feature steps
   frs = frs[, feature.steps, drop = FALSE]
   isps = frs == "presolved"
@@ -34,8 +50,8 @@ getCostsAndPresolvedStatus = function(asscenario, feature.steps) {
     ifelse(any(x), which.first(x), NA_integer_))
   # set NA to nr of steps (means we use all in costs)
   solve.steps2 = ifelse(is.na(solve.steps1), length(feature.steps), solve.steps1)
-  if (!is.null(asscenario$feature.costs)) {
-    costs = asscenario$feature.costs[, feature.steps, drop = FALSE]
+  if (!is.null(asscenario[[cost.col]])) {
+    costs = asscenario[[cost.col]][, feature.steps, drop = FALSE]
     # add up costs to solving step (or add up all), removing any NAs
     costs = sapply(seq_row(costs), function(i) sum(costs[i, 1:solve.steps2[i]], na.rm = TRUE))
     costs = setNames(costs, iids)

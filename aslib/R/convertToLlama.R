@@ -27,7 +27,7 @@ convertToLlama = function(asscenario, measure, feature.steps) {
         stopf(paste("Feature step dependency", d, "not satisfied!"))
     }
   }
-  inst.feats = convertFeats(asscenario, with.instance.id = TRUE)
+  inst.feats = convertFeats(asscenario, with.id = TRUE, type = "instance")
   # subset to features used in requested feature steps
   tosel = as.vector(unlist(lapply(asscenario$desc$feature_steps[feature.steps], function(d) d$provides)))
   # some features may have been removed by conversion/imputation
