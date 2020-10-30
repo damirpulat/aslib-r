@@ -29,19 +29,27 @@ convertToLlama = function(asscenario, measure, feature.steps) {
   }
   inst.feats = convertFeats(asscenario, with.id = TRUE, type = "instance")
   # subset to features used in requested feature steps
-  tosel = as.vector(unlist(lapply(asscenario$desc$feature_steps[feature.steps], function(d) d$provides)))
+  inst.tosel = as.vector(unlist(lapply(asscenario$desc$feature_steps[feature.steps], function(d) d$provides)))
   # some features may have been removed by conversion/imputation
-  tosel = intersect(names(inst.feats), tosel)
-
+  inst.tosel = intersect(names(inst.feats), inst.tosel)
   inst.feats = inst.feats[c("instance_id", tosel)]
+  
+  algo.feats = convertFeats(asscenario, with.id = TRUE, type = "instance")
+  # subset to features used in requested feature steps
+  algo.tosel = as.vector(unlist(lapply(asscenario$desc$feature_steps[feature.steps], function(d) d$provides)))
+  # some features may have been removed by conversion/imputation
+  algo.tosel = intersect(names(algo.feats), algo.tosel)
+  algo.feats = algo.feats[c("algorithm", algo.tosel)]
+
+  
   cp = convertPerf(asscenario, measure = measure, feature.steps = feature.steps,
     add.feature.costs = FALSE, with.instance.id = TRUE)
 
-  if(!is.null(asscenario$feature.costs)) {
+  if(!is.null(asscenario$instance.feature.costs)) {
       # set all unknown feature costs (i.e. for feature steps that didn't run) to 0
-      asscenario$feature.costs[is.na(asscenario$feature.costs)] = 0
+      asscenario$instance.feature.costs[is.na(asscenario$instance.feature.costs)] = 0
       costs = list(groups = lapply(asscenario$desc$feature_steps[feature.steps], function(d) d$provides),
-          values=asscenario$feature.costs[,c("instance_id", feature.steps)])
+          values=asscenario$instance.feature.costs[,c("instance_id", feature.steps)])
       ldf = input(inst.feats, cp$perf, successes = cp$successes,
           minimize = as.logical(!asscenario$desc$maximize[measure]), costs = costs)
   } else {
