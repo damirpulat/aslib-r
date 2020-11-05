@@ -10,8 +10,8 @@
 #'   \dQuote{solution_quality}.}
 #' \item{algorithm_cutoff_time [\code{numeric(1)}]}{Cutoff time for an algorithm run.}
 #' \item{algorithm_cutoff_memory [\code{numeric(1)}]}{Cutoff memory for an algorithm run.}
-#' \item{instance_features_cutoff_time [\code{numeric(1)}]}{Cutoff time for an instance feature run.}
-#' \item{instance_features_cutoff_memory [\code{numeric(1)}]}{Cutoff memory for an instance feature run.}
+#' \item{features_cutoff_time [\code{numeric(1)}]}{Cutoff time for an instance feature run.}
+#' \item{features_cutoff_memory [\code{numeric(1)}]}{Cutoff memory for an instance feature run.}
 #' \item{algorithm_features_cutoff_time [\code{numeric(1)}]}{Cutoff time for an algorithm feature run.}
 #' \item{algorithm_features_cutoff_memory [\code{numeric(1)}]}{Cutoff memory for an algorithm feature run.}
 #' \item{feature_steps [named \code{list} of \code{character}]}{Names of feature processing steps, the other feature steps they require, and the features they provide.}
@@ -29,8 +29,8 @@ parseDescription = function(path) {
   desc = yaml.load_file(file.path(path, "description.txt"))
 
   assertSubset(c("scenario_id", "performance_measures", "maximize", "performance_type", 
-                 "algorithm_cutoff_time", "algorithm_cutoff_memory", "instance_features_cutoff_time", 
-                 "instance_features_cutoff_memory", "instance_features_deterministic", "instance_features_stochastic", 
+                 "algorithm_cutoff_time", "algorithm_cutoff_memory", "features_cutoff_time", 
+                 "features_cutoff_memory", "features_deterministic", "features_stochastic", 
                  "number_of_feature_steps", "default_steps", "feature_steps", "metainfo_algorithms"), names(desc))
 
   # now handle all non-scalar strings and convert them to proper data types
@@ -49,10 +49,10 @@ parseDescription = function(path) {
   convertField("maximize", as.logical)
   convertField("algorithm_cutoff_time", as.numeric)
   convertField("algorithm_cutoff_memory", as.numeric)
-  convertField("instance_features_cutoff_time", as.numeric)
-  convertField("instance_features_cutoff_memory", as.numeric)
-  convertField("instance_features_deterministic", make.names)
-  convertField("instance_features_stochastic", make.names)
+  convertField("features_cutoff_time", as.numeric)
+  convertField("features_cutoff_memory", as.numeric)
+  convertField("features_deterministic", make.names)
+  convertField("features_stochastic", make.names)
   convertField("algorithm_features_cutoff_time", as.numeric)
   convertField("algorithm_features_cutoff_memory", as.numeric)
   convertField("algorithm_features_deterministic", make.names)

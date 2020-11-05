@@ -10,7 +10,7 @@
 #  @details
 #' \describe{
 #' \item{desc [\code{\link{ASScenarioDesc}}]}{Description object, containing further info.}
-#' \item{instance.feature.runstatus [\code{data.frame(n, s + 2)}]}{Runstatus of instance feature computation steps.
+#' \item{feature.runstatus [\code{data.frame(n, s + 2)}]}{Runstatus of instance feature computation steps.
 #'   The first 2 columns are \dQuote{instance_id} and \dQuote{repetition}, the remaining are the status factors.
 #'   The step columns are in the same order as the feature steps in the description object.
 #'   The factor levels are always: ok, presolved, crash, timeout, memout, other.
@@ -22,7 +22,7 @@
 #'   The factor levels are always: ok, crash, timeout, memout, other.
 #'   No entry can be \code{NA}.
 #'   The data.frame is sorted by \dQuote{algorithm}.}
-#' \item{instance.feature.costs [\code{data.frame(n, s + 2)}]}{Costs of instance feature computation steps.
+#' \item{feature.costs [\code{data.frame(n, s + 2)}]}{Costs of instance feature computation steps.
 #'   The first 2 columns are \dQuote{instance_id} and \dQuote{repetition}, the remaining are
 #'   numeric costs of the instance feature steps.
 #'   The step columns are in the same order as the feature steps in the description object.
@@ -36,11 +36,11 @@
 #'   code{NA} means the cost is not available, possibly because the feature computation was aborted.
 #'   The data.frame is sorted by \dQuote{algorithm}.
 #'   If no cost file is available at all, \code{NULL} is stored.}
-#' \item{instance.feature.values [\code{data.frame(n, p + 2)}]}{Measured feature values of instances.
+#' \item{feature.values [\code{data.frame(n, p + 2)}]}{Measured feature values of instances.
 #'   The first 2 columns are \dQuote{instance_id} and \dQuote{repetition}. The remaining ones are
 #'   the measured instance features.
 #'   The feature columns are in the same order as \dQuote{instance_features_deterministic},
-#'   \dQuote{instance_features_stochastic} in the description object.
+#'   \dQuote{features_stochastic} in the description object.
 #'   code{NA} means the feature is not available, possibly because the feature computation was aborted.
 #'   The data.frame is sorted by \dQuote{instance_id}, then \dQuote{repetition}.}
 #' \item{algorithm.feature.values [\code{data.frame(k, p + 1)}]}{Measured feature values of algorithms
@@ -85,37 +85,38 @@ parseASScenario = function(path) {
 
   desc = parseDescription(path)
   fsteps = names(desc$feature_steps)
+  algo_fsteps = names(desc$algorithm_feature_steps)
 
-  ### build instance.feature.runstatus
-  instance.feature.runstatus = readRunstatus(path = path, filename = "instance_feature_runstatus.arff", 
+  ### build feature.runstatus
+  feature.runstatus = readRunstatus(path = path, filename = "feature_runstatus.arff", 
                 statusLevels = c("ok", "timeout", "memout", "presolved", "crash", "other", "unknown"), 
                 fsteps = fsteps, sortBy = c("instance_id", "repetition"))
   
   ### build algorithm.feature.runstatus
   algorithm.feature.runstatus = readRunstatus(path = path, filename = "algorithm_feature_runstatus.arff", 
                 statusLevels = c("ok", "timeout", "memout", "crash", "other", "unknown"), 
-                fsteps = fsteps, sortBy = c("algorithm"), ignoreExists = TRUE)
+                fsteps = algo_fsteps, sortBy = c("algorithm", "repetition"), ignoreExists = TRUE)
 
   ### build feature.costs
-  instance.costfile = file.path(path, "instance_feature_costs.arff")
-  instance.feature.costs = readCosts(filename = instance.costfile, 
+  costfile = file.path(path, "feature_costs.arff")
+  feature.costs = readCosts(filename = costfile, 
                                      fsteps = fsteps, sortBy = c("instance_id", "repetition"))
   
   algorithm.costfile = file.path(path, "algorithm_feature_costs.arff")
   algorithm.feature.costs = readCosts(filename = algorithm.costfile, 
-                                     fsteps = fsteps, sortBy = c("algorithm"))
+                                     fsteps = fsteps, sortBy = c("algorithm", "repetition"))
 
-  ### build instance.feature.values
-  instance.feature.values = readFeatureValues(path = path, 
-              filename = "instance_feature_values.arff",
+  ### build feature.values
+  feature.values = readFeatureValues(path = path, 
+              filename = "feature_values.arff",
               sortBy = c("instance_id", "repetition"), 
-              featureSort = c(desc$instance_features_deterministic, desc$instance_features_stochastic), 
+              featureSort = c(desc$features_deterministic, desc$features_stochastic), 
               ignoreExists = FALSE)
   
   ### build algorithm.feature.values
   algorithm.feature.values = readFeatureValues(path = path, 
               filename = "algorithm_feature_values.arff",
-              sortBy = c("algorithm"), 
+              sortBy = c("algorithm", "repetition"), 
               featureSort = c(desc$algorithm_features_deterministic, desc$algorithm_features_stochastic), 
               ignoreExists = TRUE)
 
@@ -151,9 +152,9 @@ parseASScenario = function(path) {
 
   makeS3Obj("ASScenario",
             desc = desc,
-            instance.feature.runstatus = instance.feature.runstatus,
-            instance.feature.costs = instance.feature.costs,
-            instance.feature.values = instance.feature.values,
+            feature.runstatus = feature.runstatus,
+            feature.costs = feature.costs,
+            feature.values = feature.values,
             algorithm.feature.runstatus = algorithm.feature.runstatus,
             algorithm.feature.costs = algorithm.feature.costs,
             algorithm.feature.values = algorithm.feature.values,
@@ -182,16 +183,16 @@ print.ASScenario = function(x, ...) {
   printField1("Performance types", d$performance_type)
   printField1("Algorithm cutoff time", d$algorithm_cutoff_time)
   printField1("Algorithm cutoff mem", d$algorithm_cutoff_memory)
-  printField1("Instance Feature cutoff time", d$instance_features_cutoff_time)
-  printField1("Instance Feature cutoff mem", d$instance_features_cutoff_memory)
+  printField1("Instance Feature cutoff time", d$features_cutoff_time)
+  printField1("Instance Feature cutoff mem", d$features_cutoff_memory)
   printField1("Algorithm Feature cutoff time", d$algorithm_features_cutoff_time)
   printField1("Algorithm Feature cutoff mem", d$algorithm_features_cutoff_memory)
   printField1("Nr. of instances", length(unique(x$feature.values$instance_id)))
-  printField1("Instance Features (deterministic)", d$instance_features_deterministic)
-  printField1("Instance Features (stochastic)", d$instance_features_stochastic)
+  printField1("Instance Features (deterministic)", d$features_deterministic)
+  printField1("Instance Features (stochastic)", d$features_stochastic)
   printField1("Algorithm Features (deterministic)", d$algorithm_features_deterministic)
   printField1("Algorithm Features (stochastic)", d$algorithm_features_stochastic)
-  printField1("Feature repetitions", collapse(range(x$instance.feature.values$repetition), sep = " - "))
+  printField1("Feature repetitions", collapse(range(x$feature.values$repetition), sep = " - "))
   printField1("Feature costs", ifelse(is.null(x$feature.costs), "No", "Yes"))
   printField1("Algo.", names(d$metainfo_algorithms))
   printField1("Algo. repetitions", collapse(range(x$algo.runs$repetition), sep = " - "))
