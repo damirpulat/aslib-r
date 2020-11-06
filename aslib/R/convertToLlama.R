@@ -46,16 +46,17 @@ convertToLlama = function(asscenario, measure, feature.steps) {
   
   cp = convertPerf(asscenario, measure = measure, feature.steps = feature.steps,
     add.feature.costs = FALSE, with.instance.id = TRUE)
-
-  if(!is.null(asscenario$instance.feature.costs)) {
+  
+  #FIXME: add algorithm feature costs
+  if(!is.null(asscenario$feature.costs)) {
       # set all unknown feature costs (i.e. for feature steps that didn't run) to 0
-      asscenario$instance.feature.costs[is.na(asscenario$instance.feature.costs)] = 0
+      asscenario$feature.costs[is.na(asscenario$feature.costs)] = 0
       costs = list(groups = lapply(asscenario$desc$feature_steps[feature.steps], function(d) d$provides),
-          values=asscenario$instance.feature.costs[,c("instance_id", feature.steps)])
-      ldf = input(inst.feats, cp$perf, successes = cp$successes,
+          values=asscenario$feature.costs[,c("instance_id", feature.steps)])
+      ldf = input(feats, algo.feats, cp$perf, successes = cp$successes,
           minimize = as.logical(!asscenario$desc$maximize[measure]), costs = costs)
   } else {
-      ldf = input(inst.feats, cp$perf, successes = cp$successes,
+      ldf = input(feats, algo.feats, cp$perf, successes = cp$successes,
           minimize = as.logical(!asscenario$desc$maximize[measure]))
   }
 
