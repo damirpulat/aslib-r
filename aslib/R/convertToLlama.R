@@ -22,21 +22,23 @@ convertToLlama = function(asscenario, measure, feature.steps) {
 
   # check dependencies of requested feature steps
   deps = unlist(lapply(asscenario$desc$feature_steps[feature.steps], function(d) d$requires))
+  deps = c(deps, unlist(lapply(asscenario$desc$algorithm_feature_steps[feature.steps], function(d) d$requires)))
   for (d in deps) {
     if (!(d %in% feature.steps)) {
         stopf(paste("Feature step dependency", d, "not satisfied!"))
     }
   }
-  inst.feats = convertFeats(asscenario, with.id = TRUE, type = "instance")
-  # subset to features used in requested feature steps
-  inst.tosel = as.vector(unlist(lapply(asscenario$desc$feature_steps[feature.steps], function(d) d$provides)))
-  # some features may have been removed by conversion/imputation
-  inst.tosel = intersect(names(inst.feats), inst.tosel)
-  inst.feats = inst.feats[c("instance_id", tosel)]
   
-  algo.feats = convertFeats(asscenario, with.id = TRUE, type = "instance")
+  feats = convertFeats(asscenario, feature.steps = feature.steps, with.id = TRUE, type = "instance")
   # subset to features used in requested feature steps
-  algo.tosel = as.vector(unlist(lapply(asscenario$desc$feature_steps[feature.steps], function(d) d$provides)))
+  tosel = as.vector(unlist(lapply(asscenario$desc$feature_steps[feature.steps], function(d) d$provides)))
+  # some features may have been removed by conversion/imputation
+  tosel = intersect(names(feats), tosel)
+  feats = feats[c("instance_id", tosel)]
+  
+  algo.feats = convertFeats(asscenario, feature.steps = feature.steps, with.id = TRUE, type = "algorithm")
+  # subset to features used in requested feature steps
+  algo.tosel = as.vector(unlist(lapply(asscenario$desc$algorithm_feature_steps[feature.steps], function(d) d$provides)))
   # some features may have been removed by conversion/imputation
   algo.tosel = intersect(names(algo.feats), algo.tosel)
   algo.feats = algo.feats[c("algorithm", algo.tosel)]
