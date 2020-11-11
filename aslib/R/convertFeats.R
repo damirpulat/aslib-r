@@ -14,6 +14,11 @@ convertFeats = function(asscenario, feature.steps, with.id, type) {
     sortBy = c("algorithm", "repetition")
   }
   
+  # simply return NULL if algorithm features are needed but not present
+  if (is.null(asscenario[[feature.col]]) && type == "algorithm") {
+    return(NULL)
+  }
+  
   # reduce to inst + rep + allowed features
   # note that feats is ordered by instance, then repetition
   selected.feature.steps = intersect(feature.steps, names(asscenario$desc[[step.col]]))
