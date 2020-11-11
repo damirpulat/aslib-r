@@ -38,7 +38,7 @@ convertToLlamaCVFolds = function(asscenario, measure, feature.steps, algorithm.f
     feature.steps = getDefaultFeatureStepNames(asscenario)
   }
   else
-    assertSubset(feature.steps, allsteps)
+    assertSubset(feature.steps, c(allsteps, algo.allsteps))
 
   reps = max(cv.splits$repetition)
   if (reps > 1L)
