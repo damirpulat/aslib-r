@@ -95,39 +95,57 @@ convertToLlama = function(asscenario, measure, feature.steps) {
 #'        performances.
 #' @export
 fixFeckingPresolve = function(asscenario, ldf) {
-    presolvedGroups = names(asscenario$feature.runstatus)[apply(asscenario$feature.runstatus, 2, function(x) { any(x == "presolved") })]
-    usedGroups = subset(names(asscenario$desc$feature_steps),
-        sapply(names(asscenario$desc$feature_steps),
-            function(x) {
-                length(intersect(asscenario$desc$feature_steps[[x]]$provides, ldf$features)) > 0
-            }))
-    # are we using any of the feature steps that cause presolving?
-    if(length(intersect(presolvedGroups, usedGroups)) > 0) {
-        presolved = asscenario$feature.runstatus[apply(subset(asscenario$feature.runstatus, TRUE, usedGroups), 1, function(x) { any(x == "presolved") }),]
-        if(nrow(presolved) > 0) {
-            presolvedTimes = sapply(rownames(presolved), function(x) {
-                pCosts = subset(asscenario$feature.costs[x,], T, presolved[x,] == "presolved")
-                pCosts = pCosts[intersect(names(pCosts), usedGroups)]
-                pCosts[is.na(pCosts)] = 0
-                as.numeric(pCosts[1])
-            })
-            rows = na.omit(match(presolved$instance_id, ldf$data$instance_id))
-            if(length(rows) > 0) {
-                ts = presolvedTimes[na.omit(match(ldf$data$instance_id, presolved$instance_id))]
-                ldf$data[rows,ldf$performance] = ts
-                ldf$data[rows,ldf$success] = T
-                if(length(ldf$test) > 0) {
-                    for(i in 1:length(ldf$test)) {
-                        rows = na.omit(match(presolved$instance_id, ldf$data[ldf$test[[i]],]$instance_id))
-                        if(length(rows) > 0) {
-                            ts = presolvedTimes[na.omit(match(ldf$data[ldf$test[[i]],]$instance_id, presolved$instance_id))]
-                            ldf$data[ldf$test[[i]],][rows,ldf$performance] = ts
-                            ldf$data[ldf$test[[i]],][rows,ldf$success] = T
-                        }
-                    }
-                }
-            }
+  presolvedGroups = names(asscenario$feature.runstatus)[apply(asscenario$feature.runstatus, 2, function(x) { any(x == "presolved") })]
+  usedGroups = subset(names(asscenario$desc$feature_steps),
+    sapply(names(asscenario$desc$feature_steps),
+      function(x) {
+        length(intersect(asscenario$desc$feature_steps[[x]]$provides, ldf$features)) > 0
+        }))
+  # are we using any of the feature steps that cause presolving?
+  if(length(intersect(presolvedGroups, usedGroups)) > 0) {
+    presolved = asscenario$feature.runstatus[apply(subset(asscenario$feature.runstatus, TRUE, usedGroups), 1, function(x) { any(x == "presolved") }),]
+    if(nrow(presolved) > 0) {
+      presolvedTimes = sapply(rownames(presolved), function(x) {
+        pCosts = subset(asscenario$feature.costs[x,], T, presolved[x,] == "presolved")
+        pCosts = pCosts[intersect(names(pCosts), usedGroups)]
+        pCosts[is.na(pCosts)] = 0
+        as.numeric(pCosts[1])
+      })
+      if(is.null(ldf$algorithmFeatures)) {
+        rows = na.omit(match(presolved$instance_id, ldf$data$instance_id))
+      } else {
+        rows = as.numeric(rownames(ldf$data[ldf$data$instance_id %in% presolved$instance_id, ]))
+      }
+      
+      if(length(rows) > 0) {
+        ts = presolvedTimes[na.omit(match(ldf$data$instance_id, presolved$instance_id))]
+        if(is.null(ldf$algorithmFeatures)) {
+          ldf$data[rows,ldf$performance] = ts
+        } else {
+          ldf$data[rows,"performance"] = ts
         }
+        ldf$data[rows,ldf$success] = T
+        
+        if(length(ldf$test) > 0) {
+          for(i in 1:length(ldf$test)) {
+            if(is.null(ldf$algorithmFeatures)) {
+              rows = na.omit(match(presolved$instance_id, ldf$data[ldf$test[[i]],]$instance_id))
+            } else {
+              rows = rownames(ldf$data[ldf$test[[i]],][ldf$data[ldf$test[[i]],]$instance_id %in% presolved$instance_id,])
+            }
+            if(length(rows) > 0) {
+              ts = presolvedTimes[na.omit(match(ldf$data[ldf$test[[i]],]$instance_id, presolved$instance_id))]
+              if(is.null(ldf$algorithmFeatures)) {
+                ldf$data[ldf$test[[i]],][rows,ldf$performance] = ts
+              } else {
+                ldf$data[ldf$test[[i]],][rows,"performance"] = ts
+              }
+              ldf$data[ldf$test[[i]],][rows,ldf$success] = T
+            }
+          }
+        }
+      }
     }
-    return(ldf)
+  }
+  return(ldf)
 }
