@@ -2,9 +2,9 @@
 % Please edit documentation in R/getCostsAndPresolvedStatus.R
 \name{getCostsAndPresolvedStatus}
 \alias{getCostsAndPresolvedStatus}
-\title{Return wether an instance was presolved and which step did it.}
+\title{Return whether an instance was presolved and which step did it.}
 \usage{
-getCostsAndPresolvedStatus(asscenario, feature.steps)
+getCostsAndPresolvedStatus(asscenario, feature.steps, type)
 }
 \arguments{
 \item{asscenario}{[\code{\link{ASScenario}}]\cr
@@ -13,6 +13,9 @@ Algorithm selection scenario.}
 \item{feature.steps}{[\code{character}]\cr
 Which feature steps are allowed?
 Default is all steps.}
+
+\item{type}{[\code{character(1)}]\cr
+Feature type (instance or algorithmic).}
 }
 \value{
 [\code{list}]. In the following, \code{n} is the number of instances. All following object are ordered by \dQuote{instance_id}.
@@ -21,5 +24,5 @@ Default is all steps.}
   \item{costs [\code{numeric(n)}]}{Feature costs for using the steps. Named by instance ids. NULL if no costs are present.}
 }
 \description{
-Return wether an instance was presolved and which step did it.
+Return whether an instance was presolved and which step did it.
 }
