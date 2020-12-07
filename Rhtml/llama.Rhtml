@@ -94,16 +94,19 @@ The feature steps correspond to the following <!--rinline length(feats)--> / <!-
   }
 end.rcode-->
 <p>
-The feature steps correspond to the following <!--rinline length(algo.feats)--> / <!-- rinline length(algo.allfeats) --> algorithm features:
-<p>
+
 <!--begin.rcode, results = "asis"
-  for (i in seq_along(algo.feats)) {
-    cat(algo.feats[i]); if (i != length(algo.feats)) cat(", ")
-    if (i %% 5 == 0L )
-      cat("<br>")
-  }
+	if (!is.null(asscenario$algorithm.feature.values)) {
+		cat("The feature steps correspond to the following ", "<code class=\"knitr inline\">", length(algo.feats), "</code> ", "/ ", "<code class=\"knitr inline\">", length(algo.allfeats), "</code> ", "algorithm features:\n", sep="")
+		cat("<p>\n")
+		for (i in seq_along(algo.feats)) {
+    	cat(algo.feats[i]); if (i != length(algo.feats)) cat(", ")
+    	if (i %% 5 == 0L )
+      	cat("<br>")
+  	}
+		cat("<p>\n")
+	}
 end.rcode-->
-<p>
 
 <h3> Algorithm and Feature Subset Selection </h3>
 
