@@ -45,7 +45,7 @@ for (i in seq_along(asscenarios)) {
   catf("<td>"); catf("<a href='%s'>%s</a>", url, desc$scenario_id); catf("</td>")
   printTDNumber(length(getInstanceNames(asscenario)))
   printTDNumber(length(getAlgorithmNames(asscenario)))
-  printTDNumber(length(getFeatureNames(asscenario)))
+  printTDNumber(length(getFeatureNames(asscenario, "instance")) + length(getFeatureNames(asscenario, "algorithm")))
   printTDString(asscenario$desc$performance_type[[1]])
   printTDString(sprintf("%s, max. reps = %i",
     length(asscenario$desc$features_stochastic) > 0L, max(asscenario$feature.values$repetition)))
