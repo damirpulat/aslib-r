@@ -55,10 +55,10 @@ convertToLlama = function(asscenario, measure, feature.steps) {
     asscenario$feature.costs[is.na(asscenario$feature.costs)] = 0
     costs = list(groups = lapply(asscenario$desc$feature_steps[instance.feature.steps], function(d) d$provides),
                  values=asscenario$feature.costs[,c("instance_id", instance.feature.steps)])
-    ldf = input(feats, algo.feats, cp$perf, successes = cp$successes,
+    ldf = input(feats, cp$perf, algorithmFeatures = algo.feats, successes = cp$successes,
                 minimize = as.logical(!asscenario$desc$maximize[measure]), costs = costs)
   } else {
-    ldf = input(feats, algo.feats, cp$perf, successes = cp$successes,
+    ldf = input(feats, cp$perf, algorithmFeatures = algo.feats, successes = cp$successes,
                 minimize = as.logical(!asscenario$desc$maximize[measure]))
   }
   
