@@ -33,4 +33,4 @@ Suggests:
 LazyData: yes
 ByteCompile: yes
 Version: 0.1.1
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
