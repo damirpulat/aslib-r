@@ -8,7 +8,7 @@
 #' @param feature.steps [\code{character}]\cr
 #'   Which feature steps are allowed?
 #'   Default is all steps.
-#' @param type [\code{character(1)}]
+#' @param type [\code{character(1)}]\cr
 #'   Feature type (instance or algorithmic). 
 #' @return [\code{list}]. In the following, \code{n} is the number of instances. All following object are ordered by \dQuote{instance_id}.
 #'   \item{is.presolved [\code{logical(n)}]}{Was instance presolved? Named by instance ids.}
