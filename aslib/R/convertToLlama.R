@@ -114,7 +114,7 @@ fixFeckingPresolve = function(asscenario, ldf) {
       if(is.null(ldf$algorithmFeatures)) {
         rows = na.omit(match(presolved$instance_id, ldf$data$instance_id))
       } else {
-        rows = as.numeric(rownames(ldf$data[ldf$data$instance_id %in% presolved$instance_id, ]))
+        rows = rownames(ldf$data[ldf$data$instance_id %in% presolved$instance_id, ])
       }
       
       if(length(rows) > 0) {
@@ -122,7 +122,7 @@ fixFeckingPresolve = function(asscenario, ldf) {
         if(is.null(ldf$algorithmFeatures)) {
           ldf$data[rows,ldf$performance] = ts
         } else {
-          ldf$data[rows,"performance"] = ts
+          ldf$data[rows,ldf$performance] = ts
         }
         ldf$data[rows,ldf$success] = T
         
@@ -138,7 +138,7 @@ fixFeckingPresolve = function(asscenario, ldf) {
               if(is.null(ldf$algorithmFeatures)) {
                 ldf$data[ldf$test[[i]],][rows,ldf$performance] = ts
               } else {
-                ldf$data[ldf$test[[i]],][rows,"performance"] = ts
+                ldf$data[ldf$test[[i]],][rows,ldf$performance] = ts
               }
               ldf$data[ldf$test[[i]],][rows,ldf$success] = T
             }
