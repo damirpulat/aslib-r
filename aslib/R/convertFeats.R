@@ -42,8 +42,10 @@ convertFeats = function(asscenario, feature.steps, with.id, type) {
   # remove constant features, currently we do not count NAs as an extra-level
   # the feature would still be completely constant if we impute just with mean
   # THIS CHANGES IF WE CREATE  DUMMIES FOR NAs LIKE WE SHOULD!
-  feats = removeConstScenFeats(feats, id = id.col)
-  if (!with.id)
+	if (type == "instance") {
+  	feats = removeConstScenFeats(feats, id = id.col)
+  }
+	if (!with.id)
     feats[[id.col]] = NULL
 
 
