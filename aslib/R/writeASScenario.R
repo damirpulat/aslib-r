@@ -21,12 +21,16 @@ writeASScenario = function(asscenario, path = asscenario$desc$scenario_id) {
   desc = lapply(asscenario$desc, yamlify)
   cat(as.yaml(desc), file = "description.txt")
 
-  write.arff(asscenario$instance.feature.values, "instance_feature_values.arff")
-  write.arff(asscenario$algorithm.feature.values, "algorithm_feature_values.arff")
-  write.arff(asscenario$instance.feature.runstatus, "instance_feature_runstatus.arff")
-  write.arff(asscenario$algorithm.feature.runstatus, "algorithm_feature_runstatus.arff")
-  if (!is.null(asscenario$instance.feature.costs)) {
-    write.arff(asscenario$instance.feature.costs, "instance_feature_costs.arff")
+  write.arff(asscenario$feature.values, "feature_values.arff")
+	if (!is.null(asscenario$algorithm.feature.values)) {
+		write.arff(asscenario$algorithm.feature.values, "algorithm_feature_values.arff")
+  }
+	write.arff(asscenario$feature.runstatus, "feature_runstatus.arff")
+	if (!is.null(asscenario$algorithm.feature.runstatus)) {
+  	write.arff(asscenario$algorithm.feature.runstatus, "algorithm_feature_runstatus.arff")
+  }
+	if (!is.null(asscenario$feature.costs)) {
+    write.arff(asscenario$feature.costs, "feature_costs.arff")
   }
   if (!is.null(asscenario$algorithm.feature.costs)) {
     write.arff(asscenario$algorithm.feature.costs, "algorithm_feature_costs.arff")
