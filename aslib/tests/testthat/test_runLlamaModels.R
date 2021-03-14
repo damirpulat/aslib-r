@@ -17,7 +17,7 @@ test_that("runLlamaModels", {
   waitForJobs(reg)
   errors = getErrorMessages(reg)
   expect_true(length(errors) == 0)
-  res = reduceResultsExperiments(reg, fun = aggrShort)
+  res = summarizeLlamaExps(reg, ids = findSubmitted(), fun = aggrShort)
   expect_true(is.data.frame(res) && nrow(res) == 4L)
   expect_true(abs(res[1,]$par10 - 8337.099) < .1)
 
@@ -36,7 +36,7 @@ test_that("runLlamaModels w/ costs", {
   )
   submitJobs(reg)
   waitForJobs(reg)
-  res = reduceResultsExperiments(reg, fun = aggrShort)
+  res = summarizeLlamaExps(reg, ids = findSubmitted(), fun = aggrShort)
   expect_true(is.data.frame(res) && nrow(res) == 2L)
   expect_true(abs(res[1,]$par10 - 2221.497) < .1)
   # greater than without costs
