@@ -15,7 +15,7 @@
 #'   \item{solve.steps [\code{character(n)}]}{Which step solved it? NA if no step did it. Named by instance ids.}
 #'   \item{costs [\code{numeric(n)}]}{Feature costs for using the steps. Named by instance ids. NULL if no costs are present.}
 #' @export
-getCostsAndPresolvedStatus = function(asscenario, feature.steps, type) {
+getCostsAndPresolvedStatus = function(asscenario, feature.steps, type = "instance") {
   assertClass(asscenario, "ASScenario")
   assertChoice(type, c("instance", "algorithm"))
   
