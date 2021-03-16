@@ -32,11 +32,11 @@ getCostsAndPresolvedStatus = function(asscenario, feature.steps, type = "instanc
   }
   
   allsteps = getFeatureStepNames(asscenario, type = type)
-  feature.steps = intersect(feature.steps, names(asscenario$desc[[step.col]]))
   if (missing(feature.steps))
     feature.steps = allsteps
   else
     assertSubset(feature.steps, allsteps)
+  feature.steps = intersect(feature.steps, names(asscenario$desc[[step.col]]))
   
   frs = asscenario[[status.col]]
   #FIXME:
