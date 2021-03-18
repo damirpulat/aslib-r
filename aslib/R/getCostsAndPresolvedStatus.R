@@ -32,12 +32,13 @@ getCostsAndPresolvedStatus = function(asscenario, feature.steps, type) {
   }
   
   allsteps = getFeatureStepNames(asscenario, type = type)
-  feature.steps = intersect(feature.steps, names(asscenario$desc[[step.col]]))
   if (missing(feature.steps))
     feature.steps = allsteps
-  else
+  else {
+    feature.steps = intersect(feature.steps, names(asscenario$desc[[step.col]]))
     assertSubset(feature.steps, allsteps)
-  
+  }
+
   frs = asscenario[[status.col]]
   #FIXME:
   stopifnot(max(frs$repetition) == 1L)

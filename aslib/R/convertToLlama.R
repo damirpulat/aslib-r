@@ -29,7 +29,7 @@ convertToLlama = function(asscenario, measure, feature.steps) {
     }
   }
   
-  feats = convertFeats(asscenario, feature.steps = feature.steps, with.id = TRUE, type = "instance")
+  feats = convertFeats(asscenario, with.id = TRUE, type = "instance")
   # subset to features used in requested feature steps
   tosel = as.vector(unlist(lapply(asscenario$desc$feature_steps[feature.steps], function(d) d$provides)))
   # some features may have been removed by conversion/imputation

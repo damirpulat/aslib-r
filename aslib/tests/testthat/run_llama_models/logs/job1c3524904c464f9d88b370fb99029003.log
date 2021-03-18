@@ -1,0 +1,10 @@
+### [bt]: This is batchtools v0.9.15
+### [bt]: Starting calculation of 1 jobs
+### [bt]: Setting working directory to '/home/damir/research/aslib-r/aslib/tests/testthat'
+### [bt]: Memory measurement disabled
+### [bt]: Starting job [batchtools job.id=3]
+### [bt]: Generating problem instance for problem 'QBF-2011' ...
+### [bt]: Applying algorithm 'regr_rpart' on problem 'QBF-2011' for job 3 (seed = 25464) ...
+
+### [bt]: Job terminated successfully [batchtools job.id=3]
+### [bt]: Calculation finished!

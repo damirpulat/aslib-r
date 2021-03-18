@@ -1,0 +1,10 @@
+### [bt]: This is batchtools v0.9.15
+### [bt]: Starting calculation of 1 jobs
+### [bt]: Setting working directory to '/home/damir/research/aslib-r/aslib/tests/testthat'
+### [bt]: Memory measurement disabled
+### [bt]: Starting job [batchtools job.id=4]
+### [bt]: Generating problem instance for problem 'QBF-2011' ...
+### [bt]: Applying algorithm 'cluster_SimpleKMeans' on problem 'QBF-2011' for job 4 (seed = 25465) ...
+
+### [bt]: Job terminated successfully [batchtools job.id=4]
+### [bt]: Calculation finished!

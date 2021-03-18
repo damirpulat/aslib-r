@@ -21,8 +21,7 @@ convertFeats = function(asscenario, feature.steps, with.id, type) {
   
   # reduce to inst + rep + allowed features
   # note that feats is ordered by instance, then repetition
-  selected.feature.steps = intersect(feature.steps, names(asscenario$desc[[step.col]]))
-  allowed.features = getProvidedFeatures(asscenario, selected.feature.steps, type = type)
+  allowed.features = getProvidedFeatures(asscenario, type = type)
   feats = asscenario[[feature.col]]
   feats = feats[, c(sortBy, allowed.features), drop = FALSE]
 
