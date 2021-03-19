@@ -117,8 +117,8 @@ runLlamaModels = function(asscenarios, feature.steps.list = NULL, baselines = NU
 
   # add baselines to reg
   if (length(baselines) > 0L) {
-    addAlgorithm(reg = reg, name = "baseline", fun = function(data, job, instance, ...) {
-      llama.fun = get(name, envir = asNamespace("llama"))
+    addAlgorithm(reg = reg, name = "baseline", fun = function(data, job, instance, type, ...) {
+      llama.fun = get(type, envir = asNamespace("llama"))
       p = llama.fun(data = data$llama.scenario)
       p = list(predictions = p)
       # this is how LLAMA checks what type of argument is given to the evaluation function

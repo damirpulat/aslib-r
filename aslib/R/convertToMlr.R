@@ -5,7 +5,7 @@ convertToMlr = function(asscenario, measure, feature.steps, add.feature.costs = 
   measure = ch$measure; feature.steps = ch$feature.steps
 
   ### scenario
-  feats = convertFeats(asscenario, with.instance.id = FALSE)
+  feats = convertFeats(asscenario, with.id = FALSE, type = "instance")
   cp = convertPerf(asscenario, measure = measure, feature.steps = feature.steps,
     add.feature.costs = add.feature.costs, with.instance.id = FALSE)
   costs = if (desc$maximize[[measure]])
