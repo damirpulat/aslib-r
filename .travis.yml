@@ -22,3 +22,5 @@ r_packages:
 
 before_install:
   - cd aslib
+  - sudo $(which R) CMD javareconf
+
