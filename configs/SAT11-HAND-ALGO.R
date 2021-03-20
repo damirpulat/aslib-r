@@ -1,0 +1,2 @@
+algo.perf.log = TRUE
+
