@@ -12,6 +12,7 @@
 #' @import plyr
 #' @import reshape2
 #' @import RWeka
+#' @import farff
 #' @import stats
 #' @import stringr
 #' @import yaml

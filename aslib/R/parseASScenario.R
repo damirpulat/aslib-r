@@ -120,7 +120,7 @@ parseASScenario = function(path) {
               featureSort = c(desc$algorithm_features_deterministic, desc$algorithm_features_stochastic), 
               ignoreExists = TRUE)
 
-  algo.runs = readARFF(file.path(path, "algorithm_runs.arff"))
+  algo.runs = readARFF(file.path(path, "algorithm_runs.arff"), data.reader = "data.table")
   colnames(algo.runs) = make.names(colnames(algo.runs))
   algo.runs$algorithm = make.names(algo.runs$algorithm)
   algo.runs = sortByCol(algo.runs, c("instance_id", "repetition"))
@@ -135,7 +135,7 @@ parseASScenario = function(path) {
   ### build cv.splits
   cv.file = file.path(path, "cv.arff")
   if (file.exists(cv.file)) {
-    cv.splits = readARFF(cv.file)
+    cv.splits = readARFF(cv.file, data.reader = "data.table")
     colnames(cv.splits) = make.names(colnames(cv.splits))
     instancesInCV = length(unique(cv.splits$instance_id))
     instancesInAlgos = length(unique(algo.runstatus$instance_id))
@@ -205,7 +205,7 @@ print.ASScenario = function(x, ...) {
 # Helper function for reading feature runstatus files
 readRunstatus = function(path, filename, statusLevels, fsteps, sortBy, ignoreExists = FALSE) {
   res = tryCatch({
-      feature.runstatus = readARFF(file.path(path, filename))
+      feature.runstatus = readARFF(file.path(path, filename), data.reader = "data.table")
       colnames(feature.runstatus) = make.names(colnames(feature.runstatus))
       # make sure we have correct levels
       for (j in 3:ncol(feature.runstatus)) {
@@ -234,7 +234,7 @@ readRunstatus = function(path, filename, statusLevels, fsteps, sortBy, ignoreExi
 # Helper function for reading feature cost files
 readCosts = function(filename, fsteps, sortBy) {
   if (file.exists(filename)) {
-    feature.costs = readARFF(filename)
+    feature.costs = readARFF(filename, data.reader = "data.table")
     colnames(feature.costs) = make.names(colnames(feature.costs))
     # sort rows and cols
     feature.costs = feature.costs[, c(sortBy, fsteps)]
@@ -249,7 +249,7 @@ readCosts = function(filename, fsteps, sortBy) {
 # Helper function for reading feature value files
 readFeatureValues = function(path, filename, sortBy, featureSort, ignoreExists = FALSE) {
   res = tryCatch({
-    feature.values = readARFF(file.path(path, filename))
+    feature.values = readARFF(file.path(path, filename), data.reader = "data.table")
     colnames(feature.values) = make.names(colnames(feature.values))
     # sort rows and cols
     feature.values = feature.values[, c(sortBy, featureSort)]
