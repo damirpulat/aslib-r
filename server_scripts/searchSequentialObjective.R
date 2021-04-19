@@ -4,7 +4,12 @@ searchSequentialObjectiveFeatures = function(xs, scenario, ldf, llama.model.fun,
     if (!any(sel))
       return(Inf)
     ldf2 = ldf
-    ldf2$features = ldf$features[sel]
+		if (is.null(ldf2$algorithmFeatures)) {
+		  ldf2$features = ldf$features[sel]
+		} else {
+      ldf2$features = ldf$features[sel[1:length(ldf$features)]]
+	    ldf2$algorithmFeatures = ldf$algorithmFeatuers[sel[(length(ldf$features) + 1):length(sel)]]	
+		}
     # print(ldf2$features)
     #print(paste("selected:", paste(ldf2$features, collapse=", ")))
     model = llama.model.fun(mlr.learner, ldf2)
