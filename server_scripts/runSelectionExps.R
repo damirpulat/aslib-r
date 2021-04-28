@@ -46,8 +46,12 @@ batchMap(fun = function(ast, learner) {
 	parallelStartMulticore(cpus = 16L)
   feats = searchSequential(searchSequentialObjectiveFeatures, n.bits.features, control = ctrl, scenario = ast, ldf = ldf.features,
                            llama.model.fun = regression, mlr.learner = learner)
-  n.bits = length(ldf$performance)
-  solvs = searchSequential(searchSequentialObjectiveSolvers, n.bits, control = ctrl, scenario = ast, ldf = ldf,
+	if (is.null(ldf$algorithmFeatures)) {
+    n.bits = length(ldf$performance)
+	} else {
+    n.bits = length(ldf$algorithmNames)					
+	}
+	solvs = searchSequential(searchSequentialObjectiveSolvers, n.bits, control = ctrl, scenario = ast, ldf = ldf,
                            llama.model.fun = regression, mlr.learner = learner)
   parallelStop()
   list(id = ast$desc$scenario_id, feats = feats, solvs = solvs)
@@ -55,8 +59,8 @@ batchMap(fun = function(ast, learner) {
 
 
 walltime = '168:00:00'
-memory = '30gb'
-ncpus = 30
+memory = '10gb'
+ncpus = 20
 
 submitJobs(reg = reg, ids = findNotSubmitted(), resources = list(ncpus = ncpus, walltime = walltime, memory = memory))
 waitForJobs(reg = reg, ids = findSubmitted())
@@ -73,13 +77,13 @@ for (i in 1:length(res)) {
   if (is.null(ast$algorithm.feature.values)) {
     ldf = convertToLlamaCVFolds(ast, feature.steps = names(lapply(ast$desc$feature_steps, function(x) x$provides)))
     r$all.feats = ldf$features
+  	r$all.solvers = ldf$performance
 	} else {
 	  ldf = convertToLlamaCVFolds(ast, feature.steps = c(names(lapply(ast$desc$feature_steps, function(x) x$provides)), 
 	               																		names(lapply(ast$desc$algorithm_feature_steps, function(x) x$provides))))
     r$all.feats = c(ldf$features, ldf$algorithmFeatures)
-
+		r$all.solvers = ldf$algorithmNames
 	}	
-  r$all.solvers = ldf$performance
   res[[i]] = r
 }
 
