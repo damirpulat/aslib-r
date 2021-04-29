@@ -32,13 +32,25 @@ learner = makeImputeWrapper(learner = makeLearner("regr.randomForest"),
 batchMap(fun = function(ast, learner) {
   ctrl = makeSSControl(method = "sfs")
   ldf = convertToLlamaCVFolds(ast)
-  n.bits = length(ldf$features)
-  ldf.features = convertToLlamaCVFolds(ast, feature.steps = names(lapply(ast$desc$feature_steps, function(x) x$provides)))
-  n.bits.features = length(ldf.features$features)
+  if (is.null(ldf$algorithmFeatures)) {
+    n.bits = length(ldf$features)
+    ldf.features = convertToLlamaCVFolds(ast, feature.steps = names(lapply(ast$desc$feature_steps, function(x) x$provides)))
+    n.bits.features = length(ldf.features$features)
+  } else {
+    n.bits = length(ldf$features) + length(ldf$algorithmFeatures)
+    ldf.features = convertToLlamaCVFolds(ast, feature.steps = c(names(lapply(ast$desc$feature_steps, function(x) x$provides)), 
+                                                    names(lapply(ast$desc$algorithm_feature_steps, function(x) x$provides))))
+    n.bits.features = length(ldf.features$features) + length(ldf.features$algorithmFeatures)
+  }
+
   parallelStartMulticore(cpus = 16L)
   feats = searchSequential(searchSequentialObjectiveFeatures, n.bits.features, control = ctrl, scenario = ast, ldf = ldf.features,
                            llama.model.fun = regression, mlr.learner = learner)
-  n.bits = length(ldf$performance)
+  if (is.null(ldf$algorithmFeatures)) {
+    n.bits = length(ldf$performance)
+  } else {
+    n.bits = length(ldf$algorithmNames)					
+  }
   solvs = searchSequential(searchSequentialObjectiveSolvers, n.bits, control = ctrl, scenario = ast, ldf = ldf,
                            llama.model.fun = regression, mlr.learner = learner)
   parallelStop()
@@ -47,8 +59,8 @@ batchMap(fun = function(ast, learner) {
 
 
 walltime = '168:00:00'
-memory = '30gb'
-ncpus = 30
+memory = '10gb'
+ncpus = 20
 
 submitJobs(reg = reg, ids = findNotSubmitted(), resources = list(ncpus = ncpus, walltime = walltime, memory = memory))
 waitForJobs(reg = reg, ids = findSubmitted())
@@ -62,9 +74,16 @@ res = reduceResultsList(reg = reg, ids = findDone())
 for (i in 1:length(res)) {
   r = res[[i]]
   ast = Filter(function(ast) ast$desc$scenario_id == r$id, asscenarios)[[1L]]
-  ldf = convertToLlamaCVFolds(ast, feature.steps = names(lapply(ast$desc$feature_steps, function(x) x$provides)))
-  r$all.feats = ldf$features
-  r$all.solvers = ldf$performance
+  if (is.null(ast$algorithm.feature.values)) {
+    ldf = convertToLlamaCVFolds(ast, feature.steps = names(lapply(ast$desc$feature_steps, function(x) x$provides)))
+    r$all.feats = ldf$features
+    r$all.solvers = ldf$performance
+  } else {
+    ldf = convertToLlamaCVFolds(ast, feature.steps = c(names(lapply(ast$desc$feature_steps, function(x) x$provides)), 
+                                names(lapply(ast$desc$algorithm_feature_steps, function(x) x$provides))))
+    r$all.feats = c(ldf$features, ldf$algorithmFeatures)
+    r$all.solvers = ldf$algorithmNames
+  }	
   res[[i]] = r
 }
 
