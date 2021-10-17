@@ -96,6 +96,7 @@ parseASScenario = function(path) {
   algorithm.feature.runstatus = readRunstatus(path = path, filename = "algorithm_feature_runstatus.arff", 
                 statusLevels = c("ok", "timeout", "memout", "crash", "other", "unknown"), 
                 fsteps = algo_fsteps, sortBy = c("algorithm", "repetition"), ignoreExists = TRUE)
+  algorithm.feature.runstatus$algorithm = make.names(algorithm.feature.runstatus$algorithm)
 
   ### build feature.costs
   costfile = file.path(path, "feature_costs.arff")
@@ -105,6 +106,7 @@ parseASScenario = function(path) {
   algorithm.costfile = file.path(path, "algorithm_feature_costs.arff")
   algorithm.feature.costs = readCosts(filename = algorithm.costfile, 
                                      fsteps = fsteps, sortBy = c("algorithm", "repetition"))
+  algorithm.feature.costs$algorithm = make.names(algorithm.feature.costs$algorithm)
 
   ### build feature.values
   feature.values = readFeatureValues(path = path, 
@@ -119,6 +121,7 @@ parseASScenario = function(path) {
               sortBy = c("algorithm", "repetition"), 
               featureSort = c(desc$algorithm_features_deterministic, desc$algorithm_features_stochastic), 
               ignoreExists = TRUE)
+  algorithm.feature.values$algorithm = make.names(algorithm.feature.values$algorithm)
 
   algo.runs = read.arff(file.path(path, "algorithm_runs.arff"))
   colnames(algo.runs) = make.names(colnames(algo.runs))
