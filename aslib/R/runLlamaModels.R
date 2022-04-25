@@ -109,6 +109,7 @@ runLlamaModels = function(asscenarios, feature.steps.list = NULL, baselines = NU
            succ = mean(successes(data, p, timeout = timeout, addCosts = addCosts)),
            par10 = mean(parscores(data, p, timeout = timeout, addCosts = addCosts)),
            mcp = mean(misclassificationPenalties(data, p))
+					 #rmse = mean(compute_rmse(data, p))
          )
        }
      ), fun = NULL
@@ -136,8 +137,8 @@ runLlamaModels = function(asscenarios, feature.steps.list = NULL, baselines = NU
     id = str_replace_all(lrn$id, "\\.", "_")
     addAlgorithm(reg = reg, name = id, fun = function(data, job, instance, ...) {
       llama.fun = switch(lrn$type,
-                         classif = llama::classify,
-                         regr = llama::regression,
+                         classif = llama::classifyPairs,
+                         regr = llama::regressionPairs,
                          cluster = llama::cluster
       )
       if (lrn$type == "cluster") {
@@ -201,27 +202,67 @@ tuneLlamaModel = function(asscenario, cv.splits, pre, timeout, learner, par.set,
   requirePackages(c("parallelMap"), why = "tuneLlamaModel")
   parallelStartMulticore()
   ys = parallelMap(function(x) {
-    par10 = try({
+    #par10 = try({
+    #  learner = setHyperPars(learner, par.vals = x)
+    #  p = llama.fun(learner, data = cv.splits, pre = pre)
+    #  ldf = fixFeckingPresolve(asscenario, cv.splits)
+    #  par10 = mean(parscores(ldf, p, timeout = timeout))
+    #  messagef("[Tune]: %s : par10 = %g", ParamHelpers::paramValueToString(par.set, x), par10)
+    #  return(par10)
+    #})
+    #if(inherits(par10, "try-error")) {
+    #  par10 = NA
+    #}
+    #return(par10)
+    mean_rmse = try({
       learner = setHyperPars(learner, par.vals = x)
       p = llama.fun(learner, data = cv.splits, pre = pre)
       ldf = fixFeckingPresolve(asscenario, cv.splits)
-      par10 = mean(parscores(ldf, p, timeout = timeout))
-      messagef("[Tune]: %s : par10 = %g", ParamHelpers::paramValueToString(par.set, x), par10)
-      return(par10)
+      mean_rmse = mean(compute_rmse(ldf, p$predictions))
+      messagef("[Tune]: %s : mean rmse = %g", ParamHelpers::paramValueToString(par.set, x), mean_rmse)
+      return(mean_rmse)
     })
-    if(inherits(par10, "try-error")) {
-      par10 = NA
+    if(inherits(mean_rmse, "try-error")) {
+      mean_rmse = NA
     }
-    return(par10)
+    return(mean_rmse)
   }, des.list, simplify = TRUE)
   parallelStop()
   # messagef"[Tune]: Tuning evals failed: %i", sum(is.na(ys))]
   best.i = getMinIndex(ys)
   best.parvals = des.list[[best.i]]
-  messagef("[Best]: %s : par10 = %g", ParamHelpers::paramValueToString(par.set, best.parvals), ys[best.i])
+  #messagef("[Best]: %s : par10 = %g", ParamHelpers::paramValueToString(par.set, best.parvals), ys[best.i])
+  messagef("[Best]: %s : mean rmse = %g", ParamHelpers::paramValueToString(par.set, best.parvals), ys[best.i])
   return(best.parvals)
 }
 
 
+compute_rmse = function(ldf, predictions) {
+	if (is.null(ldf$algorithmFeatures)) {
+		algos = ldf$performance
+	} else {
+		algos = ldf$algorithmNames
+	}
+	mse = lapply(algos, function(algo) {
+		if (is.null(ldf$algorithmFeatures)) {
+			truth = ldf$data[, colnames(ldf$data) %in% c("instance_id", algo)]
+			truth = truth[order(truth$instance_id), ]
+			truth = truth[[algo]]
+		} else {
+			truth = subset(ldf$data, ldf$data$algorithm == algo)
+			truth = truth[, c("instance_id", ldf$algos, ldf$performance)] 
+			truth = truth[order(truth$instance_id), ]
+			truth = truth[[ldf$performance]]
+		}
+
+		preds = subset(predictions, predictions$algorithm == algo)
+		preds = preds[, c("instance_id", "algorithm", "score")]	
+		preds = preds[order(preds$instance_id), ]
+		preds = preds[["score"]]
+		rmse = measureRMSE(truth, preds)
+		return(rmse)
+	})
+	return(unlist(mse))
+}
 
 
