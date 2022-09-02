@@ -7,8 +7,10 @@
 summarizeLlamaExps(
   reg,
   ids = findSubmitted(),
-  fun = function(job, res) {     return(list(succ = res$succ, par10 = res$par10, mcp =
-    res$mcp)) },
+  fun = function(job, res) {
+     return(list(succ = res$succ, par10 = res$par10, mcp =
+    res$mcp))
+ },
   missing.val = list(succ = 0, par10 = Inf, mcp = Inf)
 )
 }
