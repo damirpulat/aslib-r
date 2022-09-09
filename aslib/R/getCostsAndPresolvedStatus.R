@@ -10,10 +10,10 @@
 #'   Default is all steps.
 #' @param type [\code{character(1)}]\cr
 #'   Feature type (instance or algorithmic). 
-#' @return [\code{list}]. In the following, \code{n} is the number of instances. All following object are ordered by \dQuote{instance_id}.
-#'   \item{is.presolved [\code{logical(n)}]}{Was instance presolved? Named by instance ids.}
-#'   \item{solve.steps [\code{character(n)}]}{Which step solved it? NA if no step did it. Named by instance ids.}
-#'   \item{costs [\code{numeric(n)}]}{Feature costs for using the steps. Named by instance ids. NULL if no costs are present.}
+#' @return [\code{list}]. Below, \code{n} is the number of instances. All following object are ordered by \dQuote{instance_id}.
+#'   \item{is.presolved [logical(n)]}{Was instance presolved? Named by instance ids.}
+#'   \item{solve.steps [character(n)]}{Which step solved it? NA if no step did it. Named by instance ids.}
+#'   \item{costs [numeric(n)]}{Feature costs for using the steps. Named by instance ids. NULL if no costs are present.}
 #' @export
 getCostsAndPresolvedStatus = function(asscenario, feature.steps, type) {
   assertClass(asscenario, "ASScenario")
