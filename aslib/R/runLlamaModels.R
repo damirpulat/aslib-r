@@ -108,8 +108,8 @@ runLlamaModels = function(asscenarios, feature.steps.list = NULL, baselines = NU
            predictions = p$predictions,
            succ = mean(successes(data, p, timeout = timeout, addCosts = addCosts)),
            par10 = mean(parscores(data, p, timeout = timeout, addCosts = addCosts)),
-           mcp = mean(misclassificationPenalties(data, p))
-					 #rmse = mean(compute_rmse(data, p))
+           mcp = mean(misclassificationPenalties(data, p)),
+					 rmse = mean(compute_rmse(data, p$predictions))
          )
        }
      ), fun = NULL
@@ -137,8 +137,8 @@ runLlamaModels = function(asscenarios, feature.steps.list = NULL, baselines = NU
     id = str_replace_all(lrn$id, "\\.", "_")
     addAlgorithm(reg = reg, name = id, fun = function(data, job, instance, ...) {
       llama.fun = switch(lrn$type,
-                         classif = llama::classifyPairs,
-                         regr = llama::regressionPairs,
+                         classif = llama::classify,
+                         regr = llama::regression,
                          cluster = llama::cluster
       )
       if (lrn$type == "cluster") {
