@@ -116,21 +116,6 @@ runLlamaModels = function(asscenarios, feature.steps.list = NULL, baselines = NU
     )
   }
 
-  # add baselines to reg
-  if (length(baselines) > 0L) {
-    addAlgorithm(reg = reg, name = "baseline", fun = function(data, job, instance, type, ...) {
-      llama.fun = get(type, envir = asNamespace("llama"))
-      p = llama.fun(data = data$llama.scenario)
-      p = list(predictions = p)
-      # this is how LLAMA checks what type of argument is given to the evaluation function
-      attr(p, "hasPredictions") = TRUE
-      data$makeRes(data$llama.scenario, p, data$timeout, FALSE)
-    })
-    des = list()
-    des$baseline = data.table::data.table(type = baselines)
-    addExperiments(reg = reg, algo.designs = des)
-  }
-
   # add real selectors
   addLearnerAlgoAndExps = function(lrn, par.set) {
     # BE does not like the dots in mlr ids
