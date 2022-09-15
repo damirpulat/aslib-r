@@ -136,8 +136,8 @@ runLlamaModels = function(asscenarios, feature.steps.list = NULL, baselines = NU
     id = str_replace_all(lrn$id, "\\.", "_")
     addAlgorithm(reg = reg, name = id, fun = function(data, job, instance, ...) {
       llama.fun = switch(lrn$type,
-                         classif = llama::classify,
-                         regr = llama::regression,
+                         classif = llama::classifyPairs,
+                         regr = llama::regressionPairs,
                          cluster = llama::cluster
       )
       if (lrn$type == "cluster") {
