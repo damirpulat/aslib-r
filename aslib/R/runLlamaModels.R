@@ -61,9 +61,9 @@ runLlamaModels = function(asscenarios, feature.steps.list = NULL, baselines = NU
     assertSubset(baselines, baselines.all)
   }
 
-  assertList(learners, types = "Learner")
+  #assertList(learners, types = "Learner")
   learner.ids = extractSubList(learners, "id")
-  assertList(par.sets, types = "ParamSet", len = length(learners))
+  #assertList(par.sets, types = "ParamSet", len = length(learners))
 
   rs.iters = asInt(rs.iters, lower = 1L)
   n.inner.folds = asInt(n.inner.folds, lower = 2L)
@@ -135,23 +135,48 @@ runLlamaModels = function(asscenarios, feature.steps.list = NULL, baselines = NU
     # BE does not like the dots in mlr ids
     id = str_replace_all(lrn$id, "\\.", "_")
     addAlgorithm(reg = reg, name = id, fun = function(data, job, instance, ...) {
-      llama.fun = switch(lrn$type,
-                         classif = llama::classify,
-                         regr = llama::regression,
-                         cluster = llama::cluster
-      )
-      if (lrn$type == "cluster") {
-        pre = llama::normalize
+      # extract type from clusterer -- [[1]]
+      if (!is.null(lrn$.combine)) {
+        llama.fun = switch(lrn[[1]]$type,
+                           classif = llama::classify,
+                           regr = llama::regression,
+                           cluster = llama::cluster)
       } else {
-        pre = function(x, y = NULL) {
-          list(features = x)
+        llama.fun = switch(lrn$type,
+                           classif = llama::classify,
+                           regr = llama::regression,
+                           cluster = llama::cluster)
+      }
+
+      if (!is.null(lrn$.combine)) {
+        if (lrn[[1]]$type == "cluster") {
+          pre = llama::normalize
+        } else {
+          pre = function(x, y = NULL) {
+            list(features = x)
+          }
+        }
+      } else {
+        if (lrn$type == "cluster") {
+          pre = llama::normalize
+        } else {
+          pre = function(x, y = NULL) {
+            list(features = x)
+          }
         }
       }
-      p = if (ParamHelpers::isEmpty(par.set))
-        llama.fun(lrn, data = data$llama.cv, pre = pre)
-      else
-        doNestedCVWithTuning(data$asscenario, data$llama.cv, pre, data$timeout,
-                             lrn, par.set, llama.fun, data$rs.iters, data$n.inner.folds)
+
+      if (!is.null(lrn$.combine)) {
+        p = doNestedCVWithTuning(data$asscenario, data$llama.cv, pre, data$timeout,
+                                 lrn, par.set, llama.fun, data$rs.iters, data$n.inner.folds)
+      } else {
+        p = if (ParamHelpers::isEmpty(par.set))
+          llama.fun(lrn, data = data$llama.cv, pre = pre)
+        else
+          doNestedCVWithTuning(data$asscenario, data$llama.cv, pre, data$timeout,
+                               lrn, par.set, llama.fun, data$rs.iters, data$n.inner.folds)
+      }
+
       data$makeRes(data$llama.cv, p, data$timeout, TRUE)
     })
 
@@ -184,7 +209,13 @@ doNestedCVWithTuning = function(asscenario, ldf, pre, timeout, learner, par.set,
     parvals = tuneLlamaModel(asscenario, ldf3, pre, timeout, learner, par.set, llama.fun, rs.iters)
 
     # now fit only on outer trainining set with best params and predict outer test set
-    learner2 = setHyperPars(learner, par.vals = parvals)
+    if(!is.null(learner$.combine)) {
+      learner2 = learner
+      learner2[[1]] = setHyperPars(learner[[1]], par.vals = parvals[[1]])
+      learner2$.combine = setHyperPars(learner$.combine, par.vals = parvals[[2]])
+    } else {
+      learner2 = setHyperPars(learner, par.vals = parvals)
+    }
     outer.split.ldf = ldf
     outer.split.ldf$train = list(ldf$train[[i]])
     outer.split.ldf$test = list(ldf$test[[i]])
@@ -196,30 +227,71 @@ doNestedCVWithTuning = function(asscenario, ldf, pre, timeout, learner, par.set,
 }
 
 tuneLlamaModel = function(asscenario, cv.splits, pre, timeout, learner, par.set, llama.fun, rs.iters) {
-  des = ParamHelpers::generateRandomDesign(rs.iters, par.set, trafo = TRUE)
-  des.list = ParamHelpers::dfRowsToList(des, par.set)
-  requirePackages(c("parallelMap"), why = "tuneLlamaModel")
-  parallelStartMulticore()
-  ys = parallelMap(function(x) {
-    par10 = try({
-      learner = setHyperPars(learner, par.vals = x)
-      p = llama.fun(learner, data = cv.splits, pre = pre)
-      ldf = fixFeckingPresolve(asscenario, cv.splits)
-      par10 = mean(parscores(ldf, p, timeout = timeout))
-      messagef("[Tune]: %s : par10 = %g", ParamHelpers::paramValueToString(par.set, x), par10)
+  # generate params for two functions at the same time?
+  if(!is.null(learner$.combine)) {
+    des.learner = ParamHelpers::generateRandomDesign(rs.iters, par.set[[1]], trafo = TRUE)
+    des.learner.list = ParamHelpers::dfRowsToList(des.learner, par.set[[1]])
+    des.combine = ParamHelpers::generateRandomDesign(rs.iters, par.set$.combine, trafo = TRUE)
+    des.combine.list = ParamHelpers::dfRowsToList(des.combine, par.set$.combine)
+    requirePackages(c("parallelMap"), why = "tuneLlamaModel")
+    parallelStartMulticore()
+    ys = parallelMap(function(x, y) {
+      par10 = try({
+        learner[[1]] = setHyperPars(learner[[1]], par.vals = x)
+        learner$.combine = setHyperPars(learner$.combine, par.vals = y)
+        p = llama.fun(learner, data = cv.splits, pre = pre)
+        ldf = fixFeckingPresolve(asscenario, cv.splits)
+        par10 = mean(parscores(ldf, p, timeout = timeout))
+        messagef("[Tune]: %s and %s : par10 = %g", ParamHelpers::paramValueToString(par.set[[1]], x), 
+                 ParamHelpers::paramValueToString(par.set$.combine, y), par10)
+        return(par10)
+      })
+      if(inherits(par10, "try-error")) {
+        par10 = NA
+      }
       return(par10)
-    })
-    if(inherits(par10, "try-error")) {
-      par10 = NA
-    }
-    return(par10)
-  }, des.list, simplify = TRUE)
-  parallelStop()
-  # messagef"[Tune]: Tuning evals failed: %i", sum(is.na(ys))]
-  best.i = getMinIndex(ys)
-  best.parvals = des.list[[best.i]]
-  messagef("[Best]: %s : par10 = %g", ParamHelpers::paramValueToString(par.set, best.parvals), ys[best.i])
-  return(best.parvals)
+    }, des.learner.list, des.combine.list, simplify = TRUE)
+    parallelStop()
+    
+    # messagef"[Tune]: Tuning evals failed: %i", sum(is.na(ys))]
+    best.i = getMinIndex(ys)
+    best.parvals.learner = des.learner.list[[best.i]]
+    best.parvals.combine = des.combine.list[[best.i]]
+    messagef("[Best]: %s and %s : par10 = %g", ParamHelpers::paramValueToString(par.set[[1]], best.parvals.learner), 
+             ParamHelpers::paramValueToString(par.set$.combine, best.parvals.combine), ys[best.i])
+    return(list(best.parvals.learner, best.parvals.combine))
+  } else {
+    des = ParamHelpers::generateRandomDesign(rs.iters, par.set, trafo = TRUE)
+    des.list = ParamHelpers::dfRowsToList(des, par.set)
+    requirePackages(c("parallelMap"), why = "tuneLlamaModel")
+    parallelStartMulticore()
+    ys = parallelMap(function(x) {
+      par10 = try({
+        if(!is.null(learner$.combine)) {
+          learner = setHyperPars(learner$.combine, par.vals = x)
+        } else {
+          learner = setHyperPars(learner, par.vals = x)
+        }
+        p = llama.fun(learner, data = cv.splits, pre = pre)
+        ldf = fixFeckingPresolve(asscenario, cv.splits)
+        par10 = mean(parscores(ldf, p, timeout = timeout))
+        messagef("[Tune]: %s : par10 = %g", ParamHelpers::paramValueToString(par.set, x), par10)
+        return(par10)
+      })
+      if(inherits(par10, "try-error")) {
+        par10 = NA
+      }
+      return(par10)
+    }, des.list, simplify = TRUE)
+    parallelStop()
+    
+    # messagef"[Tune]: Tuning evals failed: %i", sum(is.na(ys))]
+    best.i = getMinIndex(ys)
+    best.parvals = des.list[[best.i]]
+    messagef("[Best]: %s : par10 = %g", ParamHelpers::paramValueToString(par.set, best.parvals), ys[best.i])
+    return(best.parvals)
+  }
+  
 }
 
 
