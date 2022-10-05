@@ -8,23 +8,25 @@ library(aslib)
 source("defs.R")
 
 ds.dirs = list.files(coseal.data.dir, full.names = TRUE)
-ds.dirs = ds.dirs[!str_detect(ds.dirs, "TSP-|README.md")]
+ds.dirs = ds.dirs[str_detect(ds.dirs, "GLUHACK")]
+#ds.dirs = ds.dirs[c(1, 2)]
+#ds.dirs = ds.dirs[!str_detect(ds.dirs, "TSP-|README.md")]
 print(ds.dirs)
 #ds.dirs = list(ds.dirs[2])
 asscenarios = lapply(ds.dirs, parseASScenario)
 
 learners = list(
   # classif
-  makeLearner("classif.rpart"),
-  makeLearner("classif.randomForest"),
-  makeLearner("classif.ksvm"),
+  #makeLearner("classif.rpart"),
+  #makeLearner("classif.randomForest"),
+  #makeLearner("classif.ksvm"),
   # regr
-  makeLearner("regr.lm"),
-  makeLearner("regr.rpart"),
-  makeLearner("regr.randomForest"),
+  #makeLearner("regr.lm"),
+  #makeLearner("regr.rpart"),
+  makeLearner("regr.randomForest")#,
   # makeLearner("regr.mars")
   # cluster
-  makeLearner("cluster.XMeans", H = 30) # increase upper limit of clusters
+  #makeLearner("cluster.XMeans", H = 30) # increase upper limit of clusters
 )
 
 wrapped.learners = lapply(learners, function(learner) {
@@ -35,22 +37,22 @@ wrapped.learners = lapply(learners, function(learner) {
 
 par.sets = list(
   # classif
-  classif.rpart = makeParamSet(),
-  classif.randomForest = makeParamSet(
-    makeIntegerParam("ntree", lower = 10, upper = 200),
-    makeIntegerParam("mtry", lower = 1, upper = 30)
-  ),
-  classif.ksvm = makeParamSet(
-    makeNumericParam("C",     lower = -12, upper = 12, trafo = function(x) 2^x),
-    makeNumericParam("sigma", lower = -12, upper = 12, trafo = function(x) 2^x)
-  ),
+  #classif.rpart = makeParamSet(),
+  #classif.randomForest = makeParamSet(
+  #  makeIntegerParam("ntree", lower = 10, upper = 200),
+  #  makeIntegerParam("mtry", lower = 1, upper = 30)
+  #),
+  #classif.ksvm = makeParamSet(
+  #  makeNumericParam("C",     lower = -12, upper = 12, trafo = function(x) 2^x),
+  #  makeNumericParam("sigma", lower = -12, upper = 12, trafo = function(x) 2^x)
+  #),
   # regr
-  regr.lm = makeParamSet(),
-  regr.rpart = makeParamSet(),
+  #regr.lm = makeParamSet(),
+  #regr.rpart = makeParamSet(),
   regr.randomForest = makeParamSet(
     makeIntegerParam("ntree", lower = 10, upper = 200),
     makeIntegerParam("mtry", lower = 1, upper = 30)
-  ),
+  )#,
   # regr.earth = makeParamSet(
   #   makeIntegerParam("degree", lower = 1, upper = 3)
   #   makeNumericParam("penalty", lower = 2, upper = 4)
@@ -59,11 +61,11 @@ par.sets = list(
   #   makeLogicalParam("forward.step")
   # # )
   # cluster
-  cluster.XMeans = makeParamSet()
+  #cluster.XMeans = makeParamSet()
 )
 
 reg = runLlamaModels(asscenarios, learners = wrapped.learners,
-  par.sets = par.sets, rs.iters = 250L, n.inner.folds = 3L)
+  par.sets = par.sets, rs.iters = 2L, n.inner.folds = 3L)
 
 # testJob(reg, 5, external = FALSE)
 
@@ -76,7 +78,7 @@ reg = runLlamaModels(asscenarios, learners = wrapped.learners,
 
 # stop("we dont auto submit :)")
 
-walltime = '100:00:00'
+walltime = '160:00:00'
 memory = '20gb'
 ncpus = 15
 
@@ -86,11 +88,47 @@ submitJobs(reg = reg, ids = findNotSubmitted(), resources = list(ncpus = ncpus, 
 waitForJobs(reg = reg, ids = findSubmitted())
 
 aggrShort = function(job, res) {
-    return(list(succ = res$succ, par10 = res$par10, mcp = res$mcp))
+    return(list(models = res$retval$models, predictions = res$predictions))
 }
 
-d = summarizeLlamaExps(reg = reg, ids = findSubmitted(), fun = aggrShort,
-                         missing.val = list(succ = 0, par10 = Inf, mcp = Inf))
+ids = findSubmitted()
+info = unwrap(getJobPars(reg = reg))
+info$fold = str_extract(info$problem, "_[0-9]*")
+info$fold = as.numeric(str_remove(info$fold, "_"))
+info$problem = str_remove(info$problem, "_[0-9]*")
+repls = getJobTable(reg = reg, ids = ids)
+repls = repls[, c("job.id", "repl")]
 
-e = reduceResultsList(reg = reg, ids = findDone())
-save2(file = "llama_results.RData", res = d, resLong = e)
+d = reduceResultsDataTable(reg = reg, ids = findSubmitted(), fun = aggrShort,
+                           missing.val = list(predictions = NULL, models = NULL))
+d = merge(info, d, by = "job.id")
+d = merge(repls, d, by = "job.id")
+
+# stack all predictions
+e = d[, .(preds = list(do.call(rbind, lapply(result, function(x) { x$predictions }))), 
+          models=list(result[[1]]$model)), by=.(problem, algorithm)]
+
+# scenarios and their names
+l = data.table(problem=sapply(asscenarios, function(x) x$desc$scenario_id), 
+               data=sapply(asscenarios, convertToLlamaCVFolds))
+e = merge(e, l)
+
+# compute statistics (mcp, par10, success)
+s1 = c()
+s2 = c()
+s3 = c()
+for(i in seq_along(1:nrow(e))) {
+  m = list(predictions = e$preds[[i]])
+  attr(m, "hasPredictions") = TRUE
+  s1 = c(s1, mean(misclassificationPenalties(e$data[[i]], m)))
+  s2 = c(s2, mean(parscores(e$data[[i]], m)))
+  s3 = c(s3, mean(successes(e$data[[i]], m)))
+}
+
+s = e[, .(problem, algorithm)]
+s$success = s3
+s$par10 = s2
+s$mcp = s1
+
+#e = reduceResultsList(reg = reg, ids = findDone())
+save2(file = "llama_results.RData", res = s, resLong = e)
