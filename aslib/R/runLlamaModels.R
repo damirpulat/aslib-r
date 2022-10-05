@@ -74,12 +74,27 @@ runLlamaModels = function(asscenarios, feature.steps.list = NULL, baselines = NU
   llama.scenarios = mapply(convertToLlama, asscenario = asscenarios,
     feature.steps = feature.steps.list, SIMPLIFY = FALSE)
   llama.cvs = lapply(asscenarios, convertToLlamaCVFolds)
+  
+  lrn = learners[[1]]
+  llama.fun = switch(lrn$type,
+                     classif = llama::classify,
+                     regr = llama::regression,
+                     cluster = llama::cluster
+  )
+  if (lrn$type == "cluster") {
+    pre = llama::normalize
+  } else {
+    pre = function(x, y = NULL) {
+      list(features = x)
+    }
+  }
+  par.set = par.sets[[1]]
 
   # FIXME:
   unlink("run_llama_models-files", recursive = TRUE)
   reg = makeExperimentRegistry("run_llama_models", packages = packs)
   batchExport(reg = reg, export = list(fixFeckingPresolve = fixFeckingPresolve,
-                doNestedCVWithTuning = doNestedCVWithTuning, tuneLlamaModel = tuneLlamaModel))
+                tuneLlamaModel = tuneLlamaModel))
 
   for (i in seq_along(asscenarios)) {
     asscenario = asscenarios[[i]]
@@ -90,109 +105,75 @@ runLlamaModels = function(asscenarios, feature.steps.list = NULL, baselines = NU
     } else {
       NULL
     }
-    addProblem(reg = reg, name = desc$scenario_id,
-     data = list(
-       asscenario = asscenario,
-       feature.steps = feature.steps.list[[desc$scenario_id]],
-       timeout = timeout,
-       llama.scenario = llama.scenarios[[i]],
-       llama.cv = llama.cvs[[i]],
-       n.algos = length(getAlgorithmNames(asscenario)),
-       rs.iters = rs.iters,
-       n.inner.folds = n.inner.folds,
-       makeRes = function(data, p, timeout, addCosts) {
-         if (addCosts) {
-           data = fixFeckingPresolve(asscenario, data)
-         }
-         list(
-           predictions = p$predictions,
-           succ = mean(successes(data, p, timeout = timeout, addCosts = addCosts)),
-           par10 = mean(parscores(data, p, timeout = timeout, addCosts = addCosts)),
-           mcp = mean(misclassificationPenalties(data, p))
-         )
-       }
-     ), fun = NULL
-    )
+    feature.steps = feature.steps.list[[desc$scenario_id]]
+    llama.scenario = llama.scenarios[[i]]
+    llama.cv = llama.cvs[[i]]
+    n.algos = length(getAlgorithmNames(asscenario))
+    rs.iters = rs.iters
+    n.inner.folds = n.inner.folds
+    doNestedCVWithTuning(reg, asscenario, llama.cv, pre, timeout,
+                                             lrn, par.set, llama.fun, rs.iters, n.inner.folds)
   }
-
-  # add baselines to reg
-  if (length(baselines) > 0L) {
-    addAlgorithm(reg = reg, name = "baseline", fun = function(data, job, instance, type, ...) {
-      llama.fun = get(type, envir = asNamespace("llama"))
-      p = llama.fun(data = data$llama.scenario)
-      p = list(predictions = p)
-      # this is how LLAMA checks what type of argument is given to the evaluation function
-      attr(p, "hasPredictions") = TRUE
-      data$makeRes(data$llama.scenario, p, data$timeout, FALSE)
-    })
-    des = list()
-    des$baseline = data.table::data.table(type = baselines)
-    addExperiments(reg = reg, algo.designs = des)
-  }
-
-  # add real selectors
-  addLearnerAlgoAndExps = function(lrn, par.set) {
-    # BE does not like the dots in mlr ids
-    id = str_replace_all(lrn$id, "\\.", "_")
-    addAlgorithm(reg = reg, name = id, fun = function(data, job, instance, ...) {
-      llama.fun = switch(lrn$type,
-                         classif = llama::classify,
-                         regr = llama::regression,
-                         cluster = llama::cluster
-      )
-      if (lrn$type == "cluster") {
-        pre = llama::normalize
-      } else {
-        pre = function(x, y = NULL) {
-          list(features = x)
-        }
-      }
-      p = if (ParamHelpers::isEmpty(par.set))
-        llama.fun(lrn, data = data$llama.cv, pre = pre)
-      else
-        doNestedCVWithTuning(data$asscenario, data$llama.cv, pre, data$timeout,
-                             lrn, par.set, llama.fun, data$rs.iters, data$n.inner.folds)
-      data$makeRes(data$llama.cv, p, data$timeout, TRUE)
-    })
-
-    # empty design for algorithm
-    algo.designs = vector(mode = "list", length = 1L)
-    algo.designs[[1]] = data.table::data.table(type = NULL)
-    names(algo.designs) = id
-
-    addExperiments(reg = reg, algo.designs = algo.designs)
-  }
-
-  if (length(learners) > 0L)
-    mapply(addLearnerAlgoAndExps, learners, par.sets)
-
+  
+  
   return(reg)
 }
 
-doNestedCVWithTuning = function(asscenario, ldf, pre, timeout, learner, par.set, llama.fun,
+doNestedCVWithTuning = function(reg, asscenario, ldf, pre, timeout, learner, par.set, llama.fun,
   rs.iters, n.inner.folds) {
 
   n.outer.folds = length(ldf$test)
-  outer.preds = vector("list", n.outer.folds)
 
+  # add data to each job
   for (i in 1:n.outer.folds) {
     ldf2 = ldf
     ldf2$data = ldf$data[ldf$train[[i]],]
     ldf2$train = NULL
     ldf2$test = NULL
     ldf3 = cvFolds(ldf2, nfolds = n.inner.folds, stratify = FALSE)
-    parvals = tuneLlamaModel(asscenario, ldf3, pre, timeout, learner, par.set, llama.fun, rs.iters)
-
-    # now fit only on outer trainining set with best params and predict outer test set
-    learner2 = setHyperPars(learner, par.vals = parvals)
-    outer.split.ldf = ldf
-    outer.split.ldf$train = list(ldf$train[[i]])
-    outer.split.ldf$test = list(ldf$test[[i]])
-    outer.preds[[i]] = llama.fun(learner2, data = outer.split.ldf, pre = pre)
-  }
-  retval = outer.preds[[1]]
-  retval$predictions = do.call(rbind, lapply(outer.preds, function(x) { x$predictions }))
-  return(retval)
+    addProblem(reg = reg, name = paste(asscenario$desc$scenario_id, i, sep="_"),
+       data = list(
+         i = i,
+         asscenario = asscenario,
+         timeout = timeout,
+         rs.iters = rs.iters,
+         n.inner.folds = n.inner.folds,
+         ldf3 = ldf3,
+         makeRes = function(outer.preds) {
+           list(
+             retval = outer.preds,
+             predictions = outer.preds$predictions
+           )
+         }
+       ), fun = NULL
+      )
+    }
+    
+    # add experiment to each job
+    addLearnerAlgoAndExps = function(lrn, par.set) {
+      # BE does not like the dots in mlr ids
+      id = str_replace_all(lrn$id, "\\.", "_")
+      addAlgorithm(reg = reg, name = id, fun = function(data, job, instance, ...) {
+        parvals = tuneLlamaModel(data$asscenario, data$ldf3, pre, data$timeout, learner, par.set, llama.fun, data$rs.iters)
+        
+        # now fit only on outer trainining set with best params and predict outer test set
+        learner2 = setHyperPars(learner, par.vals = parvals)
+        outer.split.ldf = ldf
+        outer.split.ldf$train = list(ldf$train[[data$i]])
+        outer.split.ldf$test = list(ldf$test[[data$i]])
+        outer.preds = llama.fun(learner2, data = outer.split.ldf, pre = pre)
+        data$makeRes(outer.preds)
+      })
+      
+      # empty design for algorithm
+      algo.designs = vector(mode = "list", length = 1L)
+      algo.designs[[1]] = data.table::data.table(type = NULL)
+      names(algo.designs) = id
+      
+      addExperiments(reg = reg, algo.designs = algo.designs)
+    }
+    
+    addLearnerAlgoAndExps(learner, par.set)
 }
 
 tuneLlamaModel = function(asscenario, cv.splits, pre, timeout, learner, par.set, llama.fun, rs.iters) {
