@@ -119,7 +119,7 @@ runLlamaModels = function(asscenarios, feature.steps.list = NULL, baselines = NU
   return(reg)
 }
 
-doNestedCVWithTuning = function(asscenario, ldf, pre, timeout, learner, par.set, llama.fun,
+doNestedCVWithTuning = function(reg, asscenario, ldf, pre, timeout, learner, par.set, llama.fun,
   rs.iters, n.inner.folds) {
 
   n.outer.folds = length(ldf$test)
