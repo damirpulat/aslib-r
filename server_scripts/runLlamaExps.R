@@ -5,6 +5,7 @@ library(stringr)
 library(mlr)
 library(ParamHelpers)
 library(aslib)
+library(data.table)
 source("defs.R")
 
 ds.dirs = list.files(coseal.data.dir, full.names = TRUE)
@@ -86,11 +87,50 @@ submitJobs(reg = reg, ids = findNotSubmitted(), resources = list(ncpus = ncpus, 
 waitForJobs(reg = reg, ids = findSubmitted())
 
 aggrShort = function(job, res) {
-    return(list(succ = res$succ, par10 = res$par10, mcp = res$mcp))
+  return(list(models = res$retval$models, predictions = res$predictions))
 }
 
-d = summarizeLlamaExps(reg = reg, ids = findSubmitted(), fun = aggrShort,
-                         missing.val = list(succ = 0, par10 = Inf, mcp = Inf))
+ids = findSubmitted()
+info = unwrap(getJobPars(reg = reg))
+info$fold = str_extract(info$problem, "_[0-9]*")
+info$fold = as.numeric(str_remove(info$fold, "_"))
+info$problem = str_remove(info$problem, "_[0-9]*")
+repls = getJobTable(reg = reg, ids = ids)
+repls = repls[, c("job.id", "repl")]
 
-e = reduceResultsList(reg = reg, ids = findDone())
-save2(file = "llama_results.RData", res = d, resLong = e)
+d = reduceResultsDataTable(reg = reg, ids = findSubmitted(), fun = aggrShort,
+                           missing.val = list(predictions = NULL, models = NULL))
+d = merge(info, d, by = "job.id")
+d = merge(repls, d, by = "job.id")
+
+# stack all predictions
+e = d[, .(preds = list(do.call(rbind, lapply(result, function(x) { x$predictions }))), 
+          models=list(result[[1]]$model)), by=.(problem, algorithm)]
+
+# scenarios and their names
+l = data.table(problem=sapply(asscenarios, function(x) x$desc$scenario_id), 
+               data=sapply(asscenarios, convertToLlamaCVFolds))
+e = merge(e, l)
+
+# compute statistics (mcp, par10, success, rmse)
+s1 = c()
+s2 = c()
+s3 = c()
+s4 = c()
+for(i in seq_along(1:nrow(e))) {
+  m = list(predictions = e$preds[[i]])
+  attr(m, "hasPredictions") = TRUE
+  s1 = c(s1, mean(misclassificationPenalties(e$data[[i]], m)))
+  s2 = c(s2, mean(parscores(e$data[[i]], m)))
+  s3 = c(s3, mean(successes(e$data[[i]], m)))
+  s4 = c(s4, mean(aslib:::compute_rmse(e$data[[i]], m$predictions)))
+}
+
+s = e[, .(problem, algorithm)]
+s$success = s3
+s$par10 = s2
+s$mcp = s1
+s$rmse = s4
+
+#e = reduceResultsList(reg = reg, ids = findDone())
+save2(file = "llama_results.RData", res = s, resLong = e)
