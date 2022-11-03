@@ -77,8 +77,8 @@ runLlamaModels = function(asscenarios, feature.steps.list = NULL, baselines = NU
   
   lrn = learners[[1]]
   llama.fun = switch(lrn$type,
-                     classif = llama::classifyPairs,
-                     regr = llama::regressionPairs,
+                     classif = llama::classify,
+                     regr = llama::regression,
                      cluster = llama::cluster
   )
   if (lrn$type == "cluster") {
