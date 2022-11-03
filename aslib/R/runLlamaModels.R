@@ -215,8 +215,8 @@ tuneLlamaModel = function(asscenario, cv.splits, pre, timeout, learner, par.set,
     return(par10)
   }, des.list, simplify = TRUE)
   parallelStop()
-  # messagef"[Tune]: Tuning evals failed: %i", sum(is.na(ys))]
-  best.i = getMinIndex(ys)
+  messagef("[Tune]: Tuning evals failed: %i times", sum(is.na(ys)))
+  best.i = getMinIndex(ys, na.rm=TRUE)
   best.parvals = des.list[[best.i]]
   messagef("[Best]: %s : par10 = %g", ParamHelpers::paramValueToString(par.set, best.parvals), ys[best.i])
   return(best.parvals)
